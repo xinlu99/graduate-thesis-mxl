@@ -17,10 +17,16 @@
   % - 如果想要按照引用顺序排序，可在`main.tex`设置`publications/sorting = false`。
   % - 如果想要微调，详见 https://bithesis.bitnp.net/faq/bib-sort.html#sortkey 。
   % 更多信息请参考「bithesis.pdf」手册。
-  \addpubs{myCiteKey,myCiteKey2,dummy:1,dummy:2}
+  % \addpubs{} % 在此填写 pub.bib 中的引用键，例如：\addpubs{myPaper1,myPaper2}
+
+  % 当前 `pub.bib` 为空，先给出占位说明，避免空文献表警告。
+  \zihao{5}
+  \begin{enumerate}[nosep, leftmargin=4ex-2pt, labelsep=1ex]
+    \item 暂无攻读学位期间发表论文与研究成果。
+  \end{enumerate}
 
   % 主要针对硕士生
-  \printbibliography[heading=none,category=mypub,resetnumbers=true]
+  % \printbibliography[heading=none,category=mypub,resetnumbers=true]
 
   % 如果想要分为多个列表，可以使用以下的命令。
   % 主要针对博士生。

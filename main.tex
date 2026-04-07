@@ -161,6 +161,20 @@
 
 
 \usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% 定义居中自适应宽度列类型 C（用于 tabularx 环境）
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+% 第三章表格（tabularx）：P{width} 为定宽居中列，Y 为左对齐可伸缩列；与全文已定义的 C（居中 X）区分
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
 \begin{document}
 

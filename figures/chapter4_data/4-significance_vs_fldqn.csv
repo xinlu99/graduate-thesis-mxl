@@ -1,0 +1,5 @@
+baseline,latency_improvement_pct,throughput_improvement_pct,energy_reduction_pct,p_value
+DQN-Only,25.3,24.4,14.5,0.0012
+FL-Only,14.8,10.9,7.0,0.0045
+Heuristic,32.6,34.2,20.6,0.0008
+Random,41.7,75.9,30.8,0.0003

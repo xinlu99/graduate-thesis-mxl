@@ -1,0 +1,46 @@
+variant,concurrency,latency_ms
+FL-DQN (V0),2,123
+FL-DQN (V0),3,138
+FL-DQN (V0),4,154
+FL-DQN (V0),5,170
+FL-DQN (V0),6,186
+FL-DQN (V0),7,203
+FL-DQN (V0),8,221
+FL-DQN (V0),9,240
+FL-DQN (V0),10,260
+w/o FL (V1),2,132
+w/o FL (V1),3,149
+w/o FL (V1),4,167
+w/o FL (V1),5,186
+w/o FL (V1),6,206
+w/o FL (V1),7,228
+w/o FL (V1),8,251
+w/o FL (V1),9,275
+w/o FL (V1),10,301
+w/o CFO Pred (V2),2,136
+w/o CFO Pred (V2),3,154
+w/o CFO Pred (V2),4,173
+w/o CFO Pred (V2),5,193
+w/o CFO Pred (V2),6,214
+w/o CFO Pred (V2),7,237
+w/o CFO Pred (V2),8,261
+w/o CFO Pred (V2),9,287
+w/o CFO Pred (V2),10,315
+w/o Replay (V3),2,140
+w/o Replay (V3),3,159
+w/o Replay (V3),4,179
+w/o Replay (V3),5,200
+w/o Replay (V3),6,222
+w/o Replay (V3),7,246
+w/o Replay (V3),8,271
+w/o Replay (V3),9,298
+w/o Replay (V3),10,326
+w/o Reward Shaping (V4),2,134
+w/o Reward Shaping (V4),3,152
+w/o Reward Shaping (V4),4,171
+w/o Reward Shaping (V4),5,191
+w/o Reward Shaping (V4),6,212
+w/o Reward Shaping (V4),7,235
+w/o Reward Shaping (V4),8,259
+w/o Reward Shaping (V4),9,285
+w/o Reward Shaping (V4),10,313

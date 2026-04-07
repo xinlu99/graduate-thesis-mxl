@@ -1,0 +1,8 @@
+query_interval_s,avg_new_task_latency_ms
+1,201
+2,197
+4,191
+6,189
+8,194
+10,203
+12,214

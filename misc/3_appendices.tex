@@ -4,59 +4,33 @@
 %%
 
 \begin{appendices}
-  \chapter{费马大定理的证明}
-  关于此，我确信已发现了一种美妙的证法，可惜这里空白的地方太小，写不下。
+  \chapter{仿真参数与环境配置}
 
-  \chapter{Maxwell Equations}
-  因为在柱坐标系下，$\overline{\overline\mu}$是对角的，所以Maxwell方程组中电场$\bf
-  E$的旋度
+  本附录用于补充正文实验部分未展开列出的参数设置与环境说明，便于对本文方法的实验条件进行统一说明与后续复现实验。实验环境主要围绕天基网络计算卸载场景进行构建，涉及卫星终端、卫星边缘节点、链路参数、任务到达过程以及算法超参数等多个方面。对于不同实验场景，可在统一参数基线的基础上对节点规模、任务强度、链路时延与负载水平进行适当调整。
 
-  所以$\bf H$的各个分量可以写为：
-  \begin{subequations}
-    \begin{eqnarray}
-      H_r=\frac{1}{\mathbf{i}\omega\mu_r}\frac{1}{r}\frac{\partial
-        E_z}{\partial\theta } \\
-      H_\theta=-\frac{1}{\mathbf{i}\omega\mu_\theta}\frac{\partial E_z}{\partial r}
-    \end{eqnarray}
-  \end{subequations}
+  在系统参数设置方面，可重点说明卫星节点数量、节点计算能力范围、任务输入规模、任务计算量分布、链路带宽区间、传播时延范围以及任务时延约束设置等内容；在算法参数设置方面，可进一步补充多智能体强化学习、联邦学习与深度强化学习相关的学习率、折扣因子、训练轮数、批大小与聚合周期等参数。对于实验中使用的评价指标，如平均时延、任务完成率、系统吞吐量、负载均衡度和能耗等，也可在附录中统一列出其统计口径与计算方式。
 
-  同样地，在柱坐标系下，$\overline{\overline\epsilon}$是对角的，所以Maxwell方程组中磁场$\bf
-  H$的旋度
-  \begin{subequations}
-    \begin{eqnarray}
-      &&\nabla\times{\bf H}=-\mathbf{i}\omega{\bf D}\\
-      &&\left[\frac{1}{r}\frac{\partial}{\partial
-          r}(rH_\theta)-\frac{1}{r}\frac{\partial
-          H_r}{\partial\theta}\right]{\hat{\bf
-          z}}=-\mathbf{i}\omega{\overline{\overline\epsilon}}{\bf
-        E}=-\mathbf{i}\omega\epsilon_zE_z{\hat{\bf z}} \\
-      &&\frac{1}{r}\frac{\partial}{\partial
-        r}(rH_\theta)-\frac{1}{r}\frac{\partial
-        H_r}{\partial\theta}=-\mathbf{i}\omega\epsilon_zE_z
-    \end{eqnarray}
-  \end{subequations}
+  \chapter{关键模型推导与补充说明}
 
-  由此我们可以得到关于$E_z$的波函数方程：
-  \begin{eqnarray}
-    \frac{1}{\mu_\theta\epsilon_z}\frac{1}{r}\frac{\partial}{\partial r}
-    \left(r\frac{\partial E_z}{\partial r}\right)+
-    \frac{1}{\mu_r\epsilon_z}\frac{1}{r^2}\frac{\partial^2E_z}{\partial\theta^2}
-    +\omega^2 E_z=0
-  \end{eqnarray}
+  本附录用于补充正文中为保持行文紧凑而未详细展开的模型推导过程与符号说明。针对系统层协同资源分配问题，可进一步给出状态变量、动作变量、奖励函数各分量以及约束条件之间的对应关系；针对任务层并发感知卸载问题，可补充并发开销定义、工程近似表达及其与综合代价函数之间的推导联系。
 
-  \chapter{要求}
+  此外，对于文中涉及的关键符号、参数物理意义与公式适用条件，也可在本附录中进行集中说明，以增强模型表达的一致性与可读性。当后续章节补充完整实验内容后，本附录还可进一步加入复杂度分析、敏感性分析推导或部分中间证明过程，以形成与正文相互支撑的完整结构。
 
-  \textcolor{blue}{
-  有些材料编入文章主体会有损于编排的条理性和逻辑性，或有碍于文章结构的紧凑和突出主题思想等，这些材料可作为附录另页排在参考文献之后，也可以单编成册。下列内容可作为附录：
-  }
+  \chapter{附录内容说明}
+
+  附录部分主要用于补充不宜在正文中大篇幅展开、但对理解论文研究过程和复现实验结果具有参考价值的材料。其内容通常包括但不限于以下几类：
   \begin{enumerate}
-    \item \textcolor{blue}{为了整篇论文材料的完整，但编入正文有损于编排的条理性和逻辑性的材料，这一类材料包括比正文更为详尽的信息、研究方法和技术等更深入的叙述，以及建议可阅读的参考文献题录和对了解正文内容有用的补充信息等；}
-    \item \textcolor{blue}{ 由于篇幅过大或取材的复制资料不便于编入正文的材料； }
-    \item \textcolor{blue}{ 不便于编入正文的罕见珍贵资料； }
-    \item \textcolor{blue}{ 一般读者无须阅读，但对本专业同行有参考价值的资料； }
-    \item \textcolor{blue}{ 某些重要的原始数据、推导、计算程序、框图、结构图、注释、统计表、计算机打印输出件等； }
+    \item 正文中为保证结构紧凑而省略的详细模型推导、符号说明与中间证明过程；
+    \item 实验平台配置、参数设置、数据生成规则与评价指标统计口径等支撑性材料；
+    \item 关键算法流程、训练细节、补充结果或扩展对比分析；
+    \item 对同行读者具有参考意义、但不适合直接纳入正文主体的技术性补充内容。
   \end{enumerate}
 
-  \section{一级标题}
-  \subsection{二级标题}
+  \section{附录内容组织说明}
+
+  为便于后续完善，附录可按照“实验参数补充—模型推导补充—结果说明补充”的结构逐步补全，并与正文中对应章节保持编号和引用关系的一致性。
+
+  \subsection{后续补充建议}
+
+  随着第五章、第六章内容的进一步完善，可将更具体的仿真参数表、额外实验图表及推导细节逐步整理至本附录中，以增强全文结构的完整性与学术表达的规范性。
 \end{appendices}

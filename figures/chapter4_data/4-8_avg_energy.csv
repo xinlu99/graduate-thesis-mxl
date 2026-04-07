@@ -1,0 +1,7 @@
+algorithm,energy_j,ci95_j
+Centralized-DQN,1.92,0.096
+FL-DQN,2.0,0.1
+FL-Only,2.15,0.1075
+DQN-Only,2.34,0.11699999999999999
+Heuristic,2.52,0.126
+Random,2.89,0.14450000000000002
