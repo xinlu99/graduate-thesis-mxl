@@ -3,6 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401
+from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle, Rectangle
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 
 
 SEED = 42
@@ -10,6 +12,7 @@ rng = np.random.default_rng(SEED)
 
 ROOT = Path(__file__).resolve().parents[1]
 IMG_DIR = ROOT / "images"
+ICON_DIR = IMG_DIR / "icons"
 DATA_DIR = ROOT / "figures" / "chapter4_data"
 IMG_DIR.mkdir(parents=True, exist_ok=True)
 DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -21,6 +24,208 @@ plt.rcParams.update({
     "axes.grid": True,
     "grid.alpha": 0.25,
 })
+plt.rcParams["font.sans-serif"] = ["SimSun", "Microsoft YaHei", "SimHei", "DejaVu Sans"]
+plt.rcParams["axes.unicode_minus"] = False
+
+
+def paper_box(ax, xy, w, h, title, lines, fc="#ffffff", ec="#334155", title_fc="#eaf1fb",
+              title_fs=11.0, body_fs=9.5, align="center"):
+    x, y = xy
+    outer = FancyBboxPatch(
+        (x, y), w, h,
+        boxstyle="round,pad=0.02,rounding_size=0.06",
+        linewidth=1.35, edgecolor=ec, facecolor=fc,
+    )
+    ax.add_patch(outer)
+    title_h = min(0.42, h * 0.33)
+    header = Rectangle((x, y + h - title_h), w, title_h, linewidth=0, facecolor=title_fc)
+    ax.add_patch(header)
+    ax.text(x + 0.15 if align == "left" else x + w / 2, y + h - title_h / 2, title,
+            ha=align, va="center", fontsize=title_fs, fontweight="bold", color="#1f2d3d")
+    body = "\n".join(lines) if isinstance(lines, (list, tuple)) else lines
+    ax.text(x + w / 2, y + (h - title_h) / 2 + 0.02, body,
+            ha="center", va="center", fontsize=body_fs, color="#25313f", wrap=True)
+
+
+def node_circle(ax, center, r, label, fc="#f8fbff", ec="#2f3b52", fs=10.0, text_color="#1f2d3d"):
+    c = Circle(center, r, facecolor=fc, edgecolor=ec, linewidth=1.25)
+    ax.add_patch(c)
+    ax.text(center[0], center[1], label, ha="center", va="center", fontsize=fs, color=text_color, fontweight="bold")
+
+
+def add_icon(ax, icon_name, center, zoom=0.18):
+    icon_path = ICON_DIR / icon_name
+    if not icon_path.exists():
+        return
+    arr = plt.imread(icon_path)
+    image = OffsetImage(arr, zoom=zoom)
+    ab = AnnotationBbox(image, center, frameon=False, box_alignment=(0.5, 0.5), zorder=6)
+    ax.add_artist(ab)
+
+
+def draw_server_icon(ax, center, scale=1.0, color="#355c7d"):
+    cx, cy = center
+    w, h = 0.52 * scale, 0.72 * scale
+    for dy in [0.22, -0.02, -0.26]:
+        rack = FancyBboxPatch((cx - w / 2, cy + dy - h / 6), w, h / 3,
+                              boxstyle="round,pad=0.02,rounding_size=0.03",
+                              linewidth=1.0, edgecolor=color, facecolor="#eef5fb")
+        ax.add_patch(rack)
+        for i in [-0.15, 0.0, 0.15]:
+            ax.add_patch(Circle((cx + i * scale, cy + dy), 0.018 * scale, facecolor=color, edgecolor="none"))
+
+
+def draw_satellite_icon(ax, center, scale=1.0, color="#5b4b8a"):
+    cx, cy = center
+    body = Rectangle((cx - 0.11 * scale, cy - 0.11 * scale), 0.22 * scale, 0.22 * scale,
+                     linewidth=1.0, edgecolor=color, facecolor="#f4f0ff")
+    left_panel = Rectangle((cx - 0.36 * scale, cy - 0.10 * scale), 0.18 * scale, 0.20 * scale,
+                           linewidth=1.0, edgecolor=color, facecolor="#ece8ff")
+    right_panel = Rectangle((cx + 0.18 * scale, cy - 0.10 * scale), 0.18 * scale, 0.20 * scale,
+                            linewidth=1.0, edgecolor=color, facecolor="#ece8ff")
+    ax.add_patch(body)
+    ax.add_patch(left_panel)
+    ax.add_patch(right_panel)
+    ax.plot([cx - 0.18 * scale, cx - 0.11 * scale], [cy, cy], color=color, lw=1.0)
+    ax.plot([cx + 0.11 * scale, cx + 0.18 * scale], [cy, cy], color=color, lw=1.0)
+    ax.plot([cx, cx + 0.18 * scale], [cy - 0.11 * scale, cy - 0.28 * scale], color=color, lw=1.0)
+    ax.plot([cx + 0.18 * scale, cx + 0.28 * scale], [cy - 0.28 * scale, cy - 0.36 * scale], color=color, lw=1.0)
+
+
+def draw_blockchain_icon(ax, center, scale=1.0, color="#8a6d1d"):
+    cx, cy = center
+    size = 0.16 * scale
+    offsets = [(-0.22, 0.08), (0.0, 0.08), (0.22, 0.08), (-0.11, -0.16), (0.11, -0.16)]
+    for ox, oy in offsets:
+        block = FancyBboxPatch((cx + ox * scale - size / 2, cy + oy * scale - size / 2), size, size,
+                               boxstyle="round,pad=0.02,rounding_size=0.02",
+                               linewidth=1.0, edgecolor=color, facecolor="#fff6da")
+        ax.add_patch(block)
+    links = [((-0.22, 0.08), (0.0, 0.08)), ((0.0, 0.08), (0.22, 0.08)), ((-0.22, 0.08), (-0.11, -0.16)),
+             ((0.0, 0.08), (-0.11, -0.16)), ((0.0, 0.08), (0.11, -0.16)), ((0.22, 0.08), (0.11, -0.16))]
+    for (x0, y0), (x1, y1) in links:
+        ax.plot([cx + x0 * scale, cx + x1 * scale], [cy + y0 * scale, cy + y1 * scale], color=color, lw=1.0)
+
+
+def connect(ax, p0, p1, text=None, color="#4a5568", lw=1.55, rad=0.0, text_offset=(0, 0), style="->"):
+    arrow = FancyArrowPatch(
+        p0, p1, arrowstyle=style, mutation_scale=12,
+        linewidth=lw, color=color,
+        connectionstyle=f"arc3,rad={rad}", shrinkA=6, shrinkB=6,
+    )
+    ax.add_patch(arrow)
+    if text:
+        mx = (p0[0] + p1[0]) / 2 + text_offset[0]
+        my = (p0[1] + p1[1]) / 2 + text_offset[1]
+        ax.text(mx, my, text, ha="center", va="center", fontsize=9.4, color=color,
+                bbox=dict(boxstyle="round,pad=0.15", facecolor="white", edgecolor="none", alpha=0.9))
+
+
+def connect_elbow(ax, p0, mid, p1, text=None, color="#4a5568", lw=1.45, text_xy=None):
+    ax.plot([p0[0], mid[0]], [p0[1], mid[1]], color=color, lw=lw)
+    ax.annotate("", xy=p1, xytext=mid,
+                arrowprops=dict(arrowstyle="->", color=color, lw=lw, shrinkA=0, shrinkB=0))
+    if text:
+        tx, ty = text_xy if text_xy else ((p0[0] + p1[0]) / 2, (p0[1] + p1[1]) / 2)
+        ax.text(tx, ty, text, ha="center", va="center", fontsize=9.2, color=color,
+                bbox=dict(boxstyle="round,pad=0.15", facecolor="white", edgecolor="none", alpha=0.92))
+
+
+def fig_chapter4_architecture():
+    fig, ax = plt.subplots(figsize=(13.2, 7.8))
+    ax.set_xlim(0, 16)
+    ax.set_ylim(0, 10)
+    ax.axis("off")
+
+    outer = FancyBboxPatch((0.45, 0.7), 15.05, 8.65,
+                           boxstyle="round,pad=0.03,rounding_size=0.08",
+                           linewidth=1.15, edgecolor="#93a4b5", facecolor="#fbfcfd")
+    ax.add_patch(outer)
+    ax.add_patch(Rectangle((0.45, 8.98), 15.05, 0.38, linewidth=0, facecolor="#dde7f0"))
+    ax.text(8.0, 9.18, "基于联邦学习与深度强化学习的并发感知任务层计算卸载架构",
+            ha="center", va="center", fontsize=13.0, fontweight="bold", color="#23384d")
+
+    # left-side source modules
+    paper_box(ax, (0.9, 6.15), 4.0, 2.2, "节点侧状态感知与可信输入",
+              ["任务特征：计算量、输入规模、时延阈值、优先级",
+               "本地观测：CPU/队列/剩余能量/链路质量",
+               "链上摘要：候选节点负载、信誉评分、版本号"],
+              fc="#ffffff", title_fc="#e7eef8", title_fs=11.9, body_fs=9.5)
+    add_icon(ax, "039-satellite.png", (1.38, 7.06), zoom=0.16)
+    add_icon(ax, "blockchain.png", (4.35, 7.05), zoom=0.13)
+
+    paper_box(ax, (0.9, 3.35), 4.0, 1.9, "执行日志与样本构造",
+              ["边缘节点保留任务开始/完成事件与资源轨迹",
+               "离线构造并发开销监督样本，不上传原始日志"],
+              fc="#fffefe", title_fc="#f4e9df", title_fs=11.6, body_fs=9.4)
+    add_icon(ax, "服务器.png", (1.38, 4.2), zoom=0.16)
+
+    # center main architecture body, closer to reference style
+    center = FancyBboxPatch((5.35, 2.0), 5.3, 6.55,
+                            boxstyle="round,pad=0.03,rounding_size=0.08",
+                            linewidth=1.2, edgecolor="#90a3b7", facecolor="#f7faff")
+    ax.add_patch(center)
+    ax.add_patch(Rectangle((5.35, 8.05), 5.3, 0.5, linewidth=0, facecolor="#d9e5f3"))
+    ax.text(8.0, 8.3, "FL-DQN 决策核心", ha="center", va="center",
+            fontsize=12.4, fontweight="bold", color="#23384d")
+
+    paper_box(ax, (5.78, 6.55), 4.45, 1.15, "聚类式联邦学习并发开销预测器",
+              ["簇内训练 + 区域聚合，输出 CO_hat 与置信信息"],
+              fc="#ffffff", title_fc="#e6f1e9", title_fs=11.5, body_fs=9.2)
+    add_icon(ax, "服务器.png", (6.2, 7.11), zoom=0.15)
+
+    paper_box(ax, (5.78, 4.92), 4.45, 1.08, "并发风险推理模块",
+              ["按候选节点所属簇调用最新模型，估计未来拥塞风险"],
+              fc="#ffffff", title_fc="#edf5e8", title_fs=11.4, body_fs=9.1)
+
+    paper_box(ax, (5.78, 3.15), 4.45, 1.28, "DQN 节点侧决策代理",
+              ["状态 = 任务特征 + 本地状态 + 链上摘要 + FL 预测",
+               "动作 = 本地执行 / 卸载至候选 SEN"],
+              fc="#ffffff", title_fc="#efe8fb", title_fs=11.5, body_fs=9.25)
+
+    connect(ax, (8.0, 6.55), (8.0, 6.0), color="#4f708f", lw=1.45)
+    connect(ax, (8.0, 4.92), (8.0, 4.43), color="#4f708f", lw=1.45)
+
+    # right-side execution modules
+    paper_box(ax, (11.1, 6.15), 3.95, 2.2, "任务执行与动作输出",
+              ["本地执行：卫星终端 ST",
+               "远端执行：候选边缘节点 SEN-1 / SEN-2 / SEN-3",
+               "根据预测先验与即时状态完成任务级动作选择"],
+              fc="#ffffff", title_fc="#ece8fb", title_fs=11.9, body_fs=9.45)
+    add_icon(ax, "039-satellite.png", (11.62, 7.03), zoom=0.14)
+    add_icon(ax, "服务器.png", (13.12, 7.03), zoom=0.14)
+    add_icon(ax, "服务器.png", (14.0, 7.03), zoom=0.14)
+
+    paper_box(ax, (11.1, 3.35), 3.95, 1.9, "环境反馈与联盟链维护",
+              ["返回真实时延、能耗、任务结果并写入经验回放池",
+               "模型版本摘要与任务事件继续在联盟链中维护"],
+              fc="#fffefe", title_fc="#eee7fb", title_fs=11.6, body_fs=9.35)
+    add_icon(ax, "010-blockchain.png", (14.45, 4.2), zoom=0.13)
+
+    # bottom explanatory strip
+    paper_box(ax, (1.05, 1.05), 14.0, 0.82, "闭环运行机制",
+              ["离线阶段通过联邦学习获得并发开销预测能力；在线阶段由 DQN 将预测先验转化为实时卸载动作，并借助执行反馈持续优化策略。"],
+              fc="#fbfbfc", title_fc="#e8edf2", title_fs=11.0, body_fs=9.0)
+
+    # connectors arranged in reference-like module flow
+    connect(ax, (4.9, 7.2), (5.78, 7.2), text="状态输入", color="#607287", text_offset=(0, 0.22), lw=1.4)
+    connect(ax, (4.9, 4.28), (5.78, 6.95), text="训练样本", color="#a24b63", text_offset=(0.18, 0.14), lw=1.3)
+    connect(ax, (10.23, 3.8), (11.1, 7.05), text="动作输出", color="#6d4c9f", text_offset=(0.22, 0.18), lw=1.35)
+    connect(ax, (13.02, 6.15), (13.02, 5.22), text="执行反馈", color="#c06b2d", text_offset=(0.76, 0.02), lw=1.35)
+    connect(ax, (12.98, 5.02), (10.23, 3.8), text="奖励/经验回放", color="#c06b2d", text_offset=(-0.18, -0.16), lw=1.3)
+    connect(ax, (13.95, 5.02), (13.95, 8.55), text="版本摘要上链", color="#8a60b3", text_offset=(0.82, 0.08), lw=1.3)
+
+    ax.plot([5.18, 5.18], [1.95, 8.55], color="#d5dde7", lw=1.0, linestyle="--")
+    ax.plot([10.9, 10.9], [1.95, 8.55], color="#d5dde7", lw=1.0, linestyle="--")
+
+    ax.text(8.0, 0.42,
+            "说明：该架构在不集中上传原始日志的前提下，以“联邦预测 + 强化决策”实现并发风险感知与节点侧实时任务卸载。",
+            ha="center", va="center", fontsize=10.2, color="#334155")
+
+    fig.tight_layout()
+    fig.savefig(IMG_DIR / "4-new-1.png", bbox_inches="tight")
+    plt.close(fig)
+
 
 colors = {
     "FL-DQN": "#1f77b4",
@@ -30,6 +235,8 @@ colors = {
     "Heuristic": "#8c564b",
     "Random": "#d62728",
 }
+
+fig_chapter4_architecture()
 
 concurrency = np.arange(2, 11)
 
@@ -123,7 +330,7 @@ plt.close(fig)
 # Boxplot
 fig, ax = plt.subplots(figsize=(8.0, 4.8))
 order = ["Centralized-DQN", "FL-DQN", "FL-Only", "DQN-Only", "Heuristic", "Random"]
-ax.boxplot([latency_samples[k] for k in order], labels=order, showfliers=False, patch_artist=True,
+ax.boxplot([latency_samples[k] for k in order], tick_labels=order, showfliers=False, patch_artist=True,
            boxprops=dict(facecolor="#a6cee3", alpha=0.7), medianprops=dict(color="#1f78b4", linewidth=1.5))
 ax.set_ylabel("Task completion latency (ms)")
 ax.tick_params(axis='x', rotation=20)
