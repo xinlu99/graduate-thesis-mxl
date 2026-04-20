@@ -1,0 +1,131 @@
+%%
+% BIThesis 研究生学位论文模板 The BIThesis Template for Graduate Thesis
+% This file has no copyright assigned and is placed in the Public Domain.
+% Compile with: xelatex -> biber -> xelatex -> xelatex
+%%
+
+% 请勿删除下面两行注释，以免影响编译。
+% !TeX program = xelatex
+% !BIB program = biber
+
+% 为方便您填写内容，模板注释会引用《撰写规范》。该文件是指研函〔2026〕024 号《北京理工大学研究生学位论文撰写规范》，可从以下链接下载。
+% https://grd.bit.edu.cn/xwgz/xwgz2/wjxz_xwgz/b117825.htm
+
+\documentclass[type=master,twoside=false]{bithesis}
+
+\BITSetup{
+  cover = {
+    date = 2026年6月,
+    autoWidthPadding = 0.25em,
+  },
+  info = {
+    classification = TQ028.1,
+    UDC = 540,
+    title = 基于区块链的卫星终端试验任务数据管理与计算卸载技术研究,
+    titleEn = {Data Management and Computing Offloading Technology Scheme for Satellite Terminal Test Task Based on Blockchain},
+    author = 毛心璐,
+    authorEn = Xinlu Mao,
+    studentId = 3220231823,
+    school = 网络空间安全学院,
+    schoolEn = School of Network Space Security,
+    supervisor = 朱超,
+    supervisorEn = Prof. Zhu Chao,
+    chairman = 张涛,
+    chairmanEn = Prof. Zhang Tao,
+    degreeType = professional,
+    industrialMentor = 朱超,
+    industrialMentorEn = Prof. Zhu Chao,
+    degree = 工学硕士,
+    degreeEn = {Master of Engineering},
+    major = 网络与信息安全,
+    majorEn = Network and Information Security,
+    submissionDate = 2026年6月,
+    submissionDateEn = {June, 2026},
+    keywords = {区块链；卫星网络；强化学习；计算卸载；联邦学习},
+    keywordsEn = {Blockchain; Satellite Network; Reinforcement Learning; Computing Offloading; Federated Learning},
+  },
+  TOC = {
+    abstract = false,
+    abstractEn = false,
+    symbols = false,
+  },
+  style = {
+    pageVerticalAlign = top,
+  },
+  publications = {
+    maxbibnames = 10,
+    minbibnames = 10,
+  },
+  appendices / chapterLevel = true,
+  misc = {
+    hideLinks = true,
+    tabularRowSeparation = 1.6,
+  },
+}
+
+\usepackage[
+  defernumbers=true,
+  backend=biber,
+  style=gb7714-2015,
+  gbalign=gb7714-2015,
+  gbnamefmt=lowercase,
+  gbpub=false,
+  gbannote=true,
+  gbpunctin=false,
+  doi=false,
+  url=false,
+  eprint=false,
+  isbn=false,
+]{biblatex}
+
+\addbibresource{reference/main.bib}
+\addbibresource{reference/pub.bib}
+
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
+\begin{document}
+
+\MakeCover
+\MakePaperBack
+\MakeTitle
+\MakeOriginality
+
+\input{./misc/acknowledgements.tex}
+
+\frontmatter
+
+\input{./chapters/abstract.tex}
+
+\MakeTOC
+\listoffigures
+\listoftables
+\input{./misc/0_symbols.tex}
+
+\mainmatter
+
+\input{./chapters/chapter1.tex}
+\input{./chapters/chapter2.tex}
+\input{./chapters/chapter3.tex}
+\input{./chapters/chapter4.tex}
+
+\backmatter
+
+\input{./misc/1_conclusion.tex}
+\input{./misc/2_reference.tex}
+\input{./misc/3_appendices.tex}
+\input{./misc/4_pub.tex}
+\input{./misc/5_resume.tex}
+
+\end{document}
