@@ -1,0 +1,164 @@
+% 第三章实验表格（中文风格版）
+% 需要宏包：booktabs, tabularx, subcaption, multirow
+
+\begin{table}[htbp]
+\centering
+\caption{仿真实验参数设置}
+\label{tab:ch3_params}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{p{3.4cm}p{2.8cm}X}
+\toprule
+参数 & 取值 & 说明 \\ 
+\midrule
+卫星节点数量 & 20 & 参与协同资源调度的异构计算节点总数 \\ 
+轨道层数 & 3 & 抽象为不同的可见性与链路条件层 \\ 
+任务类型数 & 4 & 遥感预处理、目标检测、压缩转发与任务规划 \\ 
+单回合时隙数 & 200 & 每个训练回合包含的环境交互步数 \\ 
+训练回合数 & 500 & 用于策略优化的总训练回合数 \\ 
+Actor学习率 & 3e-4 & 局部Actor网络学习率 \\ 
+Critic学习率 & 1e-3 & 集中式Critic网络学习率 \\ 
+折扣因子 $\gamma$ & 0.99 & 长期累计回报折扣因子 \\ 
+GAE参数 $\lambda$ & 0.95 & 广义优势估计系数 \\ 
+PPO裁剪系数 & 0.2 & 策略更新裁剪阈值 \\ 
+奖励权重 $(w_q,w_f,w_c)$ & (0.5, 0.3, 0.2) & 效率、公平与可信三项奖励权重 \\ 
+链上平均同步时延 & 1.0 s & 默认联盟链同步时延 \\ 
+任务到达率范围 & 0.3--1.1 & 单位：task/(slot$\cdot$node) \\ 
+自私节点比例范围 & 0\%--40\% & 用于鲁棒性实验 \\ 
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{不同训练算法的收敛性统计对比}
+\label{tab:ch3_convergence}
+\begin{tabular}{lcccc}
+\toprule
+算法 & 最终平均回报 & 收敛回合 & 后50回合回报标准差 & $\lambda=0.9$时任务完成率(\%) \\ 
+\midrule
+BC-CTDE-MAPPO & 88.4 & 210 & 2.1 & 92.3 \\ 
+MAPPO & 77.6 & 260 & 3.4 & 88.1 \\ 
+MADDPG & 70.2 & 330 & 4.2 & 84.2 \\ 
+IPPO & 66.8 & 360 & 4.8 & 82.9 \\ 
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table*}[htbp]
+\centering
+\caption{不同任务到达率下各算法系统性能对比}
+\label{tab:ch3_load_perf}
+\renewcommand{\arraystretch}{1.15}
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{任务完成率（\%）}
+\label{tab:ch3_load_completion}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+算法 & $\lambda=0.3$ & $\lambda=0.5$ & $\lambda=0.7$ & $\lambda=0.9$ & $\lambda=1.1$ \\ 
+\midrule
+BC-CTDE-MAPPO & 98.2 & 96.8 & 94.7 & 92.3 & 89.1 \\ 
+MAPPO & 97.1 & 94.9 & 91.8 & 88.1 & 83.6 \\ 
+MADDPG & 95.8 & 93.1 & 88.9 & 84.2 & 79.1 \\ 
+Greedy & 94.4 & 90.3 & 85.1 & 78.1 & 70.8 \\ 
+Random & 88.3 & 82.1 & 74.9 & 66.4 & 58.9 \\ 
+\bottomrule
+\end{tabular}}
+\end{subtable}
+\vspace{0.3cm}
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{平均任务时延（ms）}
+\label{tab:ch3_load_delay}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+算法 & $\lambda=0.3$ & $\lambda=0.5$ & $\lambda=0.7$ & $\lambda=0.9$ & $\lambda=1.1$ \\ 
+\midrule
+BC-CTDE-MAPPO & 118 & 133 & 151 & 178 & 214 \\ 
+MAPPO & 124 & 144 & 169 & 203 & 249 \\ 
+MADDPG & 132 & 157 & 187 & 228 & 278 \\ 
+Greedy & 140 & 171 & 208 & 262 & 329 \\ 
+Random & 169 & 212 & 263 & 334 & 418 \\ 
+\bottomrule
+\end{tabular}}
+\end{subtable}
+\vspace{0.3cm}
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{Jain公平指数}
+\label{tab:ch3_load_fairness}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+算法 & $\lambda=0.3$ & $\lambda=0.5$ & $\lambda=0.7$ & $\lambda=0.9$ & $\lambda=1.1$ \\ 
+\midrule
+BC-CTDE-MAPPO & 0.966 & 0.951 & 0.936 & 0.918 & 0.897 \\ 
+MAPPO & 0.951 & 0.932 & 0.904 & 0.878 & 0.846 \\ 
+MADDPG & 0.943 & 0.918 & 0.887 & 0.853 & 0.821 \\ 
+Greedy & 0.931 & 0.886 & 0.843 & 0.781 & 0.724 \\ 
+Random & 0.881 & 0.834 & 0.786 & 0.731 & 0.679 \\ 
+\bottomrule
+\end{tabular}}
+\end{subtable}
+\vspace{0.3cm}
+\end{table*}
+
+\begin{table*}[htbp]
+\centering
+\caption{不同自私节点比例下的鲁棒性对比}
+\label{tab:ch3_robustness}
+\renewcommand{\arraystretch}{1.15}
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{任务完成率（\%）}
+\label{tab:ch3_robust_completion}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+算法 & 0\% & 10\% & 20\% & 30\% & 40\% \\ 
+\midrule
+BC-CTDE-MAPPO & 93.2 & 92.3 & 90.9 & 89.4 & 87.2 \\ 
+MAPPO & 89.6 & 87.2 & 84.6 & 81.6 & 78.4 \\ 
+Greedy & 82.1 & 78.6 & 74.8 & 71.1 & 67.2 \\ 
+Random & 68.9 & 64.1 & 60.3 & 55.6 & 51.9 \\ 
+\bottomrule
+\end{tabular}}
+\end{subtable}
+\vspace{0.3cm}
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{Jain公平指数}
+\label{tab:ch3_robust_fairness}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccccc}
+\toprule
+算法 & 0\% & 10\% & 20\% & 30\% & 40\% \\ 
+\midrule
+BC-CTDE-MAPPO & 0.918 & 0.909 & 0.898 & 0.886 & 0.871 \\ 
+MAPPO & 0.881 & 0.862 & 0.841 & 0.816 & 0.793 \\ 
+Greedy & 0.802 & 0.779 & 0.751 & 0.722 & 0.694 \\ 
+Random & 0.731 & 0.708 & 0.684 & 0.659 & 0.632 \\ 
+\bottomrule
+\end{tabular}}
+\end{subtable}
+\vspace{0.3cm}
+\end{table*}
+
+\begin{table}[htbp]
+\centering
+\caption{消融实验结果（$\lambda=0.9$）}
+\label{tab:ch3_ablation}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lcccc}
+\toprule
+方法变体 & 任务完成率(\%) & 平均任务时延(ms) & Jain公平指数 & 30\%自私节点下任务完成率(\%) \\ 
+\midrule
+完整 BC-CTDE-MAPPO & 92.3 & 178 & 0.918 & 89.4 \\ 
+去除区块链公共信息板 & 89.1 & 194 & 0.889 & 82.7 \\ 
+去除公平奖励项 & 90.4 & 186 & 0.842 & 86.5 \\ 
+去除可信奖励项 & 90.8 & 183 & 0.901 & 84.1 \\ 
+\bottomrule
+\end{tabular}}
+\end{table}

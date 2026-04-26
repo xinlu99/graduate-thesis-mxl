@@ -1,0 +1,6 @@
+﻿,方法,EDP,Jain指数,完成率(%)
+0,Centralized-DQN,298,0.928,96
+1,FL-DQN,312,0.91,95
+2,FL-only,380,0.86,90
+3,DQN-only,442,0.82,86
+4,Heuristic,496,0.75,80

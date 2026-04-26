@@ -1,0 +1,8 @@
+﻿,异构强度,Clustered FL,FedAvg,Centralized,Local-only
+0,IID,2.1,2.2,1.8,3.6
+1,"轻度
+Non-IID",2.5,2.9,2.0,3.8
+2,"中度
+Non-IID",2.9,3.8,2.4,4.3
+3,"重度
+Non-IID",3.4,5.1,2.8,4.9
