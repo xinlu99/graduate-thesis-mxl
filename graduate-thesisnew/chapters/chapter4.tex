@@ -610,7 +610,7 @@
              & \cellcolor{secondcolor}{256}
              & \cellcolor{secondcolor}{43}
              & \cellcolor{secondcolor}{84.7}
-             & \cellcolor{secondcolor}{401}                                                        \\
+             & \cellcolor{secondcolor}{401}                                                               \\
 
             Centralized-DQN
              & \cellcolor{bestcolor}{130}
@@ -624,7 +624,7 @@
              & \cellcolor{bestcolor}{247}
              & \cellcolor{bestcolor}{46}
              & \cellcolor{bestcolor}{86.5}
-             & \cellcolor{bestcolor}{387}                                                          \\
+             & \cellcolor{bestcolor}{387}                                                                 \\
             \bottomrule
         \end{tabular}}
 \end{table*}
@@ -680,47 +680,47 @@
          & SLA $\uparrow$
          & Online Cost $\downarrow$
          & Std. Dev. $\downarrow$
-         & 结果说明                                 \\
+         & 结果说明                          \\
         \midrule
         FL-DQN
          & \cellcolor{bestcolor}{209}
          & \cellcolor{bestcolor}{91.2}
          & 3.8
          & \cellcolor{bestcolor}{5.1}
-         & 完整方法，综合性能最优                          \\
+         & 完整方法，综合性能最优                   \\
 
         -FL 预测
          & 284
          & 80.1
          & \cellcolor{secondcolor}{3.1}
          & 9.6
-         & 缺少并发风险先验，退化最明显                       \\
+         & 缺少并发风险先验，退化最明显                \\
 
         -并发惩罚
          & 243
          & 84.7
          & 3.6
          & 8.1
-         & 拥塞规避约束减弱                             \\
+         & 拥塞规避约束减弱                      \\
 
         -经验回放
          & 256
          & 86.4
          & \cellcolor{bestcolor}{2.4}
          & 11.2
-         & 开销最低但训练波动最大                          \\
+         & 开销最低但训练波动最大                   \\
 
         -奖励塑形
          & \cellcolor{secondcolor}{238}
          & \cellcolor{secondcolor}{87.9}
          & 3.4
          & \cellcolor{secondcolor}{7.3}
-         & 收敛引导能力减弱                             \\
+         & 收敛引导能力减弱                      \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-进一步地，图~\ref{fig:ablation_results} 从平均时延、SLA 完成率以及“在线决策开销--跨轮次波动”联合视角展示了消融实验结果。为了便于排版，图~\ref{fig:ablation_results} 由三个子图组合而成。
+进一步地，图~\ref{fig:ablation_results} 从平均时延、SLA 完成率以及“在线决策开销--跨轮次波动”联合视角展示了消融实验结果。
 
 \begin{figure}[H]
     \centering

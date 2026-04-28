@@ -115,7 +115,7 @@
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.94\textwidth]{figures/3-3.png}
+    \includegraphics[width=0.94\textwidth]{figures/3-3.pdf}
     \caption{从系统优化问题到多智能体马尔可夫博弈的建模推导路径}
     \label{fig:3_3}
 \end{figure}
@@ -267,7 +267,7 @@
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.94\textwidth]{figures/3-4.png}
+    \includegraphics[width=0.94\textwidth]{figures/3-4.pdf}
     \caption{分层联盟链与公共信息板职责示意}
     \label{fig:3_4}
 \end{figure}
@@ -463,17 +463,17 @@ Critic 则通过最小化时序差分误差进行更新：
     \setlength{\tabcolsep}{2.0mm}
     \renewcommand{\arraystretch}{1.15}
     \resizebox{\linewidth}{!}{%
-    \begin{tabular}{lcccc}
-        \toprule
-        \rowcolor{gray!10}
-        算法 & 最终平均回报 & 收敛回合 & 后50回合回报标准差 & $\lambda=0.9$时任务完成率(\%) \\
-        \midrule
-        BC-CTDE-MAPPO & 88.4 & 210 & 2.1 & 92.3 \\
-        MAPPO & 77.6 & 260 & 3.4 & 88.1 \\
-        MADDPG & 70.2 & 330 & 4.2 & 84.2 \\
-        IPPO & 66.8 & 360 & 4.8 & 82.9 \\
-        \bottomrule
-    \end{tabular}%
+        \begin{tabular}{lcccc}
+            \toprule
+            \rowcolor{gray!10}
+            算法            & 最终平均回报 & 收敛回合 & 后50回合回报标准差 & $\lambda=0.9$时任务完成率(\%) \\
+            \midrule
+            BC-CTDE-MAPPO & 88.4   & 210  & 2.1        & 92.3                    \\
+            MAPPO         & 77.6   & 260  & 3.4        & 88.1                    \\
+            MADDPG        & 70.2   & 330  & 4.2        & 84.2                    \\
+            IPPO          & 66.8   & 360  & 4.8        & 82.9                    \\
+            \bottomrule
+        \end{tabular}%
     }
 \end{table}
 
@@ -501,22 +501,20 @@ Critic 则通过最小化时序差分误差进行更新：
     \footnotesize
     \caption{不同任务到达率下各算法的 Jain 公平指数}
     \label{tab:ch3_load_perf}
-    \setlength{\tabcolsep}{2.0mm}
-    \renewcommand{\arraystretch}{1.15}
-    \resizebox{\linewidth}{!}{%
+    \setlength{\tabcolsep}{3.0mm}
+    \renewcommand{\arraystretch}{1.10}
     \begin{tabular}{lccccc}
         \toprule
         \rowcolor{gray!10}
-        算法 & $\lambda=0.3$ & $\lambda=0.5$ & $\lambda=0.7$ & $\lambda=0.9$ & $\lambda=1.1$ \\
+        算法            & $\lambda=0.3$ & $\lambda=0.5$ & $\lambda=0.7$ & $\lambda=0.9$ & $\lambda=1.1$ \\
         \midrule
-        BC-CTDE-MAPPO & 0.966 & 0.951 & 0.936 & 0.918 & 0.897 \\
-        MAPPO & 0.951 & 0.932 & 0.904 & 0.878 & 0.846 \\
-        MADDPG & 0.943 & 0.918 & 0.887 & 0.853 & 0.821 \\
-        Greedy & 0.931 & 0.886 & 0.843 & 0.781 & 0.724 \\
-        Random & 0.881 & 0.834 & 0.786 & 0.731 & 0.679 \\
+        BC-CTDE-MAPPO & 0.966         & 0.951         & 0.936         & 0.918         & 0.897         \\
+        MAPPO         & 0.951         & 0.932         & 0.904         & 0.878         & 0.846         \\
+        MADDPG        & 0.943         & 0.918         & 0.887         & 0.853         & 0.821         \\
+        Greedy        & 0.931         & 0.886         & 0.843         & 0.781         & 0.724         \\
+        Random        & 0.881         & 0.834         & 0.786         & 0.731         & 0.679         \\
         \bottomrule
-    \end{tabular}%
-    }
+    \end{tabular}
 \end{table}
 
 除效率指标外，本文还使用 Jain 公平指数评价不同算法的负载均衡能力。表~\ref{tab:ch3_load_perf} 表明，BC-CTDE-MAPPO 在各负载水平下均保持最高公平指数。例如，当 $\lambda=0.9$ 时，其 Jain 公平指数为 0.918，而 MAPPO 和 MADDPG 分别为 0.878 和 0.853，Greedy 与 Random 则仅为 0.781 和 0.731。这说明混合奖励中的公平项能够有效抑制"强节点持续抢占高收益任务"的现象，引导系统逐步形成更均衡的任务分担格局。
@@ -554,12 +552,12 @@ Critic 则通过最小化时序差分误差进行更新：
         \begin{tabular}{lcccc}
             \toprule
             \rowcolor{gray!10}
-            方法变体 & 任务完成率(\%) & 平均任务时延(ms) & Jain 公平指数 & 30\%自私节点下任务完成率(\%) \\
+            方法变体             & 任务完成率(\%)    & 平均任务时延(ms) & Jain 公平指数       & 30\%自私节点下任务完成率(\%) \\
             \midrule
-            完整 BC-CTDE-MAPPO & 92.3$\pm$0.8 & 178 & 0.918$\pm$0.008 & 89.4$\pm$1.0 \\
-            去除区块链公共信息板 & 89.1$\pm$1.3 & 194 & 0.889$\pm$0.013 & 82.7$\pm$1.6 \\
-            去除公平奖励项 & 90.4$\pm$1.0 & 186 & 0.842$\pm$0.016 & 86.5$\pm$1.3 \\
-            去除可信奖励项 & 90.8$\pm$1.1 & 183 & 0.901$\pm$0.010 & 84.1$\pm$1.4 \\
+            完整 BC-CTDE-MAPPO & 92.3$\pm$0.8 & 178        & 0.918$\pm$0.008 & 89.4$\pm$1.0       \\
+            去除区块链公共信息板       & 89.1$\pm$1.3 & 194        & 0.889$\pm$0.013 & 82.7$\pm$1.6       \\
+            去除公平奖励项          & 90.4$\pm$1.0 & 186        & 0.842$\pm$0.016 & 86.5$\pm$1.3       \\
+            去除可信奖励项          & 90.8$\pm$1.1 & 183        & 0.901$\pm$0.010 & 84.1$\pm$1.4       \\
             \bottomrule
         \end{tabular}%
     }
@@ -586,24 +584,22 @@ Critic 则通过最小化时序差分误差进行更新：
 
 \begin{table}[htbp]
     \centering
-    \footnotesize
+    \small
     \caption{不同自私节点比例下的鲁棒性对比（任务完成率 \%）}
     \label{tab:ch3_robustness}
-    \setlength{\tabcolsep}{2.0mm}
-    \renewcommand{\arraystretch}{1.15}
-    \resizebox{\linewidth}{!}{%
+    \setlength{\tabcolsep}{4.5mm}
+    \renewcommand{\arraystretch}{1.12}
     \begin{tabular}{lccccc}
         \toprule
         \rowcolor{gray!10}
-        算法 & 0\% & 10\% & 20\% & 30\% & 40\% \\
+        算法            & 0\%  & 10\% & 20\% & 30\% & 40\% \\
         \midrule
         BC-CTDE-MAPPO & 93.2 & 92.3 & 90.9 & 89.4 & 87.2 \\
-        MAPPO & 89.6 & 87.2 & 84.6 & 81.6 & 78.4 \\
-        Greedy & 82.1 & 78.6 & 74.8 & 71.1 & 67.2 \\
-        Random & 68.9 & 64.1 & 60.3 & 55.6 & 51.9 \\
+        MAPPO         & 89.6 & 87.2 & 84.6 & 81.6 & 78.4 \\
+        Greedy        & 82.1 & 78.6 & 74.8 & 71.1 & 67.2 \\
+        Random        & 68.9 & 64.1 & 60.3 & 55.6 & 51.9 \\
         \bottomrule
-    \end{tabular}%
-    }
+    \end{tabular}
 \end{table}
 
 \subsection{信誉机制效果分析}

@@ -3,7 +3,7 @@
 % This file has no copyright assigned and is placed in the Public Domain.
 %%
 
-\chapter{天基网络计算卸载的技术基础与系统建模}
+\chapter{技术基础与系统建模}
 
 \section{天基网络协同计算场景与体系结构}
 
@@ -177,8 +177,8 @@
 \begin{equation}
   T_k^{\mathrm{total}}=
   \begin{cases}
-    \tilde{T}_{s_k}^{\mathrm{exec}}(k,t), & x_k=0, \\[4pt]
-    T_{s_k,e_j}^{\mathrm{trans}}(k,t)+\tilde{T}_{e_j}^{\mathrm{exec}}(k,t)+T_{e_j,s_k}^{\mathrm{back}}(k,t), & x_k=e_j, \\[4pt]
+    \tilde{T}_{s_k}^{\mathrm{exec}}(k,t),                                                                                                        & x_k=0,               \\[4pt]
+    T_{s_k,e_j}^{\mathrm{trans}}(k,t)+\tilde{T}_{e_j}^{\mathrm{exec}}(k,t)+T_{e_j,s_k}^{\mathrm{back}}(k,t),                                     & x_k=e_j,             \\[4pt]
     T_{s_k,n_{\mathrm{CC}}}^{\mathrm{trans}}(k,t)+\tilde{T}_{n_{\mathrm{CC}}}^{\mathrm{exec}}(k,t)+T_{n_{\mathrm{CC}},s_k}^{\mathrm{back}}(k,t), & x_k=n_{\mathrm{CC}}.
   \end{cases}
 \end{equation}
@@ -199,8 +199,8 @@
 \begin{equation}
   E_k^{\mathrm{total}}=
   \begin{cases}
-    E_{s_k}^{\mathrm{comp}}(k), & x_k=0, \\[4pt]
-    E_{s_k,e_j}^{\mathrm{trans}}(k,t)+E_{s_k}^{\mathrm{idle}}(k,t), & x_k=e_j, \\[4pt]
+    E_{s_k}^{\mathrm{comp}}(k),                                                 & x_k=0,               \\[4pt]
+    E_{s_k,e_j}^{\mathrm{trans}}(k,t)+E_{s_k}^{\mathrm{idle}}(k,t),             & x_k=e_j,             \\[4pt]
     E_{s_k,n_{\mathrm{CC}}}^{\mathrm{trans}}(k,t)+E_{s_k}^{\mathrm{idle}}(k,t), & x_k=n_{\mathrm{CC}}.
   \end{cases}
 \end{equation}
