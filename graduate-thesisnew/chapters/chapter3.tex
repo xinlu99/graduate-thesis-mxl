@@ -27,10 +27,10 @@
 从全文结构来看，第三章承担的是“系统层协同基础”的角色。后续章节中，无论是服务级协同还是任务级实时卸载，都需要建立在一个能够稳定共享状态、约束自利行为、维持长期负载均衡的系统层机制之上。因此，本章并不直接关注单个任务在微观时间尺度上的最优执行，而是从更宏观的系统层角度，回答“多个理性节点如何在长期运行中形成可信协同关系”这一更基础的问题。只有这一层机制成立，后续章节中的更细粒度卸载、预测和调度方法才具备可落地的运行前提。
 
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.94\textwidth]{figures/3-1.png}
-  \caption{天基协同资源分配中局部自利与全局协同差异示意}
-  \label{fig:3_1}
+    \centering
+    \includegraphics[width=0.94\textwidth]{figures/3-1.png}
+    \caption{天基协同资源分配中局部自利与全局协同差异示意}
+    \label{fig:3_1}
 \end{figure}
 
 图~\ref{fig:3_1}从资源流向和节点负载状态两个角度刻画了天基协同资源分配中的局部自利与全局协同差异。图左侧表示缺乏可信协调机制时的局部自利竞争场景。由于各节点主要依据自身收益进行任务选择，高收益任务 $H1$、$H2$ 会吸引大量资源请求集中流向少数强节点，导致强节点队列快速堆积并形成热点拥塞；与此同时，部分弱节点或中等能力节点因任务收益较低、协作价值难以体现而长期处于低利用或闲置状态。该过程说明，在异构节点和非均匀任务收益并存的条件下，单个节点的理性选择并不必然带来系统层面的最优资源配置，反而可能造成“强节点过载、弱节点闲置、系统负载失衡”的局部最优陷阱。
@@ -48,19 +48,19 @@
 
 本章考虑的天基计算网络由四类核心参与者共同构成：执行在轨任务的异构计算节点、负责状态记账与摘要广播的联盟链节点、承担本地调度与协同决策的智能体模块，以及在训练阶段负责全局价值评估的集中式训练协调器。四者既分工明确，又通过任务流、状态流与信誉流形成紧密耦合。
 
-第一类参与者是\textbf{异构计算节点}。它们分布在不同轨道层和不同星座拓扑位置上，具备差异化的计算、存储、能量和通信能力，是在轨任务执行的直接承担者。对系统而言，每个节点既可能处理本地生成的任务，也可能接收其他节点卸载而来的任务，因此天然兼具“任务生产者”和“任务处理者”双重身份。
+第一类参与者是{异构计算节点}。它们分布在不同轨道层和不同星座拓扑位置上，具备差异化的计算、存储、能量和通信能力，是在轨任务执行的直接承担者。对系统而言，每个节点既可能处理本地生成的任务，也可能接收其他节点卸载而来的任务，因此天然兼具“任务生产者”和“任务处理者”双重身份。
 
-第二类参与者是\textbf{联盟链节点}。它们共同维护系统级公共摘要，包括节点负载、信誉评分、链路统计与历史行为记录等信息。联盟链并不替代实时调度器，而是充当“可信公共信息板”：一方面为各节点提供可审计、可验证、可追溯的系统级上下文；另一方面通过链上信誉累积和行为留痕机制，为后续的激励约束提供可信依据。
+第二类参与者是{联盟链节点}。它们共同维护系统级公共摘要，包括节点负载、信誉评分、链路统计与历史行为记录等信息。联盟链并不替代实时调度器，而是充当“可信公共信息板”：一方面为各节点提供可审计、可验证、可追溯的系统级上下文；另一方面通过链上信誉累积和行为留痕机制，为后续的激励约束提供可信依据。
 
-第三类参与者是\textbf{局部决策智能体}。每个计算节点内部均部署一个策略模块，依据本地私有状态与链上公共摘要联合决定任务是否本地执行、向哪个邻居卸载、投入多少本地资源以及是否接收外部任务。由于执行阶段无法依赖中心控制器，各节点必须具备在部分可观测条件下独立做出近实时决策的能力。
+第三类参与者是{局部决策智能体}。每个计算节点内部均部署一个策略模块，依据本地私有状态与链上公共摘要联合决定任务是否本地执行、向哪个邻居卸载、投入多少本地资源以及是否接收外部任务。由于执行阶段无法依赖中心控制器，各节点必须具备在部分可观测条件下独立做出近实时决策的能力。
 
-第四类参与者是\textbf{集中训练协调器}。它只在训练阶段存在，用于整合联合状态和联合动作，对多智能体策略进行价值评估与参数更新；在实际执行阶段，各节点仅保留各自的局部 Actor 网络，实现分散执行。这样的结构兼顾了训练阶段的信息利用效率与执行阶段的去中心化自治要求。
+第四类参与者是{集中训练协调器}。它只在训练阶段存在，用于整合联合状态和联合动作，对多智能体策略进行价值评估与参数更新；在实际执行阶段，各节点仅保留各自的局部 Actor 网络，实现分散执行。这样的结构兼顾了训练阶段的信息利用效率与执行阶段的去中心化自治要求。
 
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.94\textwidth]{figures/3-2.jpeg}
-  \caption{第三章协同资源分配框架的层次结构与信息流}
-  \label{fig:3_2}
+    \centering
+    \includegraphics[width=0.94\textwidth]{figures/3-2.pdf}
+    \caption{第三章协同资源分配框架的层次结构与信息流}
+    \label{fig:3_2}
 \end{figure}
 
 图~\ref{fig:3_2}给出了本章所提出协同资源分配框架的层次结构与信息流转关系。图中最上层为任务与资源环境层，包含动态任务到达、异构节点资源、时变链路拓扑和执行结果反馈等要素，反映了天基计算网络中任务负载、节点资源和通信条件随时间共同演化的系统事实。其中，动态任务到达对应不同类型任务的持续输入，异构节点资源刻画 CPU、内存、能量和队列等节点能力差异，时变链路拓扑体现星间可见关系与链路质量变化，执行结果反馈则为后续奖励计算和信誉更新提供依据。
@@ -73,7 +73,7 @@
 
 在上述系统组成基础上，本章将协同资源分配过程组织为一个持续循环的闭环流程。不同于传统中心调度模式中“中心收集全局状态—中心下发动作”的单向控制链条，本章方法强调由联盟链维持公共上下文，由节点完成局部决策，再将执行反馈重新写回系统，从而实现可信共享与自主协同的统一。
 
-具体而言，该协同流程可以概括为以下五个步骤。首先，\textbf{任务到达与本地感知}：当节点感知到新任务到达时，实时更新本地队列长度、CPU/内存利用率、剩余能量和当前工作负载等高频状态。其次，\textbf{链上摘要获取}：节点从联盟链读取全局平均负载、负载方差、链路统计、信誉评分和链上时延估计等低频但可信的公共摘要，用以补充局部感知中难以直接获得的系统级信息。再次，\textbf{局部协同决策}：策略网络基于“本地私有状态 + 链上公共摘要”输出卸载目标、资源分配比例和接收意愿等动作，并作用于当前节点。随后，\textbf{执行反馈与信誉更新}：动作执行后，系统会获得任务完成情况、平均时延、能耗、负载变化和协作质量等反馈，并据此更新节点信誉和系统负载摘要。最后，\textbf{链上记账与参数迭代}：联盟链将关键行为结果与信誉变化写入账本，在训练阶段进一步服务于全局价值评估和参数更新，在执行阶段则为下一轮协同决策提供新的可信上下文。
+具体而言，该协同流程可以概括为以下五个步骤。首先，{任务到达与本地感知}：当节点感知到新任务到达时，实时更新本地队列长度、CPU/内存利用率、剩余能量和当前工作负载等高频状态。其次，{链上摘要获取}：节点从联盟链读取全局平均负载、负载方差、链路统计、信誉评分和链上时延估计等低频但可信的公共摘要，用以补充局部感知中难以直接获得的系统级信息。再次，{局部协同决策}：策略网络基于“本地私有状态 + 链上公共摘要”输出卸载目标、资源分配比例和接收意愿等动作，并作用于当前节点。随后，{执行反馈与信誉更新}：动作执行后，系统会获得任务完成情况、平均时延、能耗、负载变化和协作质量等反馈，并据此更新节点信誉和系统负载摘要。最后，{链上记账与参数迭代}：联盟链将关键行为结果与信誉变化写入账本，在训练阶段进一步服务于全局价值评估和参数更新，在执行阶段则为下一轮协同决策提供新的可信上下文。
 
 上述协同流程强调了三个关键闭环：一是“任务到达—局部决策—执行反馈”的任务闭环，决定了系统的实时响应能力；二是“状态汇总—链上广播—节点读取”的信息闭环，决定了多节点之间能否在缺乏中心调度器的情况下获得统一的协同上下文；三是“协作行为—信誉变化—后续激励”的治理闭环，决定了系统能否对长期自利与机会主义偏离形成可持续约束。三者共同构成了本章后续博弈建模与强化学习求解的系统基础。
 
@@ -81,7 +81,7 @@
 
 在上述框架下，本章关注的核心问题可以概括为：当任务持续动态到达系统后，多个异构节点如何在不依赖中心调度器的条件下，联合决定任务由谁处理、何时处理、是否接纳外部卸载以及投入多少本地资源，使系统整体在任务完成率、平均时延、能耗开销、负载均衡和协同可信性之间取得更优平衡。换言之，本章研究的不是静态任务指派问题，而是一个随任务流、资源状态、链路关系和信誉轨迹不断演化的多主体序贯决策问题。
 
-这一问题之所以困难，主要来自四类耦合难点。其一是\textbf{资源异构与收益非一致性}：相同任务在不同节点上的执行代价、完成收益和机会成本并不相同，局部最优动作往往会诱导全局失衡。其二是\textbf{任务到达与链路状态的时变性}：任务负载具有突发与长尾特征，链路可用性则随轨道位置和拥塞条件动态变化，使得调度策略必须具备在线适应能力。其三是\textbf{可信共享信息的时效性约束}：联盟链提供了可验证的系统级上下文，但链上信息同步本身存在时延，节点决策必须同时考虑“信息可信”与“信息陈旧”两种因素。其四是\textbf{自利行为与长期治理问题}：节点会根据局部收益结构动态调整行为，若缺少信誉约束和公共审计机制，系统容易重新滑向任务热点聚集与协作退化。
+这一问题之所以困难，主要来自四类耦合难点。其一是{资源异构与收益非一致性}：相同任务在不同节点上的执行代价、完成收益和机会成本并不相同，局部最优动作往往会诱导全局失衡。其二是{任务到达与链路状态的时变性}：任务负载具有突发与长尾特征，链路可用性则随轨道位置和拥塞条件动态变化，使得调度策略必须具备在线适应能力。其三是{可信共享信息的时效性约束}：联盟链提供了可验证的系统级上下文，但链上信息同步本身存在时延，节点决策必须同时考虑“信息可信”与“信息陈旧”两种因素。其四是{自利行为与长期治理问题}：节点会根据局部收益结构动态调整行为，若缺少信誉约束和公共审计机制，系统容易重新滑向任务热点聚集与协作退化。
 
 因此，从方法论角度看，后续建模必须同时满足三点要求：一是能够刻画多节点之间“策略—环境”双向耦合的动态交互；二是能够把联盟链提供的可信公共摘要纳入状态建模与激励设计；三是能够在训练阶段充分利用联合信息、在执行阶段保持局部自治。基于这一认识，下一节将进一步把上述系统框架形式化为多智能体马尔可夫博弈模型，并为后续的区块链增强 CTDE 求解方法奠定数学基础。
 
@@ -96,28 +96,28 @@
 
 基于上述认识，本文将 $N$ 个异构边缘计算节点的协同调度问题形式化为如下七元组：
 \begin{equation}
-  \mathcal{G}=\langle N,\,S,\,\{A^i\},\,P,\,\{R^i\},\,\gamma,\,\{O^i\}\rangle,
-  \label{eq:margov_game}
+    \mathcal{G}=\langle N,\,S,\,\{A^i\},\,P,\,\{R^i\},\,\gamma,\,\{O^i\}\rangle,
+    \label{eq:margov_game}
 \end{equation}
 其中，$N$ 表示智能体集合，$S$ 表示全局状态空间，$A^i$ 表示节点 $i$ 的动作空间，$P$ 表示联合状态转移函数，$R^i$ 表示节点 $i$ 的即时奖励函数，$\gamma\in[0,1)$ 为折扣因子，$O^i$ 表示局部观测函数。
 
 需要特别指出的是，天基计算网络并不满足完全信息博弈假设。受限于星间链路的间歇连通性、有限带宽和状态同步代价，任何单个节点都不可能实时获得所有远端节点的完整原始状态。因此，本文将该问题进一步建模为部分可观测的多智能体马尔可夫博弈。对节点 $i$ 而言，其在时刻 $t$ 的观测表示为
 \begin{equation}
-  o_t^i = O^i(s_t),
-  \label{eq:obs_func}
+    o_t^i = O^i(s_t),
+    \label{eq:obs_func}
 \end{equation}
 其中 $s_t$ 表示时刻 $t$ 的全局状态，$o_t^i$ 属于节点 $i$ 的局部观测空间 $\Omega^i$。相应地，每个节点维护一个随机化策略 $\pi^i:\Omega^i\to \Delta(A^i)$，并以最大化期望累积折扣回报为目标：
 \begin{equation}
-  J^i(\pi^i,\pi^{-i})=\mathbb{E}\!\left[\sum_t\gamma^t R^i\!\left(s_t,a_t^i,a_t^{-i},s_{t+1}\right)\mid \pi^i,\pi^{-i}\right],
-  \label{eq:return}
+    J^i(\pi^i,\pi^{-i})=\mathbb{E}\!\left[\sum_t\gamma^t R^i\!\left(s_t,a_t^i,a_t^{-i},s_{t+1}\right)\mid \pi^i,\pi^{-i}\right],
+    \label{eq:return}
 \end{equation}
 这里 $\pi^{-i}$ 表示除节点 $i$ 之外其余所有节点的联合策略。上述目标函数表明，节点 $i$ 的收益不仅取决于自身策略，还显式依赖于其他节点的策略组合，这也是单智能体强化学习框架难以直接适配该问题的根本原因。
 
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.94\textwidth]{figures/3-3.png}
-  \caption{从系统优化问题到多智能体马尔可夫博弈的建模推导路径}
-  \label{fig:3_3}
+    \centering
+    \includegraphics[width=0.94\textwidth]{figures/3-3.png}
+    \caption{从系统优化问题到多智能体马尔可夫博弈的建模推导路径}
+    \label{fig:3_3}
 \end{figure}
 
 图~\ref{fig:3_3}展示了本文从天基协同资源分配问题到多智能体马尔可夫博弈模型的建模推导路径。图中第一部分概括了原始系统问题的四类关键特征：动态任务到达、节点资源异构、星间链路时变以及去中心化自治。这些特征共同决定了该问题不能被简单处理为静态任务指派问题，而应被视为一个随任务流、资源占用、链路状态和节点行为持续变化的序贯决策问题。
@@ -132,116 +132,116 @@
 
 首先，在状态空间设计上，需要在“信息充分性”和“维度可控性”之间取得平衡。若观测过于贫乏，节点将因缺乏必要上下文而难以形成有效策略；但若直接纳入过多原始任务级信息，又会导致状态维度膨胀，增加训练难度与通信开销。为此，本文将节点 $i$ 在时刻 $t$ 的观测结构化为“本地私有状态 + 链上公共摘要”两部分：
 \begin{equation}
-  o_t^i = \left(l_t^i,\,g_t\right),
-  \label{eq:obs_split}
+    o_t^i = \left(l_t^i,\,g_t\right),
+    \label{eq:obs_split}
 \end{equation}
 其中，本地私有状态 $l_t^i$ 由节点自行采集，表示为
 \begin{equation}
-  l_t^i = \left(Q_t^i,\,\rho_{\mathrm{cpu}}^i(t),\,\rho_{\mathrm{mem}}^i(t),\,E_t^i,\,h_i,\,w_t^i\right),
-  \label{eq:local_state}
+    l_t^i = \left(Q_t^i,\,\rho_{\mathrm{cpu}}^i(t),\,\rho_{\mathrm{mem}}^i(t),\,E_t^i,\,h_i,\,w_t^i\right),
+    \label{eq:local_state}
 \end{equation}
 这里 $Q_t^i$ 为本地队列长度，$\rho_{\mathrm{cpu}}^i(t)$ 和 $\rho_{\mathrm{mem}}^i(t)$ 分别为 CPU 与内存利用率，$E_t^i$ 表示剩余能量预算或累计能耗，$h_i$ 为节点静态硬件特征向量，$w_t^i$ 概括当前工作负载信息。另一方面，链上公共摘要 $g_t$ 由联盟链周期性聚合并广播，表示为
 \begin{equation}
-  g_t = \left(\bar{L}_t,\,\sigma_L^2(t),\,D_t^{\mathrm{task}},\,R_t^{\mathrm{rep}},\,\hat{D}_{\mathrm{chain}}(t),\,T_t^{\mathrm{stat}}\right),
-  \label{eq:global_summary}
+    g_t = \left(\bar{L}_t,\,\sigma_L^2(t),\,D_t^{\mathrm{task}},\,R_t^{\mathrm{rep}},\,\hat{D}_{\mathrm{chain}}(t),\,T_t^{\mathrm{stat}}\right),
+    \label{eq:global_summary}
 \end{equation}
 其中 $\bar{L}_t$ 表示全局平均负载，$\sigma_L^2(t)$ 表示负载方差，$D_t^{\mathrm{task}}$ 为任务分布摘要，$R_t^{\mathrm{rep}}$ 为信誉评分向量，$\hat{D}_{\mathrm{chain}}(t)$ 为链上同步延迟估计，$T_t^{\mathrm{stat}}$ 为吞吐量统计摘要。
 
 \begin{table}[htbp]
-  \centering
-  \caption{链上公共摘要分量说明}
-  \label{tab:summary}
-  \begin{tabularx}{\textwidth}{P{2.3cm}P{2.2cm}Y}
-    \toprule
-    分量                            & 名称     & 说明                          \\
-    \midrule
-    $\bar{L}_t$                   & 全局平均负载 & 所有节点队列长度的加权均值，反映系统整体繁忙程度    \\
-    $\sigma_L^2(t)$               & 负载方差   & 各节点负载的离散程度，衡量系统均衡性          \\
-    $D_t^{\mathrm{task}}$         & 任务分布摘要 & 各类型任务在网络中的分布统计，用于感知业务结构变化   \\
-    $R_t^{\mathrm{rep}}$          & 信誉评分向量 & 各节点的链上信誉评分，反映历史行为质量         \\
-    $\hat{D}_{\mathrm{chain}}(t)$ & 链上延迟估计 & 共识与数据同步的当前延迟估计值，用于补偿信息滞后    \\
-    $T_t^{\mathrm{stat}}$         & 吞吐量统计  & 近期各节点及系统整体吞吐量的滑动统计，用于辅助协同判断 \\
-    \bottomrule
-  \end{tabularx}
+    \centering
+    \caption{链上公共摘要分量说明}
+    \label{tab:summary}
+    \begin{tabularx}{\textwidth}{P{2.3cm}P{2.2cm}Y}
+        \toprule
+        分量                            & 名称     & 说明                          \\
+        \midrule
+        $\bar{L}_t$                   & 全局平均负载 & 所有节点队列长度的加权均值，反映系统整体繁忙程度    \\
+        $\sigma_L^2(t)$               & 负载方差   & 各节点负载的离散程度，衡量系统均衡性          \\
+        $D_t^{\mathrm{task}}$         & 任务分布摘要 & 各类型任务在网络中的分布统计，用于感知业务结构变化   \\
+        $R_t^{\mathrm{rep}}$          & 信誉评分向量 & 各节点的链上信誉评分，反映历史行为质量         \\
+        $\hat{D}_{\mathrm{chain}}(t)$ & 链上延迟估计 & 共识与数据同步的当前延迟估计值，用于补偿信息滞后    \\
+        $T_t^{\mathrm{stat}}$         & 吞吐量统计  & 近期各节点及系统整体吞吐量的滑动统计，用于辅助协同判断 \\
+        \bottomrule
+    \end{tabularx}
 \end{table}
 
 值得注意的是，$R_t^{\mathrm{rep}}$ 为信誉约束提供了可信输入，而 $\hat{D}_{\mathrm{chain}}(t)$ 的显式纳入使节点能够感知当前信息时效性，并在策略中对链上同步滞后进行自适应补偿。
 
 其次，在动作空间设计上，原始调度决策天然包含离散与连续两类分量：节点既要决定任务是本地执行还是卸载给哪个邻居，也要决定本地资源分配比例以及是否愿意接收外部任务。若直接将“逐任务优先级向量”作为动作输出，其维度会随队列长度变化，不利于神经网络策略表示与训练稳定性。因此，本文采用固定维混合动作表示：
 \begin{equation}
-  a_t^i = \left(a_{\mathrm{off},t}^i,\,a_{\mathrm{res},t}^i,\,a_{\mathrm{acc},t}^i\right),
-  \label{eq:hybrid_action}
+    a_t^i = \left(a_{\mathrm{off},t}^i,\,a_{\mathrm{res},t}^i,\,a_{\mathrm{acc},t}^i\right),
+    \label{eq:hybrid_action}
 \end{equation}
 其中 $a_{\mathrm{off},t}^i$ 表示卸载目标选择，$a_{\mathrm{res},t}^i\in[0,1]$ 表示本地资源分配比例，$a_{\mathrm{acc},t}^i\in[0,1]$ 表示接收外部任务的意愿系数。对于本地队列内部的细粒度排序，本文不再将其直接作为策略网络输出，而是通过一个基于任务时延约束、计算量和信誉补偿的规则化排序器在节点本地生成。这样既能保持 Actor 输出维度固定，又实现了“高层学协同、低层做排序”的结构化解耦。
 
 最后，在奖励机制设计上，若仅以本地吞吐或完成收益作为奖励，节点策略将自然倾向于争抢高价值任务并规避低收益协作，从而重演前文所分析的公地悲剧。为此，本文构建融合效率、公平与可信性的三维混合奖励函数：
 \begin{equation}
-  r_t^i = w_q r_{q,t}^i + w_f r_{f,t}^i + w_c r_{c,t}^i,
-  \label{eq:hybrid_reward}
+    r_t^i = w_q r_{q,t}^i + w_f r_{f,t}^i + w_c r_{c,t}^i,
+    \label{eq:hybrid_reward}
 \end{equation}
 其中 $w_q,w_f,w_c\ge 0$ 且 $w_q+w_f+w_c=1$。效率项用于刻画节点自身任务处理质量，可写为
 \begin{equation}
-  r_{q,t}^i = \alpha_1\mathrm{Succ}_t^i - \alpha_2\mathrm{Delay}_t^i - \alpha_3\mathrm{Energy}_t^i,
-  \label{eq:rq}
+    r_{q,t}^i = \alpha_1\mathrm{Succ}_t^i - \alpha_2\mathrm{Delay}_t^i - \alpha_3\mathrm{Energy}_t^i,
+    \label{eq:rq}
 \end{equation}
 其中 $\mathrm{Succ}_t^i$ 为成功完成任务数，$\mathrm{Delay}_t^i$ 为平均完成时延，$\mathrm{Energy}_t^i$ 为单位时间能耗。公平项用于引导系统整体负载均衡，本文采用基于 Jain 公平指数的全局度量\cite{ref6}：
 \begin{equation}
-  J_t = \frac{\left(\sum_i x_i(t)\right)^2}{N\sum_i x_i^2(t)},
-  \label{eq:jain}
+    J_t = \frac{\left(\sum_i x_i(t)\right)^2}{N\sum_i x_i^2(t)},
+    \label{eq:jain}
 \end{equation}
 其中 $x_i(t)$ 表示节点 $i$ 的有效服务率或负载承担量，进而定义
 \begin{equation}
-  r_{f,t}^i = J_t - \beta\,\max\left\{0,\,\rho_i(t)-\rho_{\mathrm{th}}\right\}.
-  \label{eq:rf}
+    r_{f,t}^i = J_t - \beta\,\max\left\{0,\,\rho_i(t)-\rho_{\mathrm{th}}\right\}.
+    \label{eq:rf}
 \end{equation}
 可信性项则将节点历史行为纳入激励闭环：
 \begin{equation}
-  r_{c,t}^i = \gamma_1 \Delta \mathrm{Rep}_i(t) - \gamma_2 \delta_i(t),
-  \label{eq:rc}
+    r_{c,t}^i = \gamma_1 \Delta \mathrm{Rep}_i(t) - \gamma_2 \delta_i(t),
+    \label{eq:rc}
 \end{equation}
 其中 $\Delta \mathrm{Rep}_i(t)$ 表示信誉增量，$\delta_i(t)$ 表示负载偏差度。诚实上报与积极协同的节点将获得正向激励，虚报状态和拒绝协作的节点则受到惩罚。
 
 \begin{table}[htbp]
-  \centering
-  \caption{奖励权重与作用说明}
-  \label{tab:reward_weight}
-  \begin{tabularx}{\textwidth}{P{1.8cm}P{2.2cm}Y P{1.5cm}}
-    \toprule
-    权重    & 对应项       & 核心作用                      & 默认值 \\
-    \midrule
-    $w_q$ & 效率项 $r_q$ & 保证任务完成率、时延与能耗三者的局部效率优化    & 0.5 \\
-    $w_f$ & 公平项 $r_f$ & 抑制热点拥塞，提升系统负载均衡与长期稳定性     & 0.3 \\
-    $w_c$ & 可信项 $r_c$ & 将信誉增量与负载偏差反馈到策略更新中，约束欺骗行为 & 0.2 \\
-    \bottomrule
-  \end{tabularx}
+    \centering
+    \caption{奖励权重与作用说明}
+    \label{tab:reward_weight}
+    \begin{tabularx}{\textwidth}{P{1.8cm}P{2.2cm}Y P{1.5cm}}
+        \toprule
+        权重    & 对应项       & 核心作用                      & 默认值 \\
+        \midrule
+        $w_q$ & 效率项 $r_q$ & 保证任务完成率、时延与能耗三者的局部效率优化    & 0.5 \\
+        $w_f$ & 公平项 $r_f$ & 抑制热点拥塞，提升系统负载均衡与长期稳定性     & 0.3 \\
+        $w_c$ & 可信项 $r_c$ & 将信誉增量与负载偏差反馈到策略更新中，约束欺骗行为 & 0.2 \\
+        \bottomrule
+    \end{tabularx}
 \end{table}
 
 \subsection{约束条件与性质分析}
 
 作为一个面向真实天基计算网络的协同调度模型，上述博弈并非在抽象无限制环境中运行，而必须满足物理资源约束与通信可行性约束。对任意节点 $i$ 而言，首先有基本的本地资源约束：
 \begin{equation}
-  0 \le a_{\mathrm{res},t}^i \le 1,
-  \label{eq:res_ratio}
+    0 \le a_{\mathrm{res},t}^i \le 1,
+    \label{eq:res_ratio}
 \end{equation}
 \begin{equation}
-  C_i^{\mathrm{used}}(t)\le C_i^{\max},\quad
-  B_i^{\mathrm{used}}(t)\le B_i^{\max},\quad
-  E_i^{\mathrm{used}}(t)\le E_i^{\mathrm{cap}},
-  \label{eq:resource_const}
+    C_i^{\mathrm{used}}(t)\le C_i^{\max},\quad
+    B_i^{\mathrm{used}}(t)\le B_i^{\max},\quad
+    E_i^{\mathrm{used}}(t)\le E_i^{\mathrm{cap}},
+    \label{eq:resource_const}
 \end{equation}
 其中 $C_i^{\mathrm{used}}(t)$、$B_i^{\mathrm{used}}(t)$、$E_i^{\mathrm{used}}(t)$ 分别表示时刻 $t$ 的计算资源占用、带宽占用和能量消耗。当节点选择执行卸载动作时，相应任务的数据传输量还必须满足链路带宽预算和可见窗口约束。本文在环境层通过动作可行性检查与不可行动作惩罚共同保证策略学习始终发生在物理可行域内。
 
 在满足上述约束的前提下，还需要讨论模型在理论上的可解释性。需要说明的是，原始问题同时包含离散卸载选择与连续资源比例控制，严格意义上的全局均衡求解较为困难。因此，本文并不试图对原始离散—连续混合博弈给出过强的解析结论，而是在混合策略和连续松弛意义下给出两个性质说明。
 
-\textbf{定理 3.1（连续松弛下的均衡存在性）} 在各智能体采用混合策略、奖励函数对联合策略连续，且连续动作空间为非空紧凸集的条件下，所构造的松弛博弈至少存在一个混合策略纳什均衡\cite{ref7}。
+{定理 3.1（连续松弛下的均衡存在性）} 在各智能体采用混合策略、奖励函数对联合策略连续，且连续动作空间为非空紧凸集的条件下，所构造的松弛博弈至少存在一个混合策略纳什均衡\cite{ref7}。
 
 该结论可由 Glicksberg 不动点定理得到。需要强调的是，这里讨论的是连续松弛后的策略博弈，其意义在于说明本文设计的奖励结构与策略表示不会破坏均衡存在性，而非声称原始混合动作博弈在所有条件下都可直接解析求解。
 
-\textbf{定理 3.2（局部稳定性说明）} 若在某一局部邻域内，联合策略更新可近似表示为对某个光滑潜在函数的上升过程，且学习率足够小，则策略迭代在该邻域内具有局部稳定性。
+{定理 3.2（局部稳定性说明）} 若在某一局部邻域内，联合策略更新可近似表示为对某个光滑潜在函数的上升过程，且学习率足够小，则策略迭代在该邻域内具有局部稳定性。
 
 该性质为后续采用 MAPPO 求解提供理论直觉：通过将公平项与信誉项嵌入奖励函数，不同节点的局部优化方向在一定程度上得到对齐，从而减弱了纯竞争博弈中常见的剧烈震荡现象。这里给出的并非严格的全局收敛证明，而是对训练稳定性来源的性质解释。
 
-在上述状态、动作、奖励与约束设计的基础上，本节已经回答了“系统希望节点依据什么信息决策、能够采取哪些行动、以及为何通过混合奖励塑形来抑制公地悲剧”这三个核心问题。换言之，第 3.3 节完成的是\textbf{问题求解对象的数学抽象}：它把第 3.2 节中的系统角色、链上公共摘要与信誉治理机制统一映射为一个部分可观测、多主体、序贯式的动态博弈模型，并说明了该模型在物理可行域内的基本性质。
+在上述状态、动作、奖励与约束设计的基础上，本节已经回答了“系统希望节点依据什么信息决策、能够采取哪些行动、以及为何通过混合奖励塑形来抑制公地悲剧”这三个核心问题。换言之，第 3.3 节完成的是{问题求解对象的数学抽象}：它把第 3.2 节中的系统角色、链上公共摘要与信誉治理机制统一映射为一个部分可观测、多主体、序贯式的动态博弈模型，并说明了该模型在物理可行域内的基本性质。
 
 但仅有建模仍不足以直接落地到天基网络的在线协同决策。原因在于：第一，联合状态与联合动作维度随节点数量增长而迅速膨胀；第二，Actor 在执行阶段只能访问局部观测与链上摘要，不能依赖训练期的全局信息；第三，链上公共信息板虽然提供了可信共享与审计能力，但其时延、更新周期和信誉回写机制必须被纳入具体的学习与执行流程，才能真正转化为策略性能增益。因此，下一节将从“如何求解”而非“如何建模”的角度出发，把上述马尔可夫博弈进一步映射为区块链增强的集中训练—分散执行多智能体强化学习框架，并说明策略参数更新、链上共享、信誉反馈和在线部署之间的耦合关系。
 
@@ -258,18 +258,18 @@
 
 设节点上报交易经本地验证后进入待共识池，则某次公共状态写入的总延迟可近似表示为
 \begin{equation}
-  D_{\mathrm{chain}}(t)=D_{\mathrm{consensus}}(t)+D_{\mathrm{broadcast}}(t)+D_{\mathrm{verify}}(t),
-  \label{eq:chain_delay}
+    D_{\mathrm{chain}}(t)=D_{\mathrm{consensus}}(t)+D_{\mathrm{broadcast}}(t)+D_{\mathrm{verify}}(t),
+    \label{eq:chain_delay}
 \end{equation}
 其中 $D_{\mathrm{consensus}}(t)$ 为子链或主链共识延迟，$D_{\mathrm{broadcast}}(t)$ 为区块广播传播延迟，$D_{\mathrm{verify}}(t)$ 为本地验证与状态解析延迟。默认实验中账本同步平均附加延迟设为 1.0 s，并在敏感性分析中扩展到 0.5--3.0 s 的范围。
 
 为使链上数据能够直接服务于博弈观测与合约执行，本文将区块载荷划分为五类记录：资源状态记录块、任务摘要记录块、信誉更新记录块、策略审计记录块以及子链聚合摘要块。通过上述字段设计，链上账本既保留了博弈求解所需的最小充分统计量，又避免直接存储高维原始任务数据，从而控制了存储与传输开销。
 
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.94\textwidth]{figures/3-4.png}
-  \caption{分层联盟链与公共信息板职责示意}
-  \label{fig:3_4}
+    \centering
+    \includegraphics[width=0.94\textwidth]{figures/3-4.png}
+    \caption{分层联盟链与公共信息板职责示意}
+    \label{fig:3_4}
 \end{figure}
 
 图~\ref{fig:3_4}进一步说明了联盟链在本章方法中的功能定位和分层职责。图上方表示异构节点与链上数据源，每个节点持续产生资源状态、任务事件、局部执行结果和行为审计记录等信息。这些信息并不直接进入中心调度器，而是通过状态与事件上报机制写入分层联盟链结构，从而形成可验证、可追溯的公共状态来源。
@@ -279,28 +279,28 @@
 图下方的联盟链公共信息板是面向智能体决策的摘要输出层，主要提供全局平均负载 $\bar{L}_t$、负载方差 $\sigma_L^2(t)$、任务分布摘要 $D_t^{\mathrm{task}}$、信誉评分向量 $R_t^{\mathrm{rep}}$、链上延迟估计 $\hat{D}_{\mathrm{chain}}(t)$ 和吞吐量统计 $T_t^{\mathrm{stat}}$ 等公共上下文。该公共信息板并不直接替代智能体进行调度决策，而是为各节点提供统一、可信、不可随意篡改的状态摘要，使节点能够在部分可观测条件下获得系统级协同依据。图中智能合约治理模块则用于异常识别、一致性检查、信誉扣奖、权限更新和策略审计，并将审计结果反馈给公共信息板和节点策略。由此可见，图~\ref{fig:3_4}强调的是：联盟链在本文中不是简单的数据存储模块，而是连接状态共享、行为审计和信誉治理的可信公共信息基础设施。
 
 \begin{table}[htbp]
-  \centering
-  \caption{分层联盟链职责划分}
-  \label{tab:blockchain_role}
-  \begin{tabularx}{\textwidth}{P{2.2cm}P{3.0cm}P{2.0cm}Y}
-    \toprule
-    层级 / 模块    & 主要职责                    & 更新周期 & 主要服务对象     \\
-    \midrule
-    主链 / 资源审计链 & 身份管理、信誉锚定、治理规则与跨链监管     & 慢时标  & 监管与系统层策略更新 \\
-    子链 / 任务信令链 & 任务开始/结束事件、资源摘要、局部审计     & 快时标  & 节点侧调度与局部反馈 \\
-    公共信息板聚合层   & 输出全局平均负载、负载方差、任务分布与信誉向量 & 中时标  & 多智能体协同决策   \\
-    智能合约       & 执行异常识别、信誉扣奖、策略审计与权限更新   & 事件驱动 & 系统治理与行为约束  \\
-    \bottomrule
-  \end{tabularx}
+    \centering
+    \caption{分层联盟链职责划分}
+    \label{tab:blockchain_role}
+    \begin{tabularx}{\textwidth}{P{2.2cm}P{3.0cm}P{2.0cm}Y}
+        \toprule
+        层级 / 模块    & 主要职责                    & 更新周期 & 主要服务对象     \\
+        \midrule
+        主链 / 资源审计链 & 身份管理、信誉锚定、治理规则与跨链监管     & 慢时标  & 监管与系统层策略更新 \\
+        子链 / 任务信令链 & 任务开始/结束事件、资源摘要、局部审计     & 快时标  & 节点侧调度与局部反馈 \\
+        公共信息板聚合层   & 输出全局平均负载、负载方差、任务分布与信誉向量 & 中时标  & 多智能体协同决策   \\
+        智能合约       & 执行异常识别、信誉扣奖、策略审计与权限更新   & 事件驱动 & 系统治理与行为约束  \\
+        \bottomrule
+    \end{tabularx}
 \end{table}
 
 在信誉机制方面，本文采用“链上记录 + 合约审计 + 奖励回写”的闭环方式。对节点 $i$，其信誉值 $\mathrm{Rep}_i(t)$ 随诚实性、协同贡献与异常惩罚动态演化。若节点长期夸大繁忙程度、拒收外部任务或低报负载吸引高收益业务，则审计合约会根据链上任务事件与资源摘要的一致性检查结果触发信誉惩戒，并将惩罚结果回写到后续奖励中。这意味着区块链在本文中的作用不应被简单理解为“天然提升性能”，而应理解为：它为可信共享、行为审计与中长期激励执行提供统一机制，使系统在面对自私与欺骗行为时具备可持续协同的条件。
 
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.88\textwidth]{figures/3-5.jpeg}
-  \caption{信誉驱动的状态—动作—审计—反馈闭环}
-  \label{fig:3_5}
+    \centering
+    \includegraphics[width=0.88\textwidth]{figures/3-5.jpeg}
+    \caption{信誉驱动的状态—动作—审计—反馈闭环}
+    \label{fig:3_5}
 \end{figure}
 
 图~\ref{fig:3_5}刻画了节点信誉值在协同资源分配过程中的动态演化机制。图中心的 $\mathrm{Reputation}_i(t)$ 表示节点 $i$ 在时刻 $t$ 的链上信誉状态，它不是静态标签，而是由节点长期行为、任务执行质量、协同贡献和链上审计结果共同决定的动态变量。信誉值一方面作为链上公共摘要的一部分进入节点观测，影响后续任务分配和协同优先级；另一方面又通过奖励函数中的可信性项反馈到策略更新过程，从而形成长期激励约束。
@@ -317,16 +317,16 @@
 
 其中，集中式 Critic 的输入为全局状态近似表示
 \begin{equation}
-  s_t^{\mathrm{ctr}}=(l_t^1,\ldots,l_t^N,g_t),
-  \label{eq:central_state}
+    s_t^{\mathrm{ctr}}=(l_t^1,\ldots,l_t^N,g_t),
+    \label{eq:central_state}
 \end{equation}
 输出价值估计 $V_\phi(s_t^{\mathrm{ctr}})$。考虑到天基网络拓扑随时间动态变化，本文在状态编码阶段引入图结构聚合器，用于对邻接节点状态和链路关系进行表征学习。这样，一方面能够避免简单拼接带来的维度膨胀，另一方面也使价值网络具备对拓扑动态变化的敏感性。
 
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.95\textwidth]{figures/3-6.png}
-  \caption{BC-CTDE-MAPPO 总体流程图}
-  \label{fig:3_6}
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/3-6.png}
+    \caption{BC-CTDE-MAPPO 总体流程图}
+    \label{fig:3_6}
 \end{figure}
 
 图~\ref{fig:3_6}给出了 BC-CTDE-MAPPO 的训练—执行一体化流程。该图按照时间顺序将在线执行阶段和集中训练阶段划分为八个步骤，并通过颜色区分系统状态、动作执行、奖励计算和训练优化等不同功能模块。左侧为在线执行阶段，其目标是在无中心调度器参与的情况下完成节点局部决策和环境交互；右侧为集中训练阶段，其目标是利用联合轨迹和全局价值评估对多智能体策略进行稳定更新。
@@ -343,32 +343,32 @@
 
 由于动作同时包含离散卸载选择与连续资源控制两类分量，本文采用混合参数化 Actor。具体而言，对离散动作 $a_{\mathrm{off},t}^i$ 输出 categorical 分布，对连续动作 $a_{\mathrm{res},t}^i$ 和 $a_{\mathrm{acc},t}^i$ 输出高斯分布参数，其联合策略可写为
 \begin{equation}
-  \pi_\theta^i(a_t^i\mid o_t^i)=\pi_{\theta,d}^i(a_{\mathrm{off},t}^i\mid o_t^i)\cdot\pi_{\theta,c}^i(a_{\mathrm{res},t}^i,a_{\mathrm{acc},t}^i\mid o_t^i).
-  \label{eq:hybrid_policy}
+    \pi_\theta^i(a_t^i\mid o_t^i)=\pi_{\theta,d}^i(a_{\mathrm{off},t}^i\mid o_t^i)\cdot\pi_{\theta,c}^i(a_{\mathrm{res},t}^i,a_{\mathrm{acc},t}^i\mid o_t^i).
+    \label{eq:hybrid_policy}
 \end{equation}
 其中连续分量经 sigmoid 映射后投影到 $[0,1]$ 区间，以保证动作满足物理可行性约束。为了增强探索能力，训练初期在连续分量上保留较高的熵正则项，随后随训练过程逐步衰减。
 
 在参数更新方面，本文沿用 PPO 的裁剪目标\cite{ref4,ref5,ref9}。对节点 $i$ 定义策略比值
 \begin{equation}
-  \rho_t^i(\theta_i)=\frac{\pi_{\theta_i}(a_t^i\mid o_t^i)}{\pi_{\theta_i^{\mathrm{old}}}(a_t^i\mid o_t^i)},
-  \label{eq:ratio}
+    \rho_t^i(\theta_i)=\frac{\pi_{\theta_i}(a_t^i\mid o_t^i)}{\pi_{\theta_i^{\mathrm{old}}}(a_t^i\mid o_t^i)},
+    \label{eq:ratio}
 \end{equation}
 则其裁剪目标函数为
 \begin{equation}
-  L_i^{\mathrm{clip}}(\theta_i)=\mathbb{E}_t\!\left[\min\!\left(\rho_t^i(\theta_i)\hat{A}_t^i,\,
-  \mathrm{clip}(\rho_t^i(\theta_i),1-\epsilon,1+\epsilon)\hat{A}_t^i\right)\right],
-  \label{eq:ppo_clip}
+    L_i^{\mathrm{clip}}(\theta_i)=\mathbb{E}_t\!\left[\min\!\left(\rho_t^i(\theta_i)\hat{A}_t^i,\,
+    \mathrm{clip}(\rho_t^i(\theta_i),1-\epsilon,1+\epsilon)\hat{A}_t^i\right)\right],
+    \label{eq:ppo_clip}
 \end{equation}
 其中 $\hat{A}_t^i$ 为优势估计。本文采用广义优势估计（GAE）构造该项：
 \begin{equation}
-  \hat{A}_t^i=\sum_{l=0}^{T-1}(\gamma\lambda)^l\,\delta_{t+l}^i,\qquad
-  \delta_t^i=r_t^i+\gamma V_\phi\!\left(s_{t+1}^{\mathrm{ctr}}\right)-V_\phi\!\left(s_t^{\mathrm{ctr}}\right).
-  \label{eq:gae}
+    \hat{A}_t^i=\sum_{l=0}^{T-1}(\gamma\lambda)^l\,\delta_{t+l}^i,\qquad
+    \delta_t^i=r_t^i+\gamma V_\phi\!\left(s_{t+1}^{\mathrm{ctr}}\right)-V_\phi\!\left(s_t^{\mathrm{ctr}}\right).
+    \label{eq:gae}
 \end{equation}
 Critic 则通过最小化时序差分误差进行更新：
 \begin{equation}
-  L_V(\phi)=\mathbb{E}_t\!\left[\left(V_\phi\!\left(s_t^{\mathrm{ctr}}\right)-\hat{V}_t\right)^2\right].
-  \label{eq:value_loss}
+    L_V(\phi)=\mathbb{E}_t\!\left[\left(V_\phi\!\left(s_t^{\mathrm{ctr}}\right)-\hat{V}_t\right)^2\right].
+    \label{eq:value_loss}
 \end{equation}
 
 需要强调的是，本文方法属于严格的 on-policy 学习流程。也就是说，系统采用“采样一批 rollout → 计算优势 → 多轮小批量更新 → 丢弃旧轨迹”的训练方式，而不使用大规模经验回放池，从而与 MAPPO 的理论设定保持一致。
@@ -380,28 +380,28 @@ Critic 则通过最小化时序差分误差进行更新：
 为进一步明确算法执行顺序，本文将 BC-CTDE-MAPPO 的训练与在线部署过程整理为算法~\ref{alg:mappo}。该算法体现了“链上信息更新—环境状态转移—策略参数优化”三者并行耦合的特点：链上公共信息板为每轮决策提供可信上下文，环境根据联合动作更新队列与能耗状态，而集中训练模块则利用全局状态近似表示更新参数。
 
 \begin{algorithm}[htbp]
-  \caption{BC-CTDE-MAPPO 协同资源分配算法}
-  \label{alg:mappo}
-  \begin{algorithmic}[1]
-    \Require 节点集合 $N$；本地观测 $o_t^i=(l_t^i,g_t)$；奖励权重 $(w_q,w_f,w_c)$；训练轮数 $E$；rollout 长度 $T$
-    \Ensure 每个节点的协同策略 $\pi_\theta^i$ 与共享价值函数 $V_\phi$
-    \State 初始化各节点 Actor 参数 $\theta_i$、共享 Critic 参数 $\phi$、联盟链账本状态与信誉值 $\mathrm{Rep}_i(0)$
-    \For{$episode = 1,\ldots,E$}
-    \For{$t = 1,\ldots,T$}
-    \For{每个节点 $i$}
-    \State 读取本地私有状态 $l_t^i$ 与最新链上公共摘要 $g_t$，构造观测 $o_t^i$
-    \State 按策略 $\pi_\theta^i(a_t^i\mid o_t^i)$ 采样混合动作 $a_t^i$
-    \EndFor
-    \State 环境执行联合动作 $a_t$，更新任务队列、链路状态、能耗状态与信誉中间量
-    \State 联盟链写入资源摘要、任务摘要与审计记录，生成新的公共状态 $g_{t+1}$
-    \State 按式~(\ref{eq:hybrid_reward}) 计算各节点即时奖励 $r_t^i$
-    \State 将 $\{o_t^i,a_t^i,r_t^i,o_{t+1}^i\}$ 存入 rollout 缓冲区
-    \EndFor
-    \State 基于联合轨迹计算优势函数 $\hat{A}_t^i$ 与目标价值 $\hat{V}_t$
-    \State 多轮小批量优化 Actor 与 Critic，更新 $\theta_i,\phi$
-    \EndFor
-    \State \Return 训练完成的 $\pi_\theta^i$ 与 $V_\phi$
-  \end{algorithmic}
+    \caption{BC-CTDE-MAPPO 协同资源分配算法}
+    \label{alg:mappo}
+    \begin{algorithmic}[1]
+        \Require 节点集合 $N$；本地观测 $o_t^i=(l_t^i,g_t)$；奖励权重 $(w_q,w_f,w_c)$；训练轮数 $E$；rollout 长度 $T$
+        \Ensure 每个节点的协同策略 $\pi_\theta^i$ 与共享价值函数 $V_\phi$
+        \State 初始化各节点 Actor 参数 $\theta_i$、共享 Critic 参数 $\phi$、联盟链账本状态与信誉值 $\mathrm{Rep}_i(0)$
+        \For{$episode = 1,\ldots,E$}
+        \For{$t = 1,\ldots,T$}
+        \For{每个节点 $i$}
+        \State 读取本地私有状态 $l_t^i$ 与最新链上公共摘要 $g_t$，构造观测 $o_t^i$
+        \State 按策略 $\pi_\theta^i(a_t^i\mid o_t^i)$ 采样混合动作 $a_t^i$
+        \EndFor
+        \State 环境执行联合动作 $a_t$，更新任务队列、链路状态、能耗状态与信誉中间量
+        \State 联盟链写入资源摘要、任务摘要与审计记录，生成新的公共状态 $g_{t+1}$
+        \State 按式~(\ref{eq:hybrid_reward}) 计算各节点即时奖励 $r_t^i$
+        \State 将 $\{o_t^i,a_t^i,r_t^i,o_{t+1}^i\}$ 存入 rollout 缓冲区
+        \EndFor
+        \State 基于联合轨迹计算优势函数 $\hat{A}_t^i$ 与目标价值 $\hat{V}_t$
+        \State 多轮小批量优化 Actor 与 Critic，更新 $\theta_i,\phi$
+        \EndFor
+        \State \Return 训练完成的 $\pi_\theta^i$ 与 $V_\phi$
+    \end{algorithmic}
 \end{algorithm}
 
 \section{实验设计与结果分析}
@@ -417,29 +417,29 @@ Critic 则通过最小化时序差分误差进行更新：
 本文方法基于 MAPPO 实现，训练配置如下：折扣因子 $\gamma=0.99$，GAE 系数 $\lambda=0.95$，PPO 裁剪系数 $\epsilon=0.2$，Actor 学习率 $3\times10^{-4}$，Critic 学习率 $1\times10^{-3}$，策略更新 epoch 数为 10，小批量大小为 256。奖励权重默认设置为 $w_q=0.5$、$w_f=0.3$、$w_c=0.2$。为保证对比的完整性，本文选取以下四种基线方法：（1）MAPPO，采用标准集中训练—分散执行框架但不引入区块链与信誉机制；（2）MADDPG，采用集中式 Critic 与确定性策略梯度的多智能体方法；（3）IPPO（Independent PPO），各节点独立训练，不使用集中式 Critic 或公共状态共享；（4）Greedy，基于局部即时收益的启发式调度策略；（5）Random，随机卸载与资源分配策略。此外，在鲁棒性实验中将自私节点比例从 0\% 增加至 40\%。
 
 \begin{table}[htbp]
-  \centering
-  \caption{仿真实验参数设置}
-  \label{tab:exp_setting}
-  \renewcommand{\arraystretch}{1.15}
-  \begin{tabularx}{\textwidth}{P{3.0cm}P{2.6cm}Y}   \toprule
-    参数                   & 取值               & 说明                        \\
-    \midrule
-    卫星节点数量               & 20               & 参与协同资源调度的异构计算节点总数         \\
-    轨道层数                 & 3                & 抽象为不同的可见性与链路条件层           \\
-    任务类型数                & 4                & 遥感预处理、目标检测、压缩转发与任务规划      \\
-    单回合时隙数               & 200              & 每个训练回合包含的环境交互步数           \\
-    训练回合数                & 500              & 用于策略优化的总训练回合数             \\
-    Actor 学习率            & $3\times10^{-4}$ & 局部 Actor 网络学习率            \\
-    Critic 学习率           & $1\times10^{-3}$ & 集中式 Critic 网络学习率          \\
-    折扣因子 $\gamma$        & 0.99             & 长期累计回报折扣因子                \\
-    GAE 参数 $\lambda$     & 0.95             & 广义优势估计系数                  \\
-    PPO 裁剪系数             & 0.2              & 策略更新裁剪阈值                  \\
-    奖励权重 $(w_q,w_f,w_c)$ & (0.5, 0.3, 0.2)  & 效率、公平与可信三项奖励权重            \\
-    链上平均同步时延             & 1.0 s            & 默认联盟链同步时延                 \\
-    任务到达率范围              & 0.3--1.1         & 单位：task/(slot$\cdot$node) \\
-    自私节点比例范围             & 0\%--40\%        & 用于鲁棒性实验                   \\
-    \bottomrule
-  \end{tabularx}
+    \centering
+    \caption{仿真实验参数设置}
+    \label{tab:exp_setting}
+    \renewcommand{\arraystretch}{1.15}
+    \begin{tabularx}{\textwidth}{P{3.0cm}P{2.6cm}Y}   \toprule
+        参数                   & 取值               & 说明                        \\
+        \midrule
+        卫星节点数量               & 20               & 参与协同资源调度的异构计算节点总数         \\
+        轨道层数                 & 3                & 抽象为不同的可见性与链路条件层           \\
+        任务类型数                & 4                & 遥感预处理、目标检测、压缩转发与任务规划      \\
+        单回合时隙数               & 200              & 每个训练回合包含的环境交互步数           \\
+        训练回合数                & 500              & 用于策略优化的总训练回合数             \\
+        Actor 学习率            & $3\times10^{-4}$ & 局部 Actor 网络学习率            \\
+        Critic 学习率           & $1\times10^{-3}$ & 集中式 Critic 网络学习率          \\
+        折扣因子 $\gamma$        & 0.99             & 长期累计回报折扣因子                \\
+        GAE 参数 $\lambda$     & 0.95             & 广义优势估计系数                  \\
+        PPO 裁剪系数             & 0.2              & 策略更新裁剪阈值                  \\
+        奖励权重 $(w_q,w_f,w_c)$ & (0.5, 0.3, 0.2)  & 效率、公平与可信三项奖励权重            \\
+        链上平均同步时延             & 1.0 s            & 默认联盟链同步时延                 \\
+        任务到达率范围              & 0.3--1.1         & 单位：task/(slot$\cdot$node) \\
+        自私节点比例范围             & 0\%--40\%        & 用于鲁棒性实验                   \\
+        \bottomrule
+    \end{tabularx}
 \end{table}
 
 \subsection{收敛性分析}
@@ -449,26 +449,32 @@ Critic 则通过最小化时序差分误差进行更新：
 图~\ref{fig:3_7}(b) 以误差棒形式进一步比较了不同算法的收敛回合数，误差棒大小根据各算法后 50 回合的回报标准差等比缩放，反映各方法收敛的稳定程度。BC-CTDE-MAPPO 的收敛回合最少，仅为 210 回合；MAPPO、MADDPG 和 IPPO 分别需要 260、330 和 360 回合才达到稳定状态。
 
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.98\textwidth]{figures/fig3_6_convergence_combined.pdf}
-  \caption{不同训练算法的收敛性对比}
-  \label{fig:3_7}
+    \centering
+    \includegraphics[width=0.98\textwidth]{figures/fig3_6_convergence_combined.pdf}
+    \caption{不同训练算法的收敛性对比}
+    \label{fig:3_7}
 \end{figure}
 
 \begin{table}[htbp]
-  \centering
-  \caption{不同训练算法的收敛性统计对比}
-  \label{tab:ch3_convergence}
-  \begin{tabular}{lcccc}
-    \toprule
-    算法            & 最终平均回报 & 收敛回合 & 后50回合回报标准差 & $\lambda=0.9$时任务完成率(\%) \\
-    \midrule
-    BC-CTDE-MAPPO & 88.4   & 210  & 2.1        & 92.3                    \\
-    MAPPO         & 77.6   & 260  & 3.4        & 88.1                    \\
-    MADDPG        & 70.2   & 330  & 4.2        & 84.2                    \\
-    IPPO          & 66.8   & 360  & 4.8        & 82.9                    \\
-    \bottomrule
-  \end{tabular}
+    \centering
+    \footnotesize
+    \caption{不同训练算法的收敛性统计对比}
+    \label{tab:ch3_convergence}
+    \setlength{\tabcolsep}{2.0mm}
+    \renewcommand{\arraystretch}{1.15}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{lcccc}
+        \toprule
+        \rowcolor{gray!10}
+        算法 & 最终平均回报 & 收敛回合 & 后50回合回报标准差 & $\lambda=0.9$时任务完成率(\%) \\
+        \midrule
+        BC-CTDE-MAPPO & 88.4 & 210 & 2.1 & 92.3 \\
+        MAPPO & 77.6 & 260 & 3.4 & 88.1 \\
+        MADDPG & 70.2 & 330 & 4.2 & 84.2 \\
+        IPPO & 66.8 & 360 & 4.8 & 82.9 \\
+        \bottomrule
+    \end{tabular}%
+    }
 \end{table}
 
 结合表~\ref{tab:ch3_convergence} 中的统计结果可知，BC-CTDE-MAPPO 在最终平均回报、收敛速度及后 50 回合回报标准差等指标上均优于对比方法。尤其是在任务到达率 $\lambda=0.9$ 的场景下，其任务完成率达到 92.3\%，分别高于 MAPPO 的 88.1\%（$+4.2$pp）和 MADDPG 的 84.2\%（$+8.1$pp）。这说明所提方法不仅具备更快的收敛速度，而且在收敛后仍能保持较高的策略稳定性。
@@ -484,27 +490,33 @@ Critic 则通过最小化时序差分误差进行更新：
 图~\ref{fig:3_8}(b) 给出了不同负载水平下的平均任务时延变化趋势，高负载区间同样以背景色块标注。BC-CTDE-MAPPO 的增长最缓，在 $\lambda=0.9$ 和 $\lambda=1.1$ 时分别仅为 178 ms 和 214 ms，显著低于 MAPPO（203 ms / 249 ms）和 MADDPG（228 ms / 278 ms）。这说明所提方法能够通过链上公共摘要感知全局负载状态，并在协同调度时主动规避热点节点，从而降低拥塞传播对系统时延的影响。
 
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.98\textwidth]{figures/fig3_7_load_performance_combined.pdf}
-  \caption{不同任务到达率下的系统性能对比}
-  \label{fig:3_8}
+    \centering
+    \includegraphics[width=0.98\textwidth]{figures/fig3_7_load_performance_combined.pdf}
+    \caption{不同任务到达率下的系统性能对比}
+    \label{fig:3_8}
 \end{figure}
 
 \begin{table}[htbp]
-  \centering
-  \caption{不同任务到达率下各算法的 Jain 公平指数}
-  \label{tab:ch3_load_perf}
-  \begin{tabular}{lccccc}
-    \toprule
-    算法            & $\lambda=0.3$ & $\lambda=0.5$ & $\lambda=0.7$ & $\lambda=0.9$ & $\lambda=1.1$ \\
-    \midrule
-    BC-CTDE-MAPPO & 0.966         & 0.951         & 0.936         & 0.918         & 0.897         \\
-    MAPPO         & 0.951         & 0.932         & 0.904         & 0.878         & 0.846         \\
-    MADDPG        & 0.943         & 0.918         & 0.887         & 0.853         & 0.821         \\
-    Greedy        & 0.931         & 0.886         & 0.843         & 0.781         & 0.724         \\
-    Random        & 0.881         & 0.834         & 0.786         & 0.731         & 0.679         \\
-    \bottomrule
-  \end{tabular}
+    \centering
+    \footnotesize
+    \caption{不同任务到达率下各算法的 Jain 公平指数}
+    \label{tab:ch3_load_perf}
+    \setlength{\tabcolsep}{2.0mm}
+    \renewcommand{\arraystretch}{1.15}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{lccccc}
+        \toprule
+        \rowcolor{gray!10}
+        算法 & $\lambda=0.3$ & $\lambda=0.5$ & $\lambda=0.7$ & $\lambda=0.9$ & $\lambda=1.1$ \\
+        \midrule
+        BC-CTDE-MAPPO & 0.966 & 0.951 & 0.936 & 0.918 & 0.897 \\
+        MAPPO & 0.951 & 0.932 & 0.904 & 0.878 & 0.846 \\
+        MADDPG & 0.943 & 0.918 & 0.887 & 0.853 & 0.821 \\
+        Greedy & 0.931 & 0.886 & 0.843 & 0.781 & 0.724 \\
+        Random & 0.881 & 0.834 & 0.786 & 0.731 & 0.679 \\
+        \bottomrule
+    \end{tabular}%
+    }
 \end{table}
 
 除效率指标外，本文还使用 Jain 公平指数评价不同算法的负载均衡能力。表~\ref{tab:ch3_load_perf} 表明，BC-CTDE-MAPPO 在各负载水平下均保持最高公平指数。例如，当 $\lambda=0.9$ 时，其 Jain 公平指数为 0.918，而 MAPPO 和 MADDPG 分别为 0.878 和 0.853，Greedy 与 Random 则仅为 0.781 和 0.731。这说明混合奖励中的公平项能够有效抑制"强节点持续抢占高收益任务"的现象，引导系统逐步形成更均衡的任务分担格局。
@@ -516,36 +528,41 @@ Critic 则通过最小化时序差分误差进行更新：
 图~\ref{fig:3_9}(b) 给出了链上附加时延对任务完成率的影响。当链上附加延迟位于 0.5--2.0 s 区间时，任务完成率下降较为平缓（从 93.1\% 降至 90.4\%），这表明本文方法对中等程度的信息陈旧具有一定容忍性；但当延迟继续上升至 2.5--3.0 s 后，性能开始显著恶化（降至 85.2\%），说明公共摘要一旦过时，策略将难以及时修正热点拥塞。
 
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.98\textwidth]{figures/fig3_9_scale_chain_combined.pdf}
-  \caption{规模扩展与参数敏感性分析结果}
-  \label{fig:3_9}
+    \centering
+    \includegraphics[width=0.98\textwidth]{figures/fig3_9_scale_chain_combined.pdf}
+    \caption{规模扩展与参数敏感性分析结果}
+    \label{fig:3_9}
 \end{figure}
 
 为识别各模块的边际贡献，本文在 $\lambda=0.9$ 的场景下进一步开展消融实验，结果如图~\ref{fig:3_11} 与表~\ref{tab:ch3_ablation} 所示。图~\ref{fig:3_11}(a) 和 (b) 分别展示了各方法变体在任务完成率与 Jain 公平指数上的差异，每个柱子均附有 $\pm1\sigma$ 误差棒（n=5），图~\ref{fig:3_11}(a) 中左侧实色柱为全场景均值，右侧斜线柱为 30\% 自私节点场景下的结果，以同时体现效率维度与抗异常维度的贡献。与完整 BC-CTDE-MAPPO 相比，去除区块链公共信息板后，任务完成率由 92.3\% 降至 89.1\%（全场景 $-3.2$pp，30\% 自私节点下 $-6.7$pp），说明可信共享的系统级上下文是整套方法的核心增益来源，且在异常节点存在时作用更为关键。去除公平奖励项后，系统的 Jain 公平指数从 0.918 大幅降至 0.842（$-0.076$），表明公平激励对抑制负载失衡尤为重要。去除可信奖励项后，虽然平均任务时延变化不大，但在 30\% 自私节点场景下的任务完成率下降至 84.1\%（$-5.3$pp），反映出信誉约束在抗自私行为中发挥了不可替代的作用。公平项与可信项分别作用于不同维度，缺一不可。
 
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.98\textwidth]{figures/fig3_10_mechanism_effect_combined.pdf}
-  \caption{消融实验结果：各模块对任务完成率（含30\%自私节点场景）与Jain公平指数的贡献（误差棒为$\pm1\sigma$，n=5）}
-  \label{fig:3_11}
+    \centering
+    \includegraphics[width=0.98\textwidth]{figures/fig3_10_mechanism_effect_combined.pdf}
+    \caption{消融实验结果：各模块对任务完成率（含30\%自私节点场景）与Jain公平指数的贡献（误差棒为$\pm1\sigma$，n=5）}
+    \label{fig:3_11}
 \end{figure}
 
 \begin{table}[htbp]
-  \centering
-  \caption{消融实验结果（$\lambda=0.9$，括号内为±1σ，n=5）}
-  \label{tab:ch3_ablation}
-  \resizebox{\columnwidth}{!}{%
-    \begin{tabular}{lcccc}
-      \toprule
-      方法变体             & 任务完成率(\%) & 平均任务时延(ms) & Jain 公平指数   & 30\%自私节点下任务完成率(\%) \\
-      \midrule
-      完整 BC-CTDE-MAPPO & 92.3±0.8  & 178        & 0.918±0.008 & 89.4±1.0           \\
-      去除区块链公共信息板       & 89.1±1.3  & 194        & 0.889±0.013 & 82.7±1.6           \\
-      去除公平奖励项          & 90.4±1.0  & 186        & 0.842±0.016 & 86.5±1.3           \\
-      去除可信奖励项          & 90.8±1.1  & 183        & 0.901±0.010 & 84.1±1.4           \\
-      \bottomrule
-    \end{tabular}}
+    \centering
+    \footnotesize
+    \caption{消融实验结果（$\lambda=0.9$，括号内为$\pm1\sigma$，n=5）}
+    \label{tab:ch3_ablation}
+    \setlength{\tabcolsep}{2.0mm}
+    \renewcommand{\arraystretch}{1.15}
+    \resizebox{\linewidth}{!}{%
+        \begin{tabular}{lcccc}
+            \toprule
+            \rowcolor{gray!10}
+            方法变体 & 任务完成率(\%) & 平均任务时延(ms) & Jain 公平指数 & 30\%自私节点下任务完成率(\%) \\
+            \midrule
+            完整 BC-CTDE-MAPPO & 92.3$\pm$0.8 & 178 & 0.918$\pm$0.008 & 89.4$\pm$1.0 \\
+            去除区块链公共信息板 & 89.1$\pm$1.3 & 194 & 0.889$\pm$0.013 & 82.7$\pm$1.6 \\
+            去除公平奖励项 & 90.4$\pm$1.0 & 186 & 0.842$\pm$0.016 & 86.5$\pm$1.3 \\
+            去除可信奖励项 & 90.8$\pm$1.1 & 183 & 0.901$\pm$0.010 & 84.1$\pm$1.4 \\
+            \bottomrule
+        \end{tabular}%
+    }
 \end{table}
 
 从这一组结果可以进一步推断：本文方法的性能提升不是由某一个"万能组件"单独带来，而是由"链上摘要提供全局上下文、公平奖励约束热点行为、信誉机制抑制策略投机、图结构提升多节点关系建模能力"共同构成的系统性增益。
@@ -561,26 +578,32 @@ Critic 则通过最小化时序差分误差进行更新：
 图~\ref{fig:3_10}(b) 显示了不同自私节点比例下的 Jain 公平指数变化情况，同样附有 $\pm1\sigma$ 误差棒。随着自私节点增多，所有方法的公平指数均有所下降，但 BC-CTDE-MAPPO 始终保持最高水平。例如，在 30\% 自私节点条件下，BC-CTDE-MAPPO 的公平指数仍达到 0.886（$\pm0.011$），而 MAPPO、Greedy 和 Random 分别下降至 0.816、0.722 和 0.659，说明链上信誉机制能够有效抑制自私行为对系统公平性的破坏。这说明所提方法不仅能够在效率层面维持更高的任务完成率，也能够在恶劣场景下保持更稳定的全局负载均衡。
 
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.98\textwidth]{figures/fig3_8_robustness_combined.pdf}
-  \caption{不同自私节点比例下的系统鲁棒性对比}
-  \label{fig:3_10}
+    \centering
+    \includegraphics[width=0.98\textwidth]{figures/fig3_8_robustness_combined.pdf}
+    \caption{不同自私节点比例下的系统鲁棒性对比}
+    \label{fig:3_10}
 \end{figure}
 
 \begin{table}[htbp]
-  \centering
-  \caption{不同自私节点比例下的鲁棒性对比（任务完成率 \%）}
-  \label{tab:ch3_robustness}
-  \begin{tabular}{lccccc}
-    \toprule
-    算法            & 0\%  & 10\% & 20\% & 30\% & 40\% \\
-    \midrule
-    BC-CTDE-MAPPO & 93.2 & 92.3 & 90.9 & 89.4 & 87.2 \\
-    MAPPO         & 89.6 & 87.2 & 84.6 & 81.6 & 78.4 \\
-    Greedy        & 82.1 & 78.6 & 74.8 & 71.1 & 67.2 \\
-    Random        & 68.9 & 64.1 & 60.3 & 55.6 & 51.9 \\
-    \bottomrule
-  \end{tabular}
+    \centering
+    \footnotesize
+    \caption{不同自私节点比例下的鲁棒性对比（任务完成率 \%）}
+    \label{tab:ch3_robustness}
+    \setlength{\tabcolsep}{2.0mm}
+    \renewcommand{\arraystretch}{1.15}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{lccccc}
+        \toprule
+        \rowcolor{gray!10}
+        算法 & 0\% & 10\% & 20\% & 30\% & 40\% \\
+        \midrule
+        BC-CTDE-MAPPO & 93.2 & 92.3 & 90.9 & 89.4 & 87.2 \\
+        MAPPO & 89.6 & 87.2 & 84.6 & 81.6 & 78.4 \\
+        Greedy & 82.1 & 78.6 & 74.8 & 71.1 & 67.2 \\
+        Random & 68.9 & 64.1 & 60.3 & 55.6 & 51.9 \\
+        \bottomrule
+    \end{tabular}%
+    }
 \end{table}
 
 \subsection{信誉机制效果分析}

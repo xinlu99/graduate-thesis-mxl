@@ -7,4 +7,4 @@ $postscript_mode = 0;
 $bibtex_use = 2;
 
 # 启用 SyncTeX
-$xelatex = "xelatex -synctex=1 %O %S";
+$xelatex = '"D:/bithsis/texlive/2025/bin/windows/xelatex.exe" -synctex=1 %O %S';

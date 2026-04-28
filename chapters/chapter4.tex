@@ -35,10 +35,15 @@
 
 \begin{table}[H]
 \centering
+\footnotesize
 \caption{集中式学习在天基网络中的主要局限}
 \label{tab:centralized_limitations}
+\setlength{\tabcolsep}{2.0mm}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{p{2.3cm}p{7.2cm}p{2.6cm}}
 \toprule
+\rowcolor{gray!10}
 问题维度 & 具体表现 & 直接影响 \\
 \midrule
 数据隐私 & 任务日志、运行时轨迹及资源占用明细不适合长期集中上传 & 降低可部署性 \\
@@ -47,7 +52,8 @@
 链路可用性 & 卫星运动导致链路存在窗口限制和随机中断 & 影响训练稳定性 \\
 数据异构性 & 不同节点硬件能力、业务形态和负载模式差异显著 & 集中式模型泛化受限 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 基于上述约束，本章采用“并发开销预测 + 在线卸载决策”的闭环思路来解决天基任务级卸载问题：首先利用聚类式联邦学习在不上传原始执行日志的前提下训练并发开销预测模型，以学习候选节点在不同任务组合、不同运行背景下的潜在拥塞风险；随后将预测得到的并发开销及其置信信息，与任务特征、本地观测状态和链上公共摘要共同输入深度 Q 网络（Deep Q-Network, DQN）代理，生成节点侧可实时执行的离散卸载动作。之所以采用这种“预测—决策”分层结构，是因为并发开销同时受硬件架构、任务类型和执行上下文影响，用固定解析公式往往难以稳定刻画，而数据驱动的预测模型更适合学习这类复杂耦合关系；与此同时，天基任务卸载的候选动作集合通常有限，基于离散动作空间的 DQN 能够在保持较低在线推理开销的同时，将预测先验有效转化为可部署的决策能力。
@@ -69,10 +75,15 @@
 
 \begin{table}[H]
 \centering
+\footnotesize
 \caption{任务级卸载框架中的角色划分}
 \label{tab:role_division}
+\setlength{\tabcolsep}{2.0mm}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{p{2.5cm}p{8.8cm}}
 \toprule
+\rowcolor{gray!10}
 角色 & 主要职责 \\
 \midrule
 卫星终端 ST & 生成新任务、采集本地 CPU/队列/剩余能量状态、读取链上摘要、触发并发开销预测并执行本地/卸载动作 \\
@@ -81,7 +92,8 @@
 联邦协调单元 & 根据负载模式进行簇划分、完成簇内聚合与异常更新筛除、下发最新预测模型 \\
 DQN 决策代理 & 将任务特征、本地状态、链上摘要和预测先验映射为离散卸载动作，并通过经验回放持续优化策略 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 从任务生命周期看，节点侧卸载决策遵循如下闭环流程：1）新任务到达后，终端提取计算量、输入规模、时延阈值与优先级等属性；2）终端同步采样本地资源状态，并从联盟链读取候选节点的公共摘要；3）调用目标节点所属簇的联邦预测模型，对各候选动作对应的并发开销进行快速估计；4）将任务特征、本地观测、链上摘要和预测先验拼接为统一状态向量；5）由 DQN 输出本地执行或目标节点卸载动作；6）环境返回真实时延、能耗和任务完成结果，并反向写入经验回放池；7）任务开始/结束事件与模型版本摘要继续在链上更新，构成“决策—执行—反馈—再决策”的闭环。该流程的组织方式与参考章节中的系统流程写法保持一致，即先让读者看清模块之间的信息流，再进入后续公式建模。
@@ -298,17 +310,23 @@ f_{\theta}(\bm{x}) = \left(\widehat{CO},\, \widehat{\sigma}^2 \right),
 
 \begin{table}[H]
 \centering
+\footnotesize
 \caption{分层聚类联邦学习架构中的角色划分}
 \label{tab:fl_roles}
+\setlength{\tabcolsep}{2.0mm}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{p{2.7cm}p{3.0cm}p{6.0cm}}
 \toprule
+\rowcolor{gray!10}
 层级 & 典型实体 & 主要职责 \\
 \midrule
 全局协调层 & 地面控制中心 / 星座控制器 & 模型版本管理、训练轮次调度、簇级模型下发、链上摘要维护 \\
 区域聚合层 & 核心边缘卫星节点 & 区域内节点分组、异常更新检测、簇内参数加权聚合 \\
 本地训练层 & 参与训练的 SEN 集合 & 基于本地执行日志训练预测模型，不上传原始样本，仅上传模型更新 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 在一次完整的联邦训练周期内，预测模型的工作流程可以概括为：1）全局协调层根据节点历史负载模式完成簇划分并下发初始化模型；2）本地训练层在各自执行日志上完成若干轮本地更新；3）区域聚合层对上传参数执行一致性检查、异常更新筛除与簇内加权聚合；4）聚合后的模型版本号和参数哈希写入联盟链，供后续在线推理时进行版本校验与追溯；5）最新簇模型再次下发至簇内节点，进入下一轮训练。上述流程使预测模型的训练、维护和可信存证形成统一闭环。
@@ -385,10 +403,15 @@ s_t^{\mathrm{FL}}
 
 \begin{table}[H]
 \centering
+\footnotesize
 \caption{节点侧决策的复合状态空间设计}
 \label{tab:state_space}
+\setlength{\tabcolsep}{2.0mm}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{p{3.1cm}p{5.8cm}p{3.0cm}}
 \toprule
+\rowcolor{gray!10}
 状态分量 & 主要内容 & 作用 \\
 \midrule
 任务特征向量 & 任务计算量、输入数据大小、时延容忍阈值、任务类型编码、优先级 & 刻画当前任务需求 \\
@@ -396,7 +419,8 @@ s_t^{\mathrm{FL}}
 链上公共摘要 & 候选节点平均负载、负载方差、信誉评分、账本延迟估计 & 提供系统级非实时协同上下文 \\
 FL 预测值 & 各候选节点的并发开销预测值与置信度 & 显式表征卸载后的额外风险 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 奖励函数在总代价负值的基础上引入轻量奖惩机制：
@@ -462,10 +486,15 @@ y_t - Q(s_t,a_t;\theta)
 
 \begin{table}[H]
 \centering
+\footnotesize
 \caption{FL-DQN 在线卸载决策流程}
 \label{tab:online_policy}
+\setlength{\tabcolsep}{1.8mm}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{p{1.0cm}p{11.2cm}}
 \toprule
+\rowcolor{gray!10}
 步骤 & 流程描述 \\
 \midrule
 1 & 终端节点接收新任务，提取计算量、数据大小、任务类型、优先级和时延等级等特征。 \\
@@ -476,7 +505,8 @@ y_t - Q(s_t,a_t;\theta)
 6 & 环境返回任务完成时延、能耗和结果状态，据此计算奖励并写入经验回放池。 \\
 7 & 主网络按 mini-batch 更新参数，目标网络按固定步长同步；策略持续与环境交互直至收敛。 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 为了更清楚地展示“预测先验如何进入在线动作选择”，算法~\ref{alg:fldqn_online} 对 FL-DQN 的节点侧执行流程给出伪代码描述。该伪代码与图~\ref{fig:closed_loop} 的区别在于：前者强调实现时的控制流，后者强调预测与决策之间的信息闭环。
@@ -531,10 +561,15 @@ y_t - Q(s_t,a_t;\theta)
 
 \begin{table}[H]
 \centering
+\footnotesize
 \caption{预测层与决策层实验环境配置}
 \label{tab:exp_env_detail}
+\setlength{\tabcolsep}{1.8mm}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{p{3.3cm}p{8.2cm}}
 \toprule
+\rowcolor{gray!10}
 配置项 & 设定说明 \\
 \midrule
 代理任务类型 & BDD100K 图像处理任务、Fibonacci/矩阵运算数值任务、两类任务混合注入 \\
@@ -547,7 +582,8 @@ y_t - Q(s_t,a_t;\theta)
 DQN 关键超参数 & 经验回放池 $10^4$，批量大小 128，折扣因子 $\gamma_{\mathrm{dqn}}=0.95$，目标网络同步间隔 200 step \\
 重复试验协议 & 每组配置独立重复 5 次，报告均值；曲线图额外给出代表性波动区间 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 对比方法保留最具有代表性的六类：\textbf{FL-DQN}、\textbf{DQN-only}、\textbf{FL-only}、\textbf{Centralized-DQN}、\textbf{Heuristic} 和 \textbf{Random}；其中 \textbf{Local/FedAvg/Clustered-FL} 用于预测层比较。指标方面，本文聚焦于能够直接支撑章节结论的核心量：预测层使用 MAE、RMSE 和 $R^2$；决策层使用平均任务时延、P99 时延、系统吞吐量、SLA 完成率和单任务能耗；同时用 Jain 公平性指数补充说明高负载下的跨节点均衡性。统计上，所有端到端结果均在相同随机种子集合下独立重复 $5$ 次，并报告均值及波动区间。
@@ -558,17 +594,23 @@ DQN 关键超参数 & 经验回放池 $10^4$，批量大小 128，折扣因子 $
 
 \begin{table}[H]
 \centering
+\footnotesize
 \caption{不同训练方式下并发开销预测精度对比}
 \label{tab:pred_metrics}
+\setlength{\tabcolsep}{1.8mm}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{p{3.0cm}ccccp{2.7cm}}
 \toprule
+\rowcolor{gray!10}
 训练方式 & MAE (ms) & RMSE (ms) & $R^2$ & 稳定收敛轮次 & 结果解读 \\
 \midrule
 Local Training & 18.6 & 25.4 & 0.836 & --- & 仅适应本地样本，泛化较弱 \\
 FedAvg & 13.9 & 18.7 & 0.892 & 63 & 全局平均效果尚可，但受异构性影响明显 \\
 \textbf{Clustered-FL} & \textbf{10.8} & \textbf{14.6} & \textbf{0.914} & \textbf{47} & 在异构场景下表现最稳健 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 图~\ref{fig:pred_perf_enhanced} 从收敛过程、预测—真实对应关系、置信校准和异构强度四个角度展示了预测模块表现。与原稿中过多分散的辅助图相比，这里将关键信息压缩到一张多子图中：既回答“模型是否足够准确”，也回答“模型在什么条件下会变差”。
@@ -599,10 +641,15 @@ FedAvg & 13.9 & 18.7 & 0.892 & 63 & 全局平均效果尚可，但受异构性�
 
 \begin{table}[H]
 \centering
+\footnotesize
 \caption{中等并发工作点下各方法综合性能对比}
 \label{tab:overall_compare_enhanced}
+\setlength{\tabcolsep}{2.0mm}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{p{2.5cm}ccccc}
 \toprule
+\rowcolor{gray!10}
 方法 & 平均时延 (ms) & P99 时延 (ms) & 吞吐量 (tasks/s) & 单任务能耗 (Wh) & SLA 完成率 (\%) \\
 \midrule
 FL-DQN & 172 & 365 & 55 & 1.82 & 94.8 \\
@@ -612,7 +659,8 @@ FL-only & 196 & 412 & 49 & 1.93 & 90.3 \\
 Heuristic & 228 & 492 & 42 & 2.18 & 82.4 \\
 Random & 262 & 584 & 35 & 2.32 & 74.1 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 仅有均值结果仍不足以说明方法在真实系统中的价值。为此，图~\ref{fig:tradeoff_fairness} 进一步从三个角度补充说明：其一，链上摘要逐步陈旧时，FL-DQN 的性能下降更平缓，说明预测模块对观测缺口具有补偿作用；其二，动作热力图显示当候选节点拥塞程度升高时，智能体会自适应提升本地执行或转向低风险节点的概率；其三，效率—公平折中图表明，FL-DQN 在能耗、时延和节点均衡性之间取得了更优的 Pareto 位置。
@@ -641,10 +689,15 @@ Random & 262 & 584 & 35 & 2.32 & 74.1 \\
 
 \begin{table}[H]
 \centering
+\footnotesize
 \caption{消融实验的详细结果}
 \label{tab:ablation_detail}
+\setlength{\tabcolsep}{2.0mm}
+\renewcommand{\arraystretch}{1.15}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{p{2.6cm}cccc}
 \toprule
+\rowcolor{gray!10}
 设置 & 平均时延 (ms) & P99 时延 (ms) & SLA 完成率 (\%) & 单次决策耗时 (ms) \\
 \midrule
 FL-DQN & 172 & 365 & 94.8 & 3.8 \\
@@ -653,7 +706,8 @@ FL-DQN & 172 & 365 & 94.8 & 3.8 \\
 -经验回放 & 197 & 436 & 90.5 & 2.4 \\
 -奖励塑形 & 185 & 409 & 91.6 & 3.4 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 综合以上实验，可以得到三个直接结论。第一，并发开销预测不是可有可无的辅助模块，而是决定策略能否从反应式决策升级为前瞻式决策的关键桥梁；一旦去掉该模块，DQN 的表现会迅速退化为对局部观测的被动响应。第二，Clustered-FL 对 Non-IID 负载的适配能力是整套方法成立的前提；如果预测层无法跟上异构环境变化，再精巧的 DQN 奖励设计也难以弥补状态表征缺失。第三，完整方法相较基础 DQN 结构只增加了很小的在线推理耗时，单次决策额外开销仍维持在毫秒级，因此其性能收益并非建立在不可接受的部署代价之上。

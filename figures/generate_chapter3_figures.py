@@ -36,6 +36,24 @@ plt.rcParams.update({
 plt.rcParams["font.sans-serif"] = ["SimSun", "Microsoft YaHei", "SimHei", "DejaVu Sans"]
 plt.rcParams["axes.unicode_minus"] = False
 
+PAPER_PALETTE = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f"]
+PAPER_MARKERS = ["o", "s", "^", "D", "v", "P", "X", "h"]
+PAPER_LINESTYLES = ["-", "--", "-.", ":", "-", "--", "-.", ":"]
+PAPER_LINEWIDTH = 1.9
+PAPER_MARKERSIZE = 5.2
+PAPER_BAR_ALPHA = 0.86
+
+
+def _series_style(idx, with_marker=True):
+    style = {
+        "color": PAPER_PALETTE[idx % len(PAPER_PALETTE)],
+        "linestyle": PAPER_LINESTYLES[idx % len(PAPER_LINESTYLES)],
+        "linewidth": PAPER_LINEWIDTH,
+    }
+    if with_marker:
+        style.update({"marker": PAPER_MARKERS[idx % len(PAPER_MARKERS)], "markersize": PAPER_MARKERSIZE})
+    return style
+
 
 def _box(ax, xy, w, h, text, fc, ec="#333333", fs=10):
     x, y = xy
@@ -334,9 +352,8 @@ def fig_training_curves():
         "Independent PPO": base * 0.68 + 0.12 * np.sin(steps / 5e4),
         "Greedy-Local": np.full_like(steps, 0.45),
     }
-    colors = ["#1f77b4", "#2ca02c", "#ff7f0e", "#d62728", "#7f7f7f"]
-    for (name, y), c in zip(methods.items(), colors):
-        ax.plot(steps / 1e6, y, label=name, lw=2, color=c)
+    for idx, (name, y) in enumerate(methods.items()):
+        ax.plot(steps / 1e6, y, label=name, **_series_style(idx))
     ax.set_xlabel("训练步数 ($\\times 10^6$)")
     ax.set_ylabel("平均回报（归一化示意）")
     ax.legend(loc="lower right", fontsize=8)
@@ -360,7 +377,7 @@ def fig_bar_metrics():
     }
     fig, ax = plt.subplots(figsize=(9, 4.8))
     for i, (k, vals) in enumerate(series.items()):
-        ax.bar(x + (i - 2) * w, vals, w, label=k)
+        ax.bar(x + (i - 2) * w, vals, w, label=k, color=PAPER_PALETTE[i], alpha=PAPER_BAR_ALPHA)
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
     ax.set_ylim(0, 1.05)
@@ -379,25 +396,25 @@ def fig_scale_load():
     ours = 0.92 - (nodes - 20) * 0.0015
     base1 = 0.88 - (nodes - 20) * 0.003
     base2 = 0.78 - (nodes - 20) * 0.0045
-    axes[0].plot(nodes, ours, "o-", label="BC-CTDE-MAPPO", lw=2)
-    axes[0].plot(nodes, base1, "s--", label="MAPPO-NoChain")
-    axes[0].plot(nodes, base2, "^--", label="Greedy-Local")
+    axes[0].plot(nodes, ours, label="BC-CTDE-MAPPO", **_series_style(0))
+    axes[0].plot(nodes, base1, label="MAPPO-NoChain", **_series_style(1))
+    axes[0].plot(nodes, base2, label="Greedy-Local", **_series_style(2))
     axes[0].set_xlabel("节点规模")
     axes[0].set_ylabel("任务完成率")
     axes[0].legend(fontsize=7)
     axes[0].set_title("网络规模")
 
     lam = np.array([4, 6, 8])
-    axes[1].plot(lam, [0.91, 0.87, 0.79], "o-", label="本文", lw=2)
-    axes[1].plot(lam, [0.86, 0.78, 0.62], "s--", label="Ind-PPO", lw=1.5)
+    axes[1].plot(lam, [0.91, 0.87, 0.79], label="本文", **_series_style(0))
+    axes[1].plot(lam, [0.86, 0.78, 0.62], label="Ind-PPO", **_series_style(1))
     axes[1].set_xlabel("基准到达率 $\\lambda_0$")
     axes[1].set_ylabel("任务完成率")
     axes[1].legend(fontsize=7)
     axes[1].set_title("负载强度")
 
     het = np.array([0.2, 0.5, 0.8])
-    axes[2].plot(het, [0.90, 0.85, 0.78], "o-", label="本文", lw=2)
-    axes[2].plot(het, [0.82, 0.70, 0.55], "s--", label="Greedy", lw=1.5)
+    axes[2].plot(het, [0.90, 0.85, 0.78], label="本文", **_series_style(0))
+    axes[2].plot(het, [0.82, 0.70, 0.55], label="Greedy", **_series_style(1))
     axes[2].set_xlabel("异构程度（示意）")
     axes[2].set_ylabel("任务完成率")
     axes[2].legend(fontsize=7)
@@ -414,13 +431,13 @@ def fig_ablation_sensitivity():
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.5))
     names = ["完整", "无链上摘要", "无公平项", "无信誉", "无图编码"]
     scores = [1.0, 0.72, 0.81, 0.88, 0.85]
-    ax1.barh(names, scores, color=plt.cm.Blues(np.linspace(0.35, 0.85, len(names))))
+    ax1.barh(names, scores, color=PAPER_PALETTE[:len(names)], alpha=PAPER_BAR_ALPHA)
     ax1.set_xlabel("综合得分（示意）")
     ax1.set_title("消融实验")
     ax1.set_xlim(0, 1.05)
 
     delay = np.linspace(0.5, 3.0, 12)
-    ax2.plot(delay, 0.95 - 0.06 * (delay - 0.5) ** 1.2, "o-", label="任务完成率", color="#c0392b")
+    ax2.plot(delay, 0.95 - 0.06 * (delay - 0.5) ** 1.2, label="任务完成率", **_series_style(0))
     ax2.set_xlabel("链上附加时延 (s)")
     ax2.set_ylabel("性能保持（示意）")
     ax2.legend()
@@ -435,9 +452,9 @@ def fig_robustness():
     """图3-11：异常节点比例 vs 完成率"""
     ratio = np.linspace(0, 0.3, 10)
     fig, ax = plt.subplots(figsize=(8, 4.8))
-    ax.plot(ratio * 100, 0.92 - 0.35 * ratio ** 1.3, "o-", lw=2, label="BC-CTDE-MAPPO")
-    ax.plot(ratio * 100, 0.88 - 0.65 * ratio ** 1.1, "s--", lw=1.8, label="MAPPO-NoChain")
-    ax.plot(ratio * 100, 0.85 - 0.85 * ratio ** 0.95, "^--", lw=1.8, label="Independent PPO")
+    ax.plot(ratio * 100, 0.92 - 0.35 * ratio ** 1.3, label="BC-CTDE-MAPPO", **_series_style(0))
+    ax.plot(ratio * 100, 0.88 - 0.65 * ratio ** 1.1, label="MAPPO-NoChain", **_series_style(1))
+    ax.plot(ratio * 100, 0.85 - 0.85 * ratio ** 0.95, label="Independent PPO", **_series_style(2))
     ax.set_xlabel("异常节点比例 (%)")
     ax.set_ylabel("任务完成率")
     ax.legend()

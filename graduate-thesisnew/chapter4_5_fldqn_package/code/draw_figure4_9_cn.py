@@ -49,17 +49,17 @@ mpl.rcParams["ytick.labelsize"] = 22
 mpl.rcParams["legend.fontsize"] = 20
 
 colors = {
-    "FL-DQN": "#2F6DB5",
-    "-FL预测": "#E69F00",
-    "-并发惩罚": "#2A9D55",
-    "-经验回放": "#C44536",
-    "-奖励塑形": "#7E57C2",
+    "FL-DQN": "#DB0B49",
+    "-FL预测": "#DCAD01",
+    "-并发惩罚": "#BD70DB",
+    "-经验回放": "#BCDB70",
+    "-奖励塑形": "#70CFDB",
 }
 markers = {
     "FL-DQN": "o",
     "-FL预测": "s",
-    "-并发惩罚": "D",
-    "-经验回放": "^",
+    "-并发惩罚": "^",
+    "-经验回放": "D",
     "-奖励塑形": "v",
 }
 
@@ -79,7 +79,7 @@ def plot_line(df, y_label, filename, ylim, final_fmt):
     for col in df.columns[1:]:
         y = df[col].to_numpy()
         c = colors[col]
-        plt.plot(xvals, y, marker=markers[col], linewidth=3.6, markersize=11.0, label=col, color=c)
+        plt.plot(xvals, y, marker=markers[col], linewidth=1.5, markersize=5.0, label=col, color=c)
         band = np.array([1.4, 1.7, 2.1, 2.5]) if "时延" in y_label else np.array([0.28, 0.36, 0.46, 0.58])
         plt.fill_between(xvals, y - band, y + band, color=c, alpha=0.12)
         plt.text(xvals[-1] + 0.24, y[-1], final_fmt.format(y[-1]), color=c, va="center", fontsize=18)
@@ -107,7 +107,7 @@ def plot_combined_bars(overhead, variance, filename):
     vals2 = variance["跨轮次标准差"].to_numpy()
 
     bars1 = ax1.bar(x - width / 2, vals1, width=width,
-                    color="#4C78A8", edgecolor="black", label="在线决策开销 (ms)")
+                    color="#DB0B49", edgecolor="black", label="在线决策开销 (ms)")
     ax1.set_ylabel("在线决策开销 (ms)")
     ax1.set_ylim(0, 5.6)
     ax1.set_xticks(x)
@@ -116,7 +116,7 @@ def plot_combined_bars(overhead, variance, filename):
 
     ax2 = ax1.twinx()
     bars2 = ax2.bar(x + width / 2, vals2, width=width,
-                    color="#E76F51", edgecolor="black", label="跨轮次标准差")
+                    color="#DCAD01", edgecolor="black", label="跨轮次标准差")
     ax2.set_ylabel("跨轮次标准差")
     ax2.set_ylim(0, 13.8)
 

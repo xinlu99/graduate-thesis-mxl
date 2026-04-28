@@ -35,8 +35,8 @@ plt.rcParams.update({
     "ytick.labelsize": 11,
     "figure.dpi": 150,
     "savefig.dpi": 300,
-    "lines.linewidth": 2.0,
-    "lines.markersize": 6.2,
+    "lines.linewidth": 1.5,
+    "lines.markersize": 5.0,
     "mathtext.fontset": "stix",
 })
 
@@ -44,32 +44,39 @@ DATA = Path(__file__).parent.parent / "data"
 OUT  = Path(__file__).parent.parent.parent / "images"
 OUT.mkdir(exist_ok=True)
 
+PAPER_PALETTE = ["#DB0B49", "#DCAD01", "#BD70DB", "#BCDB70", "#70CFDB", "black", "#8c564b", "#7f7f7f"]
+PAPER_MARKERS = ["o", "s", "^", "D", "v", "P", "X", "h"]
+PAPER_LINESTYLES = ["-", "-", "-", "-", "-", "-", "-", "-"]
+PAPER_LINEWIDTH = 1.5
+PAPER_MARKERSIZE = 5.0
+PAPER_BAR_ALPHA = 0.86
+
 # ── colour / marker palettes ───────────────────────────────────────────────────
 FL_COLORS = {
-    "Clustered FL":  "#e74c3c",
-    "FedAvg":        "#2ecc71",
-    "Centralized":   "#3498db",
-    "Local-only":    "#9b59b6",
+    "Clustered FL":  PAPER_PALETTE[0],
+    "FedAvg":        PAPER_PALETTE[1],
+    "Centralized":   PAPER_PALETTE[2],
+    "Local-only":    PAPER_PALETTE[3],
 }
-FL_MARKERS = {"Clustered FL": "o", "FedAvg": "^", "Centralized": "s", "Local-only": "D"}
+FL_MARKERS = {"Clustered FL": PAPER_MARKERS[0], "FedAvg": PAPER_MARKERS[1], "Centralized": PAPER_MARKERS[2], "Local-only": PAPER_MARKERS[3]}
 
 E2E_COLORS = {
-    "FL-DQN":           "#e74c3c",
-    "Centralized-DQN":  "#3498db",
-    "DQN-only":         "#2ecc71",
-    "FL-only":          "#f39c12",
-    "Heuristic":        "#9b59b6",
+    "FL-DQN":           PAPER_PALETTE[0],
+    "Centralized-DQN":  PAPER_PALETTE[1],
+    "DQN-only":         PAPER_PALETTE[2],
+    "FL-only":          PAPER_PALETTE[3],
+    "Heuristic":        PAPER_PALETTE[4],
 }
 E2E_MARKERS = {
-    "FL-DQN": "o", "Centralized-DQN": "s", "DQN-only": "^",
-    "FL-only": "D", "Heuristic": "v",
+    "FL-DQN": PAPER_MARKERS[0], "Centralized-DQN": PAPER_MARKERS[1], "DQN-only": PAPER_MARKERS[2],
+    "FL-only": PAPER_MARKERS[3], "Heuristic": PAPER_MARKERS[4],
 }
 
 ROB_COLORS = {
-    "FL-DQN": "#e74c3c", "DQN-only": "#2ecc71",
-    "FL-only": "#f39c12", "Heuristic": "#9b59b6",
+    "FL-DQN": PAPER_PALETTE[0], "DQN-only": PAPER_PALETTE[2],
+    "FL-only": PAPER_PALETTE[3], "Heuristic": PAPER_PALETTE[4],
 }
-ROB_MARKERS = {"FL-DQN": "o", "DQN-only": "^", "FL-only": "D", "Heuristic": "v"}
+ROB_MARKERS = {"FL-DQN": PAPER_MARKERS[0], "DQN-only": PAPER_MARKERS[2], "FL-only": PAPER_MARKERS[3], "Heuristic": PAPER_MARKERS[4]}
 
 
 def _style(ax):

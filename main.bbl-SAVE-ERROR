@@ -378,6 +378,411 @@
       \range{pages}{15}
       \keyw{ref5}
     \endentry
+    \entry{ref6}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=6f8bb16fdb4a4136198ece9640967abe}{%
+           family={Mnih},
+           familyi={M\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+        {{hash=a09f5c483f01419c770c37c4b1d93976}{%
+           family={Kavukcuoglu},
+           familyi={K\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=fa837c816072be974739569c64727372}{%
+           family={Silver},
+           familyi={S\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+      }
+      \name{namea}{3}{}{%
+        {{hash=6f8bb16fdb4a4136198ece9640967abe}{%
+           family={Mnih},
+           familyi={M\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+        {{hash=a09f5c483f01419c770c37c4b1d93976}{%
+           family={Kavukcuoglu},
+           familyi={K\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=fa837c816072be974739569c64727372}{%
+           family={Silver},
+           familyi={S\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{befcf3f9a2325fbb35e0da15c57fdc25}
+      \strng{fullhash}{d5fe32385ab2f70b339bad2a707e7289}
+      \strng{fullhashraw}{d5fe32385ab2f70b339bad2a707e7289}
+      \strng{bibnamehash}{d5fe32385ab2f70b339bad2a707e7289}
+      \strng{authorbibnamehash}{d5fe32385ab2f70b339bad2a707e7289}
+      \strng{authornamehash}{befcf3f9a2325fbb35e0da15c57fdc25}
+      \strng{authorfullhash}{d5fe32385ab2f70b339bad2a707e7289}
+      \strng{authorfullhashraw}{d5fe32385ab2f70b339bad2a707e7289}
+      \strng{nameabibnamehash}{d5fe32385ab2f70b339bad2a707e7289}
+      \strng{nameanamehash}{befcf3f9a2325fbb35e0da15c57fdc25}
+      \strng{nameafullhash}{d5fe32385ab2f70b339bad2a707e7289}
+      \strng{nameafullhashraw}{d5fe32385ab2f70b339bad2a707e7289}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1312.5602}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Playing Atari with Deep Reinforcement Learning}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2013}
+      \field{dateera}{ce}
+      \keyw{ref6}
+    \endentry
+    \entry{ref7}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{3}{}{%
+        {{hash=c1f237a1e1b1d4d99d27d7cd0ca5ad45}{%
+           family={Lillicrap},
+           familyi={L\bibinitperiod},
+           given={T.\bibnamedelimi P.},
+           giveni={T\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=161ef4dde6503b8157db1ba26633e1cf}{%
+           family={Hunt},
+           familyi={H\bibinitperiod},
+           given={J.\bibnamedelimi J.},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=101c59a53767ebfc35ef049c00b17a54}{%
+           family={Pritzel},
+           familyi={P\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \true{morenamea}
+      \name{namea}{3}{}{%
+        {{hash=c1f237a1e1b1d4d99d27d7cd0ca5ad45}{%
+           family={Lillicrap},
+           familyi={L\bibinitperiod},
+           given={T.\bibnamedelimi P.},
+           giveni={T\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=161ef4dde6503b8157db1ba26633e1cf}{%
+           family={Hunt},
+           familyi={H\bibinitperiod},
+           given={J.\bibnamedelimi J.},
+           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=101c59a53767ebfc35ef049c00b17a54}{%
+           family={Pritzel},
+           familyi={P\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{9641310a2d14ea67e10755a3a0445a57}
+      \strng{fullhash}{12311adb7559afeb75fc596694e8221e}
+      \strng{fullhashraw}{12311adb7559afeb75fc596694e8221e}
+      \strng{bibnamehash}{12311adb7559afeb75fc596694e8221e}
+      \strng{authorbibnamehash}{12311adb7559afeb75fc596694e8221e}
+      \strng{authornamehash}{9641310a2d14ea67e10755a3a0445a57}
+      \strng{authorfullhash}{12311adb7559afeb75fc596694e8221e}
+      \strng{authorfullhashraw}{12311adb7559afeb75fc596694e8221e}
+      \strng{nameabibnamehash}{12311adb7559afeb75fc596694e8221e}
+      \strng{nameanamehash}{9641310a2d14ea67e10755a3a0445a57}
+      \strng{nameafullhash}{12311adb7559afeb75fc596694e8221e}
+      \strng{nameafullhashraw}{12311adb7559afeb75fc596694e8221e}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1509.02971}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Continuous Control with Deep Reinforcement Learning}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2015}
+      \field{dateera}{ce}
+      \keyw{ref7}
+    \endentry
+    \entry{ref8}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=caed37e5312ee6b23b46854d6510cfc6}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+        {{hash=c5f4a4b200dcfbc02bfc8396eda5b004}{%
+           family={Bi},
+           familyi={B\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6b1e921423c1e69f014556e2d183ca54}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Y.\bibnamedelimi A.},
+           giveni={Y\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \name{namea}{3}{}{%
+        {{hash=caed37e5312ee6b23b46854d6510cfc6}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+        {{hash=c5f4a4b200dcfbc02bfc8396eda5b004}{%
+           family={Bi},
+           familyi={B\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6b1e921423c1e69f014556e2d183ca54}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Y.\bibnamedelimi A.},
+           giveni={Y\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{d522cef3c27884924dc4abfad6165f65}
+      \strng{fullhash}{e1609abfbedf4b94fc62c4088b69412f}
+      \strng{fullhashraw}{e1609abfbedf4b94fc62c4088b69412f}
+      \strng{bibnamehash}{e1609abfbedf4b94fc62c4088b69412f}
+      \strng{authorbibnamehash}{e1609abfbedf4b94fc62c4088b69412f}
+      \strng{authornamehash}{d522cef3c27884924dc4abfad6165f65}
+      \strng{authorfullhash}{e1609abfbedf4b94fc62c4088b69412f}
+      \strng{authorfullhashraw}{e1609abfbedf4b94fc62c4088b69412f}
+      \strng{nameabibnamehash}{e1609abfbedf4b94fc62c4088b69412f}
+      \strng{nameanamehash}{d522cef3c27884924dc4abfad6165f65}
+      \strng{nameafullhash}{e1609abfbedf4b94fc62c4088b69412f}
+      \strng{nameafullhashraw}{e1609abfbedf4b94fc62c4088b69412f}
+      \field{extraname}{1}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Mobile Computing}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{number}{11}
+      \field{title}{Deep Reinforcement Learning for Online Computation Offloading in Mobile Edge Computing}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{volume}{19}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{pages}{2581\bibrangedash 2593}
+      \range{pages}{13}
+      \keyw{ref8}
+    \endentry
+    \entry{ref10}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{3}{}{%
+        {{hash=3702f1c146e64a6c91fc47b81ea59fc7}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=ce084360cc68e7db4fe6cae1287b3adf}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0fd63176166c6c7484365100f1751806}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \true{morenamea}
+      \name{namea}{3}{}{%
+        {{hash=3702f1c146e64a6c91fc47b81ea59fc7}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=ce084360cc68e7db4fe6cae1287b3adf}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0fd63176166c6c7484365100f1751806}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{a6d91c4b19ef84589045abd442c9ae02}
+      \strng{fullhash}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
+      \strng{fullhashraw}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
+      \strng{bibnamehash}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
+      \strng{authorbibnamehash}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
+      \strng{authornamehash}{a6d91c4b19ef84589045abd442c9ae02}
+      \strng{authorfullhash}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
+      \strng{authorfullhashraw}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
+      \strng{nameabibnamehash}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
+      \strng{nameanamehash}{a6d91c4b19ef84589045abd442c9ae02}
+      \strng{nameafullhash}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
+      \strng{nameafullhashraw}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
+      \field{extraname}{1}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE/ACM Transactions on Networking}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{number}{5}
+      \field{title}{Intelligent Resource Allocation for Co-Locating Latency-Sensitive Services}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{volume}{26}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{pages}{2225\bibrangedash 2238}
+      \range{pages}{14}
+      \keyw{ref10}
+    \endentry
+    \entry{ref11}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=2202c466202666cdaa87e13eb3e5a97f}{%
+           family={Foerster},
+           familyi={F\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=decc99276e9a5369dc4e768e147fb35e}{%
+           family={Farquhar},
+           familyi={F\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=e02033561beee55daf6882333cea72c7}{%
+           family={Afouras},
+           familyi={A\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=783112ad06aafcaa8f432807c4101f1a}{%
+           family={Whiteson},
+           familyi={W\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \name{namea}{4}{}{%
+        {{hash=2202c466202666cdaa87e13eb3e5a97f}{%
+           family={Foerster},
+           familyi={F\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=decc99276e9a5369dc4e768e147fb35e}{%
+           family={Farquhar},
+           familyi={F\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+        {{hash=e02033561beee55daf6882333cea72c7}{%
+           family={Afouras},
+           familyi={A\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=783112ad06aafcaa8f432807c4101f1a}{%
+           family={Whiteson},
+           familyi={W\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{ec3997bf8c1b3c08a2aec1f253fc4b9b}
+      \strng{fullhash}{526d80b888f772178a53c8f60abeac53}
+      \strng{fullhashraw}{526d80b888f772178a53c8f60abeac53}
+      \strng{bibnamehash}{88863ff162458ee3d1ff6076d57a72f3}
+      \strng{authorbibnamehash}{88863ff162458ee3d1ff6076d57a72f3}
+      \strng{authornamehash}{ec3997bf8c1b3c08a2aec1f253fc4b9b}
+      \strng{authorfullhash}{526d80b888f772178a53c8f60abeac53}
+      \strng{authorfullhashraw}{526d80b888f772178a53c8f60abeac53}
+      \strng{nameabibnamehash}{88863ff162458ee3d1ff6076d57a72f3}
+      \strng{nameanamehash}{ec3997bf8c1b3c08a2aec1f253fc4b9b}
+      \strng{nameafullhash}{526d80b888f772178a53c8f60abeac53}
+      \strng{nameafullhashraw}{526d80b888f772178a53c8f60abeac53}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1705.08056}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Counterfactual Multi-Agent Policy Gradients}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \keyw{ref11}
+    \endentry
+    \entry{ref14}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=3dd00c08cc699d2da009624a327967ed}{%
+           family={Kshetri},
+           familyi={K\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+      }
+      \name{namea}{1}{}{%
+        {{hash=3dd00c08cc699d2da009624a327967ed}{%
+           family={Kshetri},
+           familyi={K\bibinitperiod},
+           given={N.},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {english}%
+      }
+      \strng{namehash}{3dd00c08cc699d2da009624a327967ed}
+      \strng{fullhash}{3dd00c08cc699d2da009624a327967ed}
+      \strng{fullhashraw}{3dd00c08cc699d2da009624a327967ed}
+      \strng{bibnamehash}{3dd00c08cc699d2da009624a327967ed}
+      \strng{authorbibnamehash}{3dd00c08cc699d2da009624a327967ed}
+      \strng{authornamehash}{3dd00c08cc699d2da009624a327967ed}
+      \strng{authorfullhash}{3dd00c08cc699d2da009624a327967ed}
+      \strng{authorfullhashraw}{3dd00c08cc699d2da009624a327967ed}
+      \strng{nameabibnamehash}{3dd00c08cc699d2da009624a327967ed}
+      \strng{nameanamehash}{3dd00c08cc699d2da009624a327967ed}
+      \strng{nameafullhash}{3dd00c08cc699d2da009624a327967ed}
+      \strng{nameafullhashraw}{3dd00c08cc699d2da009624a327967ed}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Information Management}
+      \field{langid}{english}
+      \field{languageid}{english}
+      \field{lansortorder}{4}
+      \field{title}{Blockchain's Roles in Meeting Key Supply Chain Management Objectives}
+      \field{usera}{J}
+      \field{userd}{english}
+      \field{userf}{english}
+      \field{volume}{39}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{pages}{80\bibrangedash 89}
+      \range{pages}{10}
+      \keyw{ref14}
+    \endentry
     \entry{ref19}{article}{}{}
       \true{moreauthor}
       \true{morelabelname}
@@ -432,8 +837,8 @@
       \strng{nameafullhash}{36eb3fdafee48807ea2b25af109742b6}
       \strng{nameafullhashraw}{36eb3fdafee48807ea2b25af109742b6}
       \field{extraname}{1}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Internet of Things Journal}
@@ -506,8 +911,8 @@
       \strng{nameafullhash}{515dda4f88070e83c47a8a572953a397}
       \strng{nameafullhashraw}{515dda4f88070e83c47a8a572953a397}
       \field{extraname}{2}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Transactions on Communications}
@@ -918,55 +1323,6 @@
       \range{pages}{6}
       \keyw{ref18}
     \endentry
-    \entry{ref14}{article}{}{}
-      \name{author}{1}{}{%
-        {{hash=3dd00c08cc699d2da009624a327967ed}{%
-           family={Kshetri},
-           familyi={K\bibinitperiod},
-           given={N.},
-           giveni={N\bibinitperiod}}}%
-      }
-      \name{namea}{1}{}{%
-        {{hash=3dd00c08cc699d2da009624a327967ed}{%
-           family={Kshetri},
-           familyi={K\bibinitperiod},
-           given={N.},
-           giveni={N\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {english}%
-      }
-      \strng{namehash}{3dd00c08cc699d2da009624a327967ed}
-      \strng{fullhash}{3dd00c08cc699d2da009624a327967ed}
-      \strng{fullhashraw}{3dd00c08cc699d2da009624a327967ed}
-      \strng{bibnamehash}{3dd00c08cc699d2da009624a327967ed}
-      \strng{authorbibnamehash}{3dd00c08cc699d2da009624a327967ed}
-      \strng{authornamehash}{3dd00c08cc699d2da009624a327967ed}
-      \strng{authorfullhash}{3dd00c08cc699d2da009624a327967ed}
-      \strng{authorfullhashraw}{3dd00c08cc699d2da009624a327967ed}
-      \strng{nameabibnamehash}{3dd00c08cc699d2da009624a327967ed}
-      \strng{nameanamehash}{3dd00c08cc699d2da009624a327967ed}
-      \strng{nameafullhash}{3dd00c08cc699d2da009624a327967ed}
-      \strng{nameafullhashraw}{3dd00c08cc699d2da009624a327967ed}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{International Journal of Information Management}
-      \field{langid}{english}
-      \field{languageid}{english}
-      \field{lansortorder}{4}
-      \field{title}{Blockchain's Roles in Meeting Key Supply Chain Management Objectives}
-      \field{usera}{J}
-      \field{userd}{english}
-      \field{userf}{english}
-      \field{volume}{39}
-      \field{year}{2018}
-      \field{dateera}{ce}
-      \field{pages}{80\bibrangedash 89}
-      \range{pages}{10}
-      \keyw{ref14}
-    \endentry
     \entry{ref23}{inproceedings}{}{}
       \true{moreauthor}
       \true{morelabelname}
@@ -1089,8 +1445,8 @@
       \strng{nameanamehash}{1d95b3c81007468bcb1321e6003f0e26}
       \strng{nameafullhash}{235717481c7675252f863b767468ba34}
       \strng{nameafullhashraw}{235717481c7675252f863b767468ba34}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the AAAI Conference on Artificial Intelligence (AAAI-25)}
@@ -1160,8 +1516,8 @@
       \strng{nameafullhash}{8a51590e1094c65aea67f0d38805c974}
       \strng{nameafullhashraw}{8a51590e1094c65aea67f0d38805c974}
       \field{extraname}{1}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Applied Sciences}
@@ -1234,8 +1590,8 @@
       \strng{nameafullhash}{a5c6cbaf100ed8cbb02007961f2b6921}
       \strng{nameafullhashraw}{a5c6cbaf100ed8cbb02007961f2b6921}
       \field{extraname}{2}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Journal on Selected Areas in Communications}
@@ -1253,212 +1609,6 @@
       \field{pages}{1080\bibrangedash 1096}
       \range{pages}{17}
       \keyw{ref26}
-    \endentry
-    \entry{ref6}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=6f8bb16fdb4a4136198ece9640967abe}{%
-           family={Mnih},
-           familyi={M\bibinitperiod},
-           given={V.},
-           giveni={V\bibinitperiod}}}%
-        {{hash=a09f5c483f01419c770c37c4b1d93976}{%
-           family={Kavukcuoglu},
-           familyi={K\bibinitperiod},
-           given={K.},
-           giveni={K\bibinitperiod}}}%
-        {{hash=fa837c816072be974739569c64727372}{%
-           family={Silver},
-           familyi={S\bibinitperiod},
-           given={D.},
-           giveni={D\bibinitperiod}}}%
-      }
-      \name{namea}{3}{}{%
-        {{hash=6f8bb16fdb4a4136198ece9640967abe}{%
-           family={Mnih},
-           familyi={M\bibinitperiod},
-           given={V.},
-           giveni={V\bibinitperiod}}}%
-        {{hash=a09f5c483f01419c770c37c4b1d93976}{%
-           family={Kavukcuoglu},
-           familyi={K\bibinitperiod},
-           given={K.},
-           giveni={K\bibinitperiod}}}%
-        {{hash=fa837c816072be974739569c64727372}{%
-           family={Silver},
-           familyi={S\bibinitperiod},
-           given={D.},
-           giveni={D\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {english}%
-      }
-      \strng{namehash}{befcf3f9a2325fbb35e0da15c57fdc25}
-      \strng{fullhash}{d5fe32385ab2f70b339bad2a707e7289}
-      \strng{fullhashraw}{d5fe32385ab2f70b339bad2a707e7289}
-      \strng{bibnamehash}{d5fe32385ab2f70b339bad2a707e7289}
-      \strng{authorbibnamehash}{d5fe32385ab2f70b339bad2a707e7289}
-      \strng{authornamehash}{befcf3f9a2325fbb35e0da15c57fdc25}
-      \strng{authorfullhash}{d5fe32385ab2f70b339bad2a707e7289}
-      \strng{authorfullhashraw}{d5fe32385ab2f70b339bad2a707e7289}
-      \strng{nameabibnamehash}{d5fe32385ab2f70b339bad2a707e7289}
-      \strng{nameanamehash}{befcf3f9a2325fbb35e0da15c57fdc25}
-      \strng{nameafullhash}{d5fe32385ab2f70b339bad2a707e7289}
-      \strng{nameafullhashraw}{d5fe32385ab2f70b339bad2a707e7289}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{arXiv preprint arXiv:1312.5602}
-      \field{langid}{english}
-      \field{languageid}{english}
-      \field{lansortorder}{4}
-      \field{title}{Playing Atari with Deep Reinforcement Learning}
-      \field{usera}{J}
-      \field{userd}{english}
-      \field{userf}{english}
-      \field{year}{2013}
-      \field{dateera}{ce}
-      \keyw{ref6}
-    \endentry
-    \entry{ref7}{article}{}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{3}{}{%
-        {{hash=c1f237a1e1b1d4d99d27d7cd0ca5ad45}{%
-           family={Lillicrap},
-           familyi={L\bibinitperiod},
-           given={T.\bibnamedelimi P.},
-           giveni={T\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=161ef4dde6503b8157db1ba26633e1cf}{%
-           family={Hunt},
-           familyi={H\bibinitperiod},
-           given={J.\bibnamedelimi J.},
-           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-        {{hash=101c59a53767ebfc35ef049c00b17a54}{%
-           family={Pritzel},
-           familyi={P\bibinitperiod},
-           given={A.},
-           giveni={A\bibinitperiod}}}%
-      }
-      \true{morenamea}
-      \name{namea}{3}{}{%
-        {{hash=c1f237a1e1b1d4d99d27d7cd0ca5ad45}{%
-           family={Lillicrap},
-           familyi={L\bibinitperiod},
-           given={T.\bibnamedelimi P.},
-           giveni={T\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=161ef4dde6503b8157db1ba26633e1cf}{%
-           family={Hunt},
-           familyi={H\bibinitperiod},
-           given={J.\bibnamedelimi J.},
-           giveni={J\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
-        {{hash=101c59a53767ebfc35ef049c00b17a54}{%
-           family={Pritzel},
-           familyi={P\bibinitperiod},
-           given={A.},
-           giveni={A\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {english}%
-      }
-      \strng{namehash}{9641310a2d14ea67e10755a3a0445a57}
-      \strng{fullhash}{12311adb7559afeb75fc596694e8221e}
-      \strng{fullhashraw}{12311adb7559afeb75fc596694e8221e}
-      \strng{bibnamehash}{12311adb7559afeb75fc596694e8221e}
-      \strng{authorbibnamehash}{12311adb7559afeb75fc596694e8221e}
-      \strng{authornamehash}{9641310a2d14ea67e10755a3a0445a57}
-      \strng{authorfullhash}{12311adb7559afeb75fc596694e8221e}
-      \strng{authorfullhashraw}{12311adb7559afeb75fc596694e8221e}
-      \strng{nameabibnamehash}{12311adb7559afeb75fc596694e8221e}
-      \strng{nameanamehash}{9641310a2d14ea67e10755a3a0445a57}
-      \strng{nameafullhash}{12311adb7559afeb75fc596694e8221e}
-      \strng{nameafullhashraw}{12311adb7559afeb75fc596694e8221e}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{arXiv preprint arXiv:1509.02971}
-      \field{langid}{english}
-      \field{languageid}{english}
-      \field{lansortorder}{4}
-      \field{title}{Continuous Control with Deep Reinforcement Learning}
-      \field{usera}{J}
-      \field{userd}{english}
-      \field{userf}{english}
-      \field{year}{2015}
-      \field{dateera}{ce}
-      \keyw{ref7}
-    \endentry
-    \entry{ref8}{article}{}{}
-      \name{author}{3}{}{%
-        {{hash=caed37e5312ee6b23b46854d6510cfc6}{%
-           family={Huang},
-           familyi={H\bibinitperiod},
-           given={L.},
-           giveni={L\bibinitperiod}}}%
-        {{hash=c5f4a4b200dcfbc02bfc8396eda5b004}{%
-           family={Bi},
-           familyi={B\bibinitperiod},
-           given={S.},
-           giveni={S\bibinitperiod}}}%
-        {{hash=6b1e921423c1e69f014556e2d183ca54}{%
-           family={Zhang},
-           familyi={Z\bibinitperiod},
-           given={Y.\bibnamedelimi A.},
-           giveni={Y\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-      }
-      \name{namea}{3}{}{%
-        {{hash=caed37e5312ee6b23b46854d6510cfc6}{%
-           family={Huang},
-           familyi={H\bibinitperiod},
-           given={L.},
-           giveni={L\bibinitperiod}}}%
-        {{hash=c5f4a4b200dcfbc02bfc8396eda5b004}{%
-           family={Bi},
-           familyi={B\bibinitperiod},
-           given={S.},
-           giveni={S\bibinitperiod}}}%
-        {{hash=6b1e921423c1e69f014556e2d183ca54}{%
-           family={Zhang},
-           familyi={Z\bibinitperiod},
-           given={Y.\bibnamedelimi A.},
-           giveni={Y\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {english}%
-      }
-      \strng{namehash}{d522cef3c27884924dc4abfad6165f65}
-      \strng{fullhash}{e1609abfbedf4b94fc62c4088b69412f}
-      \strng{fullhashraw}{e1609abfbedf4b94fc62c4088b69412f}
-      \strng{bibnamehash}{e1609abfbedf4b94fc62c4088b69412f}
-      \strng{authorbibnamehash}{e1609abfbedf4b94fc62c4088b69412f}
-      \strng{authornamehash}{d522cef3c27884924dc4abfad6165f65}
-      \strng{authorfullhash}{e1609abfbedf4b94fc62c4088b69412f}
-      \strng{authorfullhashraw}{e1609abfbedf4b94fc62c4088b69412f}
-      \strng{nameabibnamehash}{e1609abfbedf4b94fc62c4088b69412f}
-      \strng{nameanamehash}{d522cef3c27884924dc4abfad6165f65}
-      \strng{nameafullhash}{e1609abfbedf4b94fc62c4088b69412f}
-      \strng{nameafullhashraw}{e1609abfbedf4b94fc62c4088b69412f}
-      \field{extraname}{1}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{IEEE Transactions on Mobile Computing}
-      \field{langid}{english}
-      \field{languageid}{english}
-      \field{lansortorder}{4}
-      \field{number}{11}
-      \field{title}{Deep Reinforcement Learning for Online Computation Offloading in Mobile Edge Computing}
-      \field{usera}{J}
-      \field{userd}{english}
-      \field{userf}{english}
-      \field{volume}{19}
-      \field{year}{2020}
-      \field{dateera}{ce}
-      \field{pages}{2581\bibrangedash 2593}
-      \range{pages}{13}
-      \keyw{ref8}
     \endentry
     \entry{ref27}{article}{}{}
       \true{moreauthor}
@@ -1744,156 +1894,6 @@
       \field{dateera}{ce}
       \keyw{ref29}
     \endentry
-    \entry{ref10}{article}{}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{3}{}{%
-        {{hash=3702f1c146e64a6c91fc47b81ea59fc7}{%
-           family={Wang},
-           familyi={W\bibinitperiod},
-           given={J.},
-           giveni={J\bibinitperiod}}}%
-        {{hash=ce084360cc68e7db4fe6cae1287b3adf}{%
-           family={Liu},
-           familyi={L\bibinitperiod},
-           given={Y.},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=0fd63176166c6c7484365100f1751806}{%
-           family={Song},
-           familyi={S\bibinitperiod},
-           given={B.},
-           giveni={B\bibinitperiod}}}%
-      }
-      \true{morenamea}
-      \name{namea}{3}{}{%
-        {{hash=3702f1c146e64a6c91fc47b81ea59fc7}{%
-           family={Wang},
-           familyi={W\bibinitperiod},
-           given={J.},
-           giveni={J\bibinitperiod}}}%
-        {{hash=ce084360cc68e7db4fe6cae1287b3adf}{%
-           family={Liu},
-           familyi={L\bibinitperiod},
-           given={Y.},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=0fd63176166c6c7484365100f1751806}{%
-           family={Song},
-           familyi={S\bibinitperiod},
-           given={B.},
-           giveni={B\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {english}%
-      }
-      \strng{namehash}{a6d91c4b19ef84589045abd442c9ae02}
-      \strng{fullhash}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
-      \strng{fullhashraw}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
-      \strng{bibnamehash}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
-      \strng{authorbibnamehash}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
-      \strng{authornamehash}{a6d91c4b19ef84589045abd442c9ae02}
-      \strng{authorfullhash}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
-      \strng{authorfullhashraw}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
-      \strng{nameabibnamehash}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
-      \strng{nameanamehash}{a6d91c4b19ef84589045abd442c9ae02}
-      \strng{nameafullhash}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
-      \strng{nameafullhashraw}{05b9c52bf89ccf7d9a3c9d2259c8ec6a}
-      \field{extraname}{1}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{IEEE/ACM Transactions on Networking}
-      \field{langid}{english}
-      \field{languageid}{english}
-      \field{lansortorder}{4}
-      \field{number}{5}
-      \field{title}{Intelligent Resource Allocation for Co-Locating Latency-Sensitive Services}
-      \field{usera}{J}
-      \field{userd}{english}
-      \field{userf}{english}
-      \field{volume}{26}
-      \field{year}{2018}
-      \field{dateera}{ce}
-      \field{pages}{2225\bibrangedash 2238}
-      \range{pages}{14}
-      \keyw{ref10}
-    \endentry
-    \entry{ref11}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=2202c466202666cdaa87e13eb3e5a97f}{%
-           family={Foerster},
-           familyi={F\bibinitperiod},
-           given={J.},
-           giveni={J\bibinitperiod}}}%
-        {{hash=decc99276e9a5369dc4e768e147fb35e}{%
-           family={Farquhar},
-           familyi={F\bibinitperiod},
-           given={G.},
-           giveni={G\bibinitperiod}}}%
-        {{hash=e02033561beee55daf6882333cea72c7}{%
-           family={Afouras},
-           familyi={A\bibinitperiod},
-           given={T.},
-           giveni={T\bibinitperiod}}}%
-        {{hash=783112ad06aafcaa8f432807c4101f1a}{%
-           family={Whiteson},
-           familyi={W\bibinitperiod},
-           given={S.},
-           giveni={S\bibinitperiod}}}%
-      }
-      \name{namea}{4}{}{%
-        {{hash=2202c466202666cdaa87e13eb3e5a97f}{%
-           family={Foerster},
-           familyi={F\bibinitperiod},
-           given={J.},
-           giveni={J\bibinitperiod}}}%
-        {{hash=decc99276e9a5369dc4e768e147fb35e}{%
-           family={Farquhar},
-           familyi={F\bibinitperiod},
-           given={G.},
-           giveni={G\bibinitperiod}}}%
-        {{hash=e02033561beee55daf6882333cea72c7}{%
-           family={Afouras},
-           familyi={A\bibinitperiod},
-           given={T.},
-           giveni={T\bibinitperiod}}}%
-        {{hash=783112ad06aafcaa8f432807c4101f1a}{%
-           family={Whiteson},
-           familyi={W\bibinitperiod},
-           given={S.},
-           giveni={S\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {english}%
-      }
-      \strng{namehash}{ec3997bf8c1b3c08a2aec1f253fc4b9b}
-      \strng{fullhash}{526d80b888f772178a53c8f60abeac53}
-      \strng{fullhashraw}{526d80b888f772178a53c8f60abeac53}
-      \strng{bibnamehash}{88863ff162458ee3d1ff6076d57a72f3}
-      \strng{authorbibnamehash}{88863ff162458ee3d1ff6076d57a72f3}
-      \strng{authornamehash}{ec3997bf8c1b3c08a2aec1f253fc4b9b}
-      \strng{authorfullhash}{526d80b888f772178a53c8f60abeac53}
-      \strng{authorfullhashraw}{526d80b888f772178a53c8f60abeac53}
-      \strng{nameabibnamehash}{88863ff162458ee3d1ff6076d57a72f3}
-      \strng{nameanamehash}{ec3997bf8c1b3c08a2aec1f253fc4b9b}
-      \strng{nameafullhash}{526d80b888f772178a53c8f60abeac53}
-      \strng{nameafullhashraw}{526d80b888f772178a53c8f60abeac53}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{arXiv preprint arXiv:1705.08056}
-      \field{langid}{english}
-      \field{languageid}{english}
-      \field{lansortorder}{4}
-      \field{title}{Counterfactual Multi-Agent Policy Gradients}
-      \field{usera}{J}
-      \field{userd}{english}
-      \field{userf}{english}
-      \field{year}{2017}
-      \field{dateera}{ce}
-      \keyw{ref11}
-    \endentry
     \entry{ref17}{article}{}{}
       \true{moreauthor}
       \true{morelabelname}
@@ -1947,8 +1947,8 @@
       \strng{nameanamehash}{40d868dde3dd0d16b7525557e5c0dd1b}
       \strng{nameafullhash}{0aa2fd0d8bc3f5314bff80d417fd722a}
       \strng{nameafullhashraw}{0aa2fd0d8bc3f5314bff80d417fd722a}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Science China Information Sciences}
@@ -2021,8 +2021,8 @@
       \strng{nameafullhash}{58b2d1798e948b035b03a367b25cd69a}
       \strng{nameafullhashraw}{58b2d1798e948b035b03a367b25cd69a}
       \field{extraname}{3}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Transactions on Mobile Computing}
@@ -2121,8 +2121,8 @@
       \strng{nameanamehash}{1d550eb31482937bb4dd8422bfa15e25}
       \strng{nameafullhash}{d76bbf6949d8c5296e558159e85f6fd5}
       \strng{nameafullhashraw}{d76bbf6949d8c5296e558159e85f6fd5}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Transactions on Knowledge and Data Engineering}
@@ -2919,8 +2919,8 @@
       \strng{nameanamehash}{7c9b58cc237c50188d18947a6edae7c5}
       \strng{nameafullhash}{c48e3831c552af81482e23cbc6cd0918}
       \strng{nameafullhashraw}{c48e3831c552af81482e23cbc6cd0918}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Transactions on Vehicular Technology}
@@ -3029,8 +3029,8 @@
       \strng{nameanamehash}{81386a27925bda460875f6f65803d1fb}
       \strng{nameafullhash}{06786a46ccd7881d42ebe8efceceb19d}
       \strng{nameafullhashraw}{06786a46ccd7881d42ebe8efceceb19d}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Journal on Selected Areas in Communications}
@@ -3150,8 +3150,8 @@
       \strng{nameafullhash}{e3d647971c4e4017776db57873bd5ea7}
       \strng{nameafullhashraw}{e3d647971c4e4017776db57873bd5ea7}
       \field{extraname}{1}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Transactions on Mobile Computing}
@@ -3240,8 +3240,8 @@
       \strng{nameanamehash}{dd7f452c06e460d7ae2fef56cba94443}
       \strng{nameafullhash}{c7851dabc0743db45d554ad896ddf995}
       \strng{nameafullhashraw}{c7851dabc0743db45d554ad896ddf995}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Transactions on Mobile Computing}
@@ -3969,8 +3969,8 @@
       \strng{nameafullhash}{6dca36154614e57b19076fcdfdb13ec7}
       \strng{nameafullhashraw}{6dca36154614e57b19076fcdfdb13ec7}
       \field{extraname}{2}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{IEEE Transactions on Vehicular Technology}
@@ -4143,250 +4143,6 @@
       \field{pages}{464\bibrangedash 473}
       \range{pages}{10}
       \keyw{ref9}
-    \endentry
-    \entry{zhang2026manage}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=13414502df57d59c82c59a065c752294}{%
-           family={Zhang},
-           familyi={Z\bibinitperiod},
-           given={W.},
-           giveni={W\bibinitperiod}}}%
-        {{hash=dee42732112bfa77a2dad3811ca0b39c}{%
-           family={Mao},
-           familyi={M\bibinitperiod},
-           given={X.},
-           giveni={X\bibinitperiod}}}%
-        {{hash=60aeb23a507616b6ae2488ddaab41f0e}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={X.},
-           giveni={X\bibinitperiod}}}%
-        {{hash=9c4f74447bd064e137b853534877a881}{%
-           family={Zhu},
-           familyi={Z\bibinitperiod},
-           given={C.},
-           giveni={C\bibinitperiod}}}%
-      }
-      \name{namea}{4}{}{%
-        {{hash=13414502df57d59c82c59a065c752294}{%
-           family={Zhang},
-           familyi={Z\bibinitperiod},
-           given={W.},
-           giveni={W\bibinitperiod}}}%
-        {{hash=dee42732112bfa77a2dad3811ca0b39c}{%
-           family={Mao},
-           familyi={M\bibinitperiod},
-           given={X.},
-           giveni={X\bibinitperiod}}}%
-        {{hash=60aeb23a507616b6ae2488ddaab41f0e}{%
-           family={Chen},
-           familyi={C\bibinitperiod},
-           given={X.},
-           giveni={X\bibinitperiod}}}%
-        {{hash=9c4f74447bd064e137b853534877a881}{%
-           family={Zhu},
-           familyi={Z\bibinitperiod},
-           given={C.},
-           giveni={C\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {english}%
-      }
-      \strng{namehash}{4fa71801ef58dc13d0988911bee95e60}
-      \strng{fullhash}{6c5aeb7d3a083a98320f3437a5b2727b}
-      \strng{fullhashraw}{6c5aeb7d3a083a98320f3437a5b2727b}
-      \strng{bibnamehash}{1b1a95ab4fe698243d4421cdc5a97170}
-      \strng{authorbibnamehash}{1b1a95ab4fe698243d4421cdc5a97170}
-      \strng{authornamehash}{4fa71801ef58dc13d0988911bee95e60}
-      \strng{authorfullhash}{6c5aeb7d3a083a98320f3437a5b2727b}
-      \strng{authorfullhashraw}{6c5aeb7d3a083a98320f3437a5b2727b}
-      \strng{nameabibnamehash}{1b1a95ab4fe698243d4421cdc5a97170}
-      \strng{nameanamehash}{4fa71801ef58dc13d0988911bee95e60}
-      \strng{nameafullhash}{6c5aeb7d3a083a98320f3437a5b2727b}
-      \strng{nameafullhashraw}{6c5aeb7d3a083a98320f3437a5b2727b}
-      \field{extraname}{3}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{IEEE Transactions on Vehicular Technology}
-      \field{langid}{english}
-      \field{languageid}{english}
-      \field{lansortorder}{4}
-      \field{month}{4}
-      \field{number}{4}
-      \field{title}{Manage On-Road Services With Chains: A Distributed Vehicular Task Offloading Approach Based on Blockchain Technology}
-      \field{usera}{J}
-      \field{userd}{english}
-      \field{userf}{english}
-      \field{volume}{75}
-      \field{year}{2026}
-      \field{dateera}{ce}
-      \true{nocite}
-      \field{pages}{6689\bibrangedash 6704}
-      \range{pages}{16}
-      \verb{doi}
-      \verb 10.1109/TVT.2025.3622202
-      \endverb
-      \keyw{zhang2026manage}
-      \annotation{part}{author}{default}{2}{myself}{1}{\\Author}
-    \endentry
-    \entry{zhu2025flvehpatent}{patent}{}{}
-      \name{author}{4}{}{%
-        {{hash=86ffeaea0b807916d10281d34f951ffc}{%
-           family={朱超},
-           familyi={朱\bibinitperiod}}}%
-        {{hash=386537dfd1841e85e0940399a57bcc15}{%
-           family={毛心璐},
-           familyi={毛\bibinitperiod}}}%
-        {{hash=d6d90d1e118ffaec63ee17f9251e9ed5}{%
-           family={陈霄},
-           familyi={陈\bibinitperiod}}}%
-        {{hash=cb643e502c6aa91c776d43777b8a711c}{%
-           family={王添润},
-           familyi={王\bibinitperiod}}}%
-      }
-      \name{holder}{2}{}{%
-        {{hash=9fc7ee8be809b49b32ae2c96ef84a736}{%
-           family={北京理工大学},
-           familyi={北\bibinitperiod}}}%
-        {{hash=adeda1497fc62ce75fb2d10dd67310ba}{%
-           family={北京理工大学长三角研究院（嘉兴）},
-           familyi={北\bibinitperiod}}}%
-      }
-      \name{namea}{4}{}{%
-        {{hash=86ffeaea0b807916d10281d34f951ffc}{%
-           family={朱超},
-           familyi={朱\bibinitperiod}}}%
-        {{hash=386537dfd1841e85e0940399a57bcc15}{%
-           family={毛心璐},
-           familyi={毛\bibinitperiod}}}%
-        {{hash=d6d90d1e118ffaec63ee17f9251e9ed5}{%
-           family={陈霄},
-           familyi={陈\bibinitperiod}}}%
-        {{hash=cb643e502c6aa91c776d43777b8a711c}{%
-           family={王添润},
-           familyi={王\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {chinese}%
-      }
-      \list{location}{1}{%
-        {100081 北京市海淀区中关村南大街5号院}%
-      }
-      \strng{namehash}{f17cdf8deb0e7b16f38824d9bfba3cb6}
-      \strng{fullhash}{6770d357565a19512fed47814dd0be8e}
-      \strng{fullhashraw}{6770d357565a19512fed47814dd0be8e}
-      \strng{bibnamehash}{9101c70179309a80e03f3d6f85d04f85}
-      \strng{authorbibnamehash}{9101c70179309a80e03f3d6f85d04f85}
-      \strng{authornamehash}{f17cdf8deb0e7b16f38824d9bfba3cb6}
-      \strng{authorfullhash}{6770d357565a19512fed47814dd0be8e}
-      \strng{authorfullhashraw}{6770d357565a19512fed47814dd0be8e}
-      \strng{holderbibnamehash}{a12034d3d208384dcde8dff172b360e7}
-      \strng{holdernamehash}{5c4dc416e47ef73d95fac7b95b5782f7}
-      \strng{holderfullhash}{a12034d3d208384dcde8dff172b360e7}
-      \strng{holderfullhashraw}{a12034d3d208384dcde8dff172b360e7}
-      \strng{nameabibnamehash}{9101c70179309a80e03f3d6f85d04f85}
-      \strng{nameanamehash}{f17cdf8deb0e7b16f38824d9bfba3cb6}
-      \strng{nameafullhash}{6770d357565a19512fed47814dd0be8e}
-      \strng{nameafullhashraw}{6770d357565a19512fed47814dd0be8e}
-      \field{extraname}{1}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{day}{25}
-      \field{langid}{english}
-      \field{languageid}{chinese}
-      \field{lansortorder}{1}
-      \field{month}{7}
-      \field{note}{已授权}
-      \field{number}{ZL 2025 1 0074060.6}
-      \field{title}{基于联邦学习的车辆任务卸载系统与方法}
-      \field{type}{发明专利}
-      \field{usera}{P}
-      \field{userd}{chinese}
-      \field{userf}{chinese}
-      \field{year}{2025}
-      \field{dateera}{ce}
-      \true{nocite}
-      \keyw{zhu2025flvehpatent}
-      \annotation{part}{author}{default}{2}{myself}{1}{\\Author}
-    \endentry
-    \entry{zhu2025dqnvehpatent}{patent}{}{}
-      \name{author}{4}{}{%
-        {{hash=86ffeaea0b807916d10281d34f951ffc}{%
-           family={朱超},
-           familyi={朱\bibinitperiod}}}%
-        {{hash=386537dfd1841e85e0940399a57bcc15}{%
-           family={毛心璐},
-           familyi={毛\bibinitperiod}}}%
-        {{hash=d6d90d1e118ffaec63ee17f9251e9ed5}{%
-           family={陈霄},
-           familyi={陈\bibinitperiod}}}%
-        {{hash=cb643e502c6aa91c776d43777b8a711c}{%
-           family={王添润},
-           familyi={王\bibinitperiod}}}%
-      }
-      \name{holder}{2}{}{%
-        {{hash=9fc7ee8be809b49b32ae2c96ef84a736}{%
-           family={北京理工大学},
-           familyi={北\bibinitperiod}}}%
-        {{hash=23e25417b5d33bfc759bae29ca58a27c}{%
-           family={北京理工大学长三角研究院},
-           familyi={北\bibinitperiod}}}%
-      }
-      \name{namea}{4}{}{%
-        {{hash=86ffeaea0b807916d10281d34f951ffc}{%
-           family={朱超},
-           familyi={朱\bibinitperiod}}}%
-        {{hash=386537dfd1841e85e0940399a57bcc15}{%
-           family={毛心璐},
-           familyi={毛\bibinitperiod}}}%
-        {{hash=d6d90d1e118ffaec63ee17f9251e9ed5}{%
-           family={陈霄},
-           familyi={陈\bibinitperiod}}}%
-        {{hash=cb643e502c6aa91c776d43777b8a711c}{%
-           family={王添润},
-           familyi={王\bibinitperiod}}}%
-      }
-      \list{language}{1}{%
-        {chinese}%
-      }
-      \strng{namehash}{f17cdf8deb0e7b16f38824d9bfba3cb6}
-      \strng{fullhash}{6770d357565a19512fed47814dd0be8e}
-      \strng{fullhashraw}{6770d357565a19512fed47814dd0be8e}
-      \strng{bibnamehash}{9101c70179309a80e03f3d6f85d04f85}
-      \strng{authorbibnamehash}{9101c70179309a80e03f3d6f85d04f85}
-      \strng{authornamehash}{f17cdf8deb0e7b16f38824d9bfba3cb6}
-      \strng{authorfullhash}{6770d357565a19512fed47814dd0be8e}
-      \strng{authorfullhashraw}{6770d357565a19512fed47814dd0be8e}
-      \strng{holderbibnamehash}{a1678d37a63aaf33191f7ae09328cab1}
-      \strng{holdernamehash}{5c4dc416e47ef73d95fac7b95b5782f7}
-      \strng{holderfullhash}{a1678d37a63aaf33191f7ae09328cab1}
-      \strng{holderfullhashraw}{a1678d37a63aaf33191f7ae09328cab1}
-      \strng{nameabibnamehash}{9101c70179309a80e03f3d6f85d04f85}
-      \strng{nameanamehash}{f17cdf8deb0e7b16f38824d9bfba3cb6}
-      \strng{nameafullhash}{6770d357565a19512fed47814dd0be8e}
-      \strng{nameafullhashraw}{6770d357565a19512fed47814dd0be8e}
-      \field{extraname}{2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{langid}{english}
-      \field{languageid}{chinese}
-      \field{lansortorder}{1}
-      \field{note}{已申请}
-      \field{number}{202510074061.0}
-      \field{title}{一种基于 DQN 的车辆任务卸载系统及方法}
-      \field{type}{发明专利}
-      \field{usera}{P}
-      \field{userd}{chinese}
-      \field{userf}{chinese}
-      \true{nocite}
-      \keyw{zhu2025dqnvehpatent}
-      \annotation{part}{author}{default}{2}{myself}{1}{\\Author}
     \endentry
   \enddatalist
 \endrefsection

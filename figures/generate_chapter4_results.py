@@ -27,6 +27,24 @@ plt.rcParams.update({
 plt.rcParams["font.sans-serif"] = ["SimSun", "Microsoft YaHei", "SimHei", "DejaVu Sans"]
 plt.rcParams["axes.unicode_minus"] = False
 
+PAPER_PALETTE = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f"]
+PAPER_MARKERS = ["o", "s", "^", "D", "v", "P", "X", "h"]
+PAPER_LINESTYLES = ["-", "--", "-.", ":", "-", "--", "-.", ":"]
+PAPER_LINEWIDTH = 1.9
+PAPER_MARKERSIZE = 5.2
+PAPER_BAR_ALPHA = 0.86
+
+
+def series_style(idx, with_marker=True):
+    style = {
+        "color": PAPER_PALETTE[idx % len(PAPER_PALETTE)],
+        "linestyle": PAPER_LINESTYLES[idx % len(PAPER_LINESTYLES)],
+        "linewidth": PAPER_LINEWIDTH,
+    }
+    if with_marker:
+        style.update({"marker": PAPER_MARKERS[idx % len(PAPER_MARKERS)], "markersize": PAPER_MARKERSIZE})
+    return style
+
 
 def paper_box(ax, xy, w, h, title, lines, fc="#ffffff", ec="#334155", title_fc="#eaf1fb",
               title_fs=11.0, body_fs=9.5, align="center"):
@@ -228,13 +246,15 @@ def fig_chapter4_architecture():
 
 
 colors = {
-    "FL-DQN": "#1f77b4",
-    "Centralized-DQN": "#2ca02c",
-    "DQN-Only": "#ff7f0e",
-    "FL-Only": "#9467bd",
-    "Heuristic": "#8c564b",
-    "Random": "#d62728",
+    "FL-DQN": PAPER_PALETTE[0],
+    "Centralized-DQN": PAPER_PALETTE[1],
+    "DQN-Only": PAPER_PALETTE[2],
+    "FL-Only": PAPER_PALETTE[3],
+    "Heuristic": PAPER_PALETTE[4],
+    "Random": PAPER_PALETTE[5],
 }
+alg_order = ["FL-DQN", "Centralized-DQN", "DQN-Only", "FL-Only", "Heuristic", "Random"]
+style_map = {alg: series_style(i) for i, alg in enumerate(alg_order)}
 
 fig_chapter4_architecture()
 
@@ -257,7 +277,7 @@ records = []
 fig, ax = plt.subplots(figsize=(7.6, 4.6))
 for alg, vals in latency.items():
     ci = latency_ci[alg]
-    ax.errorbar(concurrency, vals, yerr=ci, marker='o', linewidth=1.8, capsize=3, label=alg, color=colors[alg])
+    ax.errorbar(concurrency, vals, yerr=ci, capsize=3, label=alg, **style_map[alg])
     for c, m, e in zip(concurrency, vals, ci):
         records.append([alg, c, m, e])
 ax.set_xlabel("Concurrency level")
@@ -282,7 +302,7 @@ throughput = {
 records = []
 fig, ax = plt.subplots(figsize=(7.6, 4.6))
 for alg, vals in throughput.items():
-    ax.plot(concurrency, vals, marker='s', linewidth=1.8, label=alg, color=colors[alg])
+    ax.plot(concurrency, vals, label=alg, **style_map[alg])
     for c, v in zip(concurrency, vals):
         records.append([alg, c, v])
 ax.set_xlabel("Concurrency level")
@@ -319,7 +339,7 @@ fig, ax = plt.subplots(figsize=(7.6, 4.6))
 for alg, s in latency_samples.items():
     x = np.sort(s)
     y = np.arange(1, len(x) + 1) / len(x)
-    ax.plot(x, y, linewidth=1.8, label=alg, color=colors[alg])
+    ax.plot(x, y, label=alg, **style_map[alg])
 ax.set_xlabel("Task completion latency (ms)")
 ax.set_ylabel("CDF")
 ax.legend(ncol=2, fontsize=8, loc="lower right")
@@ -331,7 +351,7 @@ plt.close(fig)
 fig, ax = plt.subplots(figsize=(8.0, 4.8))
 order = ["Centralized-DQN", "FL-DQN", "FL-Only", "DQN-Only", "Heuristic", "Random"]
 ax.boxplot([latency_samples[k] for k in order], tick_labels=order, showfliers=False, patch_artist=True,
-           boxprops=dict(facecolor="#a6cee3", alpha=0.7), medianprops=dict(color="#1f78b4", linewidth=1.5))
+           boxprops=dict(facecolor=PAPER_PALETTE[0], alpha=0.35), medianprops=dict(color=PAPER_PALETTE[3], linewidth=PAPER_LINEWIDTH))
 ax.set_ylabel("Task completion latency (ms)")
 ax.tick_params(axis='x', rotation=20)
 fig.tight_layout()
@@ -354,7 +374,7 @@ fig, ax = plt.subplots(figsize=(7.6, 4.6))
 order = list(energy_avg.keys())
 vals = [energy_avg[k] for k in order]
 errs = [energy_ci[k] for k in order]
-ax.bar(order, vals, yerr=errs, capsize=4, color=[colors[k] for k in order], alpha=0.85)
+ax.bar(order, vals, yerr=errs, capsize=4, color=[colors[k] for k in order], alpha=PAPER_BAR_ALPHA)
 ax.set_ylabel("Avg energy per task (J)")
 ax.tick_params(axis='x', rotation=20)
 fig.tight_layout()
@@ -378,7 +398,7 @@ fig, ax = plt.subplots(figsize=(7.6, 4.6))
 for alg, s in energy_samples.items():
     x = np.sort(s)
     y = np.arange(1, len(x) + 1) / len(x)
-    ax.plot(x, y, linewidth=1.8, label=alg, color=colors[alg])
+    ax.plot(x, y, label=alg, **style_map[alg])
 ax.set_xlabel("Energy per task (J)")
 ax.set_ylabel("CDF")
 ax.legend(ncol=2, fontsize=8, loc="lower right")
@@ -393,9 +413,9 @@ n = 800
 true_overhead = rng.uniform(5, 120, size=n)
 pred_overhead = true_overhead * 0.98 + rng.normal(0, 3.8, size=n)
 fig, ax = plt.subplots(figsize=(6.2, 5.6))
-ax.scatter(true_overhead, pred_overhead, s=14, alpha=0.5, color="#1f77b4", edgecolors='none')
+ax.scatter(true_overhead, pred_overhead, s=14, alpha=0.5, color=PAPER_PALETTE[0], edgecolors='none')
 line = np.linspace(true_overhead.min(), true_overhead.max(), 200)
-ax.plot(line, line, 'r--', linewidth=1.5, label='y=x')
+ax.plot(line, line, label='y=x', color=PAPER_PALETTE[3], linestyle='--', linewidth=PAPER_LINEWIDTH)
 ax.set_xlabel("True overhead (ms)")
 ax.set_ylabel("Predicted overhead (ms)")
 ax.legend()
@@ -410,7 +430,7 @@ rounds = np.arange(1, 201)
 loss = 0.62 * np.exp(-rounds / 55) + 0.028 + rng.normal(0, 0.003, size=len(rounds))
 loss = np.clip(loss, 0.02, None)
 fig, ax = plt.subplots(figsize=(7.2, 4.4))
-ax.plot(rounds, loss, color="#2ca02c", linewidth=1.8)
+ax.plot(rounds, loss, label="FL training loss", **series_style(0))
 ax.set_xlabel("Communication round")
 ax.set_ylabel("FL training loss (MSE)")
 fig.tight_layout()
@@ -423,8 +443,8 @@ pd.DataFrame({"round": rounds, "mse_loss": loss}).to_csv(DATA_DIR / "4-11_fl_los
 fedavg_mae = 6.8 * np.exp(-rounds / 95) + 1.65 + rng.normal(0, 0.05, size=len(rounds))
 cfl_mae = 6.2 * np.exp(-rounds / 95) + 1.25 + rng.normal(0, 0.05, size=len(rounds))
 fig, ax = plt.subplots(figsize=(7.2, 4.4))
-ax.plot(rounds, fedavg_mae, label="FedAvg", color="#ff7f0e", linewidth=1.8)
-ax.plot(rounds, cfl_mae, label="Clustered FL", color="#1f77b4", linewidth=1.8)
+ax.plot(rounds, fedavg_mae, label="FedAvg", **series_style(1))
+ax.plot(rounds, cfl_mae, label="Clustered FL", **series_style(0))
 ax.set_xlabel("Communication round")
 ax.set_ylabel("Prediction MAE (ms)")
 ax.legend()
@@ -451,9 +471,9 @@ r2 = reward_curve(1)   # alpha=0.4,beta=0.4,gamma=0.2
 r3 = reward_curve(2)   # alpha=0.6,beta=0.2,gamma=0.2
 
 fig, ax = plt.subplots(figsize=(7.6, 4.6))
-ax.plot(steps, r1, label="(0.5,0.3,0.2)", linewidth=1.6)
-ax.plot(steps, r2, label="(0.4,0.4,0.2)", linewidth=1.6)
-ax.plot(steps, r3, label="(0.6,0.2,0.2)", linewidth=1.6)
+ax.plot(steps, r1, label="(0.5,0.3,0.2)", **series_style(0))
+ax.plot(steps, r2, label="(0.4,0.4,0.2)", **series_style(1))
+ax.plot(steps, r3, label="(0.6,0.2,0.2)", **series_style(2))
 ax.set_xlabel("Training step")
 ax.set_ylabel("Average return")
 ax.legend(title="(alpha,beta,gamma)")
@@ -497,9 +517,9 @@ pbft = np.array([145, 188, 255, 346, 470, 632, 835])
 pomq = np.array([120, 152, 196, 255, 334, 428, 545])
 ipbft = np.array([110, 138, 175, 226, 294, 372, 468])
 fig, ax = plt.subplots(figsize=(7.2, 4.4))
-ax.plot(tps, pbft, marker='o', label='PBFT', linewidth=1.8)
-ax.plot(tps, pomq, marker='s', label='PoMQ', linewidth=1.8)
-ax.plot(tps, ipbft, marker='^', label='IPBFT', linewidth=1.8)
+ax.plot(tps, pbft, label='PBFT', **series_style(0))
+ax.plot(tps, pomq, label='PoMQ', **series_style(1))
+ax.plot(tps, ipbft, label='IPBFT', **series_style(2))
 ax.set_xlabel("Transaction arrival rate (tx/s)")
 ax.set_ylabel("On-chain confirmation latency (ms)")
 ax.legend()
@@ -562,9 +582,9 @@ plt.close(fig)
 
 # 4-19 不同并发度下预测时延折线
 fig, ax = plt.subplots(figsize=(7.2, 4.6))
-for c in [2, 4, 6, 8, 10]:
-    idx = np.where(conc_grid == c)[0][0]
-    ax.plot(size_grid, pred_delay[:, idx], marker='o', label=f'Concurrency={c}')
+for idx, c in enumerate([2, 4, 6, 8, 10]):
+    pred_idx = np.where(conc_grid == c)[0][0]
+    ax.plot(size_grid, pred_delay[:, pred_idx], label=f'Concurrency={c}', **series_style(idx))
 ax.set_xlabel('Task size (norm)')
 ax.set_ylabel('Predicted latency (ms)')
 ax.legend(ncol=2, fontsize=8)
@@ -576,7 +596,7 @@ plt.close(fig)
 fldqn_mean = latency["FL-DQN"]
 fldqn_ci = latency_ci["FL-DQN"]
 fig, ax = plt.subplots(figsize=(7.2, 4.6))
-ax.errorbar(concurrency, fldqn_mean, yerr=fldqn_ci, marker='o', color=colors["FL-DQN"], capsize=4, linewidth=2)
+ax.errorbar(concurrency, fldqn_mean, yerr=fldqn_ci, capsize=4, label="FL-DQN", **style_map["FL-DQN"])
 ax.set_xlabel('Concurrency level')
 ax.set_ylabel('FL-DQN avg latency (ms)')
 ax.set_xticks(concurrency)
@@ -595,7 +615,7 @@ pd.DataFrame({"concurrency": concurrency, "fldqn_latency_ms": fldqn_mean, "ci95_
 clusters = np.array([1, 2, 3, 4, 5, 6, 7])
 mae = np.array([2.58, 2.19, 1.93, 1.82, 1.79, 1.83, 1.95])
 fig, ax = plt.subplots(figsize=(6.8, 4.4))
-ax.plot(clusters, mae, marker='o', linewidth=1.8, color="#1f77b4")
+ax.plot(clusters, mae, **series_style(0))
 ax.set_xlabel("Number of FL clusters")
 ax.set_ylabel("Prediction MAE (ms)")
 ax.set_xticks(clusters)
@@ -609,7 +629,7 @@ pd.DataFrame({"cluster_count": clusters, "mae_ms": mae}).to_csv(DATA_DIR / "4-21
 query_interval = np.array([1, 2, 4, 6, 8, 10, 12])  # s
 avg_latency = np.array([201, 197, 191, 189, 194, 203, 214])
 fig, ax = plt.subplots(figsize=(6.8, 4.4))
-ax.plot(query_interval, avg_latency, marker='o', linewidth=1.8, color="#9467bd")
+ax.plot(query_interval, avg_latency, **series_style(4))
 ax.set_xlabel("Ledger query interval (s)")
 ax.set_ylabel("Avg new-task latency (ms)")
 ax.set_xticks(query_interval)
@@ -628,10 +648,9 @@ ablation = {
     "w/o Reward Shaping (V4)": np.array([134, 152, 171, 191, 212, 235, 259, 285, 313]),
 }
 fig, ax = plt.subplots(figsize=(7.6, 4.6))
-ablation_colors = ["#1f77b4", "#2ca02c", "#ff7f0e", "#8c564b", "#9467bd"]
 rows = []
-for (name, vals), c in zip(ablation.items(), ablation_colors):
-    ax.plot(concurrency, vals, marker='o', linewidth=1.8, label=name, color=c)
+for idx, (name, vals) in enumerate(ablation.items()):
+    ax.plot(concurrency, vals, label=name, **series_style(idx))
     for cc, vv in zip(concurrency, vals):
         rows.append([name, cc, vv])
 ax.set_xlabel("Concurrency level")

@@ -19,17 +19,24 @@ plt.rcParams.update({
     'axes.labelsize': 11.5, 'legend.fontsize': 9.5,
     'xtick.labelsize': 9.5, 'ytick.labelsize': 9.5,
     'figure.dpi': 150, 'savefig.dpi': 600,
-    'lines.linewidth': 1.5, 'lines.markersize': 5,
+    'lines.linewidth': 1.5, 'lines.markersize': 5.0,
     'mathtext.fontset': 'stix',
 })
 
+PAPER_PALETTE = ['#DB0B49', '#DCAD01', '#BD70DB', '#BCDB70', '#70CFDB', 'black', '#8c564b', '#7f7f7f']
+PAPER_MARKERS = ['o', 's', '^', 'D', 'v', 'P', 'X', 'h']
+PAPER_LINESTYLES = ['-', '-', '-', '-', '-', '-', '-', '-']
+PAPER_LINEWIDTH = 1.5
+PAPER_MARKERSIZE = 5.0
+PAPER_BAR_ALPHA = 0.86
+
 C = {
-    'BC-CTDE-MAPPO':'#e74c3c','MAPPO':'#2ecc71','MADDPG':'#3498db',
-    'IPPO':'#9b59b6','Greedy':'#d4a017','Random':'#4d4d4d',
+    'BC-CTDE-MAPPO': PAPER_PALETTE[0], 'MAPPO': PAPER_PALETTE[1], 'MADDPG': PAPER_PALETTE[2],
+    'IPPO': PAPER_PALETTE[3], 'Greedy': PAPER_PALETTE[4], 'Random': PAPER_PALETTE[5],
 }
 M = {
-    'BC-CTDE-MAPPO':'o','MAPPO':'^','MADDPG':'s',
-    'IPPO':'D','Greedy':'P','Random':'h',
+    'BC-CTDE-MAPPO': PAPER_MARKERS[0], 'MAPPO': PAPER_MARKERS[1], 'MADDPG': PAPER_MARKERS[2],
+    'IPPO': PAPER_MARKERS[3], 'Greedy': PAPER_MARKERS[4], 'Random': PAPER_MARKERS[5],
 }
 ALG_RL = ['BC-CTDE-MAPPO','MAPPO','MADDPG','IPPO']
 ALG_FULL = ['BC-CTDE-MAPPO','MAPPO','MADDPG','Greedy','Random']
@@ -42,7 +49,7 @@ SHORT_LABELS = {
     '去除公平奖励项': '去除\n公平\n奖励项',
     '去除可信奖励项': '去除\n可信\n奖励项',
 }
-ABLATION_COLORS = ['#e74c3c','#3498db','#2ecc71','#9b59b6']
+ABLATION_COLORS = [PAPER_PALETTE[0], PAPER_PALETTE[1], PAPER_PALETTE[2], PAPER_PALETTE[3]]
 
 
 def sty(ax):
