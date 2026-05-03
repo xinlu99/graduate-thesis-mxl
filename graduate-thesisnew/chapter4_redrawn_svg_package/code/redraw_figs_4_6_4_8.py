@@ -345,8 +345,98 @@ def draw_fig48():
     print("Saved 4-new-8.pdf and 4-new-8.png")
 
 
+def draw_fig48_split():
+    stale_df  = pd.read_csv(DATA / "fig4_8_staleness.csv", index_col=0)
+    heat_df   = pd.read_csv(DATA / "fig4_8_heatmap.csv",   index_col=0)
+    trade_df  = pd.read_csv(DATA / "fig4_8_tradeoff.csv",  index_col=0)
+
+    fig_ab = plt.figure(figsize=(11, 4.25))
+    gs_ab  = gridspec.GridSpec(1, 2, figure=fig_ab, wspace=0.42)
+    ax1 = fig_ab.add_subplot(gs_ab[0, 0])
+    ax2 = fig_ab.add_subplot(gs_ab[0, 1])
+
+    x_st = stale_df["链上摘要延时(ms)"].values
+    for alg in ["FL-DQN", "DQN-only", "FL-only", "Heuristic"]:
+        ax1.plot(x_st, stale_df[alg].values,
+                 marker=ROB_MARKERS[alg], color=ROB_COLORS[alg], label=alg,
+                 markerfacecolor=ROB_COLORS[alg], markeredgecolor="black",
+                 markeredgewidth=0.3)
+    ax1.set_xlabel("链上摘要延时 (ms)")
+    ax1.set_ylabel("平均任务时延 (ms)")
+    _style(ax1)
+    _legend(ax1, loc="upper left")
+    _subcap(ax1, "(a) 链上陈旧性敏感性")
+
+    risk_levels = heat_df.index.tolist()
+    actions     = heat_df.columns.tolist()
+    data_mat    = heat_df.values.astype(float)
+    im = ax2.imshow(data_mat, aspect="auto", cmap="YlOrRd",
+                    vmin=0, vmax=data_mat.max())
+    ax2.set_xticks(range(len(actions)))
+    ax2.set_xticklabels(actions, rotation=25, ha="right", fontsize=8.5)
+    ax2.set_yticks(range(len(risk_levels)))
+    ax2.set_yticklabels(risk_levels, fontsize=8.5)
+    ax2.set_xlabel("卸载动作")
+    ax2.set_ylabel("候选节点负载风险区间")
+    plt.colorbar(im, ax=ax2, shrink=0.88, label="选择概率")
+    for i in range(len(risk_levels)):
+        for j in range(len(actions)):
+            ax2.text(j, i, f"{data_mat[i, j]:.2f}",
+                     ha="center", va="center", fontsize=7.5,
+                     color="white" if data_mat[i, j] > 0.35 else "black")
+    _subcap(ax2, "(b) 动作选择热力图")
+
+    _save_both(OUT / "4-new-8-ab", fig_ab)
+    plt.close(fig_ab)
+
+    fig_c = plt.figure(figsize=(7.2, 4.8))
+    ax3 = fig_c.add_subplot(111)
+    edp   = trade_df["EDP"].values
+    jain  = trade_df["Jain指数"].values
+    comp  = trade_df["完成率(%)"].values
+    names = trade_df["方法"].values
+    sizes = (comp - comp.min() + 5) * 18
+
+    for name in names:
+        mask = names == name
+        ax3.scatter(edp[mask], jain[mask], s=sizes[mask],
+                    c=[E2E_COLORS.get(name, "#888888")], alpha=0.85,
+                    edgecolors="black", linewidths=0.6, label="_")
+
+    custom_handles = [
+        Line2D([0], [0], marker="o", linestyle="", color="w",
+               markerfacecolor=E2E_COLORS.get(name, "#888888"),
+               markeredgecolor="black", markeredgewidth=0.6,
+               markersize=6.5, label=name)
+        for name in names
+    ]
+    ax3.legend(
+        handles=custom_handles,
+        loc="center left",
+        bbox_to_anchor=(1.02, 0.5),
+        ncol=1,
+        frameon=True,
+        fancybox=False,
+        edgecolor="#aaaaaa",
+        framealpha=0.92,
+        borderpad=0.35,
+        handletextpad=0.4,
+        labelspacing=0.32,
+        fontsize=9.5,
+    )
+    ax3.set_xlabel("能时积 EDP")
+    ax3.set_ylabel("Jain 公平性指数")
+    ax3.set_ylim(top=0.950)
+    _style(ax3)
+
+    _save_both(OUT / "4-new-8-c", fig_c)
+    plt.close(fig_c)
+    print("Saved 4-new-8-ab/c.pdf and 4-new-8-ab/c.png")
+
+
 if __name__ == "__main__":
     draw_fig46()
     draw_fig47()
     draw_fig48()
+    draw_fig48_split()
     print("All done.")

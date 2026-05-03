@@ -252,24 +252,29 @@ bars2 = ax.bar(x + w/2, abl['30%自私节点下任务完成率(%)'], width=w,
     label='30%自私节点', hatch='///')
 
 ax.set_xticks(x)
-ax.set_xticklabels(short_labels, fontsize=8.5, ha='center')
-ax.set_ylabel('任务完成率（%）')
-ax.set_ylim(75, 97)
+ax.set_xticklabels(short_labels, fontsize=10, ha='center')
+ax.set_ylabel('任务完成率（%）', fontsize=10)
+ax.set_ylim(75, 98)
 ax.set_yticks(range(76, 97, 2))
+ax.tick_params(axis='both', labelsize=10)
 sty(ax)
 
-# 数值标注
-for bars, vals in [(bars1, abl['任务完成率(%)']), (bars2, abl['30%自私节点下任务完成率(%)'])]:
-    for r, v in zip(bars, vals):
-        ax.text(r.get_x() + r.get_width()/2, v + 0.4,
-                f'{v:.1f}', ha='center', va='bottom', fontsize=7.5)
+# 数值标注（上移，避免与误差棒重叠）
+for bars, vals, errs in [
+    (bars1, abl['任务完成率(%)'], abl['任务完成率_std(%)']),
+    (bars2, abl['30%自私节点下任务完成率(%)'], abl['30%自私节点下任务完成率_std(%)'])
+]:
+    for r, v, e in zip(bars, vals, errs):
+        ax.text(r.get_x() + r.get_width()/2, v + e + 0.75,
+                f'{v:.1f}', ha='center', va='bottom', fontsize=10, zorder=6,
+                bbox=dict(facecolor='white', edgecolor='none', alpha=0.92, pad=0.15))
 
 # 图例: 放在图外顶部，避免遮挡柱子
 patch1 = mpatches.Patch(facecolor='#aaaaaa', edgecolor='black', linewidth=0.7, label='全场景均值')
 patch2 = mpatches.Patch(facecolor='#aaaaaa', edgecolor='black', linewidth=0.7,
                          alpha=0.55, hatch='///', label='30%自私节点')
 ax.legend(handles=[patch1, patch2], loc='lower center',
-          bbox_to_anchor=(0.5, 1.04), ncol=2, fontsize=8.5,
+          bbox_to_anchor=(0.5, 1.04), ncol=2, fontsize=10,
           frameon=True, fancybox=False, edgecolor='black',
           framealpha=1, borderpad=0.3)
 sub(ax, '(a) 任务完成率')
@@ -282,14 +287,16 @@ bars3 = ax.bar(x, abl['Jain公平指数'], width=0.52,
     error_kw=dict(elinewidth=1.0, ecolor='black', capsize=4, capthick=0.9))
 
 ax.set_xticks(x)
-ax.set_xticklabels(short_labels, fontsize=8.5, ha='center')
-ax.set_ylabel('Jain公平指数')
-ax.set_ylim(0.80, 0.945)
+ax.set_xticklabels(short_labels, fontsize=10, ha='center')
+ax.set_ylabel('Jain公平指数', fontsize=10)
+ax.set_ylim(0.80, 0.965)
+ax.tick_params(axis='both', labelsize=10)
 sty(ax)
 
-for r, v in zip(bars3, abl['Jain公平指数']):
-    ax.text(r.get_x() + r.get_width()/2, v + 0.003,
-            f'{v:.3f}', ha='center', va='bottom', fontsize=8)
+for r, v, e in zip(bars3, abl['Jain公平指数'], abl['Jain公平指数_std']):
+    ax.text(r.get_x() + r.get_width()/2, v + e + 0.008,
+            f'{v:.3f}', ha='center', va='bottom', fontsize=10, zorder=6,
+            bbox=dict(facecolor='white', edgecolor='none', alpha=0.92, pad=0.15))
 
 # 颜色图例对应方法名，放在图外顶部
 for i, (lbl, col) in enumerate(zip(short_labels, ABLATION_COLORS)):
@@ -300,7 +307,7 @@ for i, (lbl, col) in enumerate(zip(short_labels, ABLATION_COLORS)):
     else:
         handles.append(patch)
 ax.legend(handles=handles, loc='lower center',
-          bbox_to_anchor=(0.5, 1.04), ncol=2, fontsize=7.8,
+          bbox_to_anchor=(0.5, 1.04), ncol=2, fontsize=10,
           frameon=True, fancybox=False, edgecolor='black',
           framealpha=1, borderpad=0.3, labelspacing=0.2)
 sub(ax, '(b) Jain公平指数')

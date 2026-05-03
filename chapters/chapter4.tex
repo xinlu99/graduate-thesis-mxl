@@ -482,32 +482,6 @@ y_t - Q(s_t,a_t;\theta)
 
 这种协同方式的优势在于，它把难以直接编码进解析策略的“未来并发风险”显式注入到了决策模块中。换言之，DQN 并不是在纯粹的即时观测之上做反应式决策，而是在带有预测先验的扩展状态上做前瞻式决策。特别是在高并发、链上状态滞后的场景中，这种差异通常会转化为更低的时延退化斜率和更好的系统鲁棒性。
 
-综合上述设计，FL-DQN 在线卸载决策流程可概括为表~\ref{tab:online_policy} 所示的七个步骤。
-
-\begin{table}[H]
-\centering
-\footnotesize
-\caption{FL-DQN 在线卸载决策流程}
-\label{tab:online_policy}
-\setlength{\tabcolsep}{1.8mm}
-\renewcommand{\arraystretch}{1.15}
-\resizebox{\linewidth}{!}{%
-\begin{tabular}{p{1.0cm}p{11.2cm}}
-\toprule
-\rowcolor{gray!10}
-步骤 & 流程描述 \\
-\midrule
-1 & 终端节点接收新任务，提取计算量、数据大小、任务类型、优先级和时延等级等特征。 \\
-2 & 从本地环境读取 CPU、内存、队列长度、剩余能量与链路状态，并从联盟链获取候选边缘节点的公共摘要。 \\
-3 & 调用所属簇的联邦预测模型，对各候选边缘节点的并发开销进行快速推理。 \\
-4 & 将任务特征、本地资源状态、链上公共摘要和预测结果拼接为状态向量 $s_t$。 \\
-5 & DQN 计算各动作的 $Q$ 值，并按 $\varepsilon$-greedy 规则选择本地执行或目标节点卸载动作。 \\
-6 & 环境返回任务完成时延、能耗和结果状态，据此计算奖励并写入经验回放池。 \\
-7 & 主网络按 mini-batch 更新参数，目标网络按固定步长同步；策略持续与环境交互直至收敛。 \\
-\bottomrule
-\end{tabular}%
-}
-\end{table}
 
 为了更清楚地展示“预测先验如何进入在线动作选择”，算法~\ref{alg:fldqn_online} 对 FL-DQN 的节点侧执行流程给出伪代码描述。该伪代码与图~\ref{fig:closed_loop} 的区别在于：前者强调实现时的控制流，后者强调预测与决策之间的信息闭环。
 

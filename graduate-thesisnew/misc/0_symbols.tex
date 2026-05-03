@@ -4,27 +4,61 @@
 %%
 
 \begin{symbols}
+  % ===== 缩略语 =====
   \item[ST] 卫星终端（Satellite Terminal）
   \item[SEN] 卫星边缘节点（Satellite Edge Node）
+  \item[CC] 地面控制中心（Ground Control Center）
   \item[FL] 联邦学习（Federated Learning）
   \item[DQN] 深度Q网络（Deep Q-Network）
-  \item[MDP] 马尔可夫决策过程（Markov Decision Process）
-  \item[$T_i$] 第 $i$ 个任务
-  \item[$C_i$] 任务 $T_i$ 的计算量
-  \item[$S_i$] 任务 $T_i$ 的输入数据规模
-  \item[$D_i$] 任务 $T_i$ 的时延约束（截止期）
-  \item[$\tau_i$] 任务类型编码
-  \item[$\zeta_i$] 任务优先级
-  \item[$\mathcal{A}$] 卸载动作集合
-  \item[$L_i^{\mathrm{loc}}$] 任务本地执行完成时延
-  \item[$E_i^{\mathrm{loc}}$] 任务本地执行能耗
-  \item[$L_i^{\mathrm{off}}$] 任务卸载执行完成时延
-  \item[$E_i^{\mathrm{off}}$] 任务卸载执行能耗
-  \item[$R_{i,n}^{\mathrm{up}}$] 任务 $T_i$ 到候选节点 $n$ 的上行传输速率
-  \item[$F_n$] 候选节点 $n$ 的可用计算能力
-  \item[$W_{n}^{\mathrm{edge}}$] 候选节点 $n$ 的基础排队时延
-  \item[$\Delta_i(n,t)$] 任务 $T_i$ 在节点 $n$ 上的并发扰动时延
-  \item[$CO_i(n,t)$] 任务 $T_i$ 在节点 $n$ 上的并发开销
-  \item[$J_i(a_t)$] 动作 $a_t$ 对应的单任务综合代价
-  \item[$\omega_L,\omega_E,\omega_C$] 时延、能耗与并发扰动代价权重
+  \item[DRL] 深度强化学习（Deep Reinforcement Learning）
+  \item[MARL] 多智能体强化学习（Multi-Agent Reinforcement Learning）
+  \item[CTDE] 集中训练—分散执行（Centralized Training and Decentralized Execution）
+  \item[MAPPO] 多智能体近端策略优化（Multi-Agent Proximal Policy Optimization）
+
+  % ===== 集合与网络模型 =====
+  \item[$\mathcal{V}$] 天基协同计算网络节点集合
+  \item[$\mathcal{V}_{\mathrm{ST}},\mathcal{V}_{\mathrm{SEN}},\mathcal{V}_{\mathrm{CC}}$] 分别表示 ST、SEN、CC 节点集合
+  \item[$\mathcal{G}(t)$] 时刻 $t$ 的动态网络拓扑图
+  \item[$\mathcal{E}_{\mathrm{link}}(t)$] 时刻 $t$ 的可用链路集合
+  \item[$\ell_{ij}(t)$] 节点 $i\!\to\!j$ 链路状态向量
+  \item[$B_{ij}(t)$] 节点 $i\!\to\!j$ 链路可用带宽
+  \item[$d_{ij}^{\mathrm{prop}}(t)$] 节点 $i\!\to\!j$ 链路传播时延
+  \item[$\tau_{ij}^{\mathrm{vis}}(t)$] 节点 $i\!\to\!j$ 链路剩余可见窗口
+
+  % ===== 节点状态与任务模型 =====
+  \item[$R_i(t)$] 节点 $i$ 在时刻 $t$ 的资源状态向量
+  \item[$F_i(t),M_i(t),Q_i(t),E_i(t),\rho_i(t),\mathrm{Rep}_i(t)$] 分别表示可用算力、可用存储、队列长度、剩余能量、资源利用率与信誉评分
+  \item[$\mathcal{T}$] 任务集合
+  \item[$T_k$] 第 $k$ 个任务，$T_k=(s_k,c_k,d_k,\tau_k,\zeta_k,t_k^{\mathrm{arr}})$
+  \item[$s_k,c_k,d_k,\tau_k,\zeta_k,t_k^{\mathrm{arr}}$] 分别表示输入数据规模、计算量、时延约束、任务类型、优先级与到达时刻
+
+  % ===== 时延与能耗 =====
+  \item[$R_{ij}(t)$] 节点 $i\!\to\!j$ 传输速率
+  \item[$D_{k,ij}^{\mathrm{tx}}(t)$] 任务 $T_k$ 从节点 $i$ 卸载至节点 $j$ 的传输时延
+  \item[$D_{k,i}^{\mathrm{loc}}(t)$] 任务 $T_k$ 在节点 $i$ 本地执行完成时延
+  \item[$D_{k,ij}^{\mathrm{off}}(t)$] 任务 $T_k$ 卸载至节点 $j$ 执行完成时延
+  \item[$\Delta_{k,j}^{\mathrm{conc}}(t)$] 任务 $T_k$ 在节点 $j$ 的并发开销时延项
+  \item[$E_{k,i}^{\mathrm{loc}}(t),E_{k,ij}^{\mathrm{off}}(t)$] 任务本地执行能耗与卸载执行能耗
+
+  % ===== 区块链可信共享 =====
+  \item[$\Sigma_i(t)$] 节点 $i$ 的链上状态摘要
+  \item[$G(t)$] 链上公共状态摘要
+  \item[$\bar{L}(t),\sigma_L^2(t)$] 系统平均负载与负载方差
+  \item[$D^{\mathrm{task}}(t)$] 任务分布摘要
+  \item[$R^{\mathrm{rep}}(t)$] 全网信誉向量摘要
+  \item[$\hat{D}_{\mathrm{chain}}(t),D_{\mathrm{chain}}(t)$] 链上同步延迟估计与链上总附加时延
+
+  % ===== 系统层博弈与决策 =====
+  \item[$o_t^i$] 智能体 $i$ 在时刻 $t$ 的观测，$o_t^i=(l_t^i,g_t)$
+  \item[$a_t^i$] 智能体 $i$ 在时刻 $t$ 的动作，$a_t^i=(a_{\mathrm{off},t}^i,a_{\mathrm{res},t}^i,a_{\mathrm{acc},t}^i)$
+  \item[$r_t^i$] 智能体 $i$ 在时刻 $t$ 的混合奖励
+  \item[$w_q,w_f,w_c$] 效率、公平、可信三类奖励权重
+  \item[$J(t)$] Jain 公平指数
+
+  % ===== 任务层 FL-DQN =====
+  \item[$\mathcal{A}_k(t)$] 任务 $T_k$ 的动作集合（本地执行与可卸载候选节点集合）
+  \item[$CO_i(n,t)$] 新任务 $i$ 在候选节点 $n$ 上的并发开销
+  \item[$\widehat{\Delta}_i(n,t)$] 并发开销预测值
+  \item[$J_i(a_t)$] 任务层动作 $a_t$ 对应的单任务综合代价
+  \item[$\omega_L,\omega_E,\omega_C$] 任务层时延、能耗与并发代价权重
 \end{symbols}
