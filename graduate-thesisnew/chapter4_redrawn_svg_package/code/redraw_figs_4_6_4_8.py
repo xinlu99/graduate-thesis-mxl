@@ -27,12 +27,12 @@ chosen = next((f for f in candidate_fonts if f in available), "DejaVu Sans")
 plt.rcParams.update({
     "font.sans-serif": [chosen],
     "axes.unicode_minus": False,
-    "font.size": 12,
-    "axes.labelsize": 13,
-    "axes.titlesize": 13,
-    "legend.fontsize": 11,
-    "xtick.labelsize": 11,
-    "ytick.labelsize": 11,
+    "font.size": 14,
+    "axes.labelsize": 15,
+    "axes.titlesize": 15,
+    "legend.fontsize": 13,
+    "xtick.labelsize": 13,
+    "ytick.labelsize": 13,
     "figure.dpi": 150,
     "savefig.dpi": 300,
     "lines.linewidth": 1.5,
@@ -98,7 +98,7 @@ def _legend(ax, **kw):
 
 def _subcap(ax, text):
     ax.text(0.5, -0.22, text, transform=ax.transAxes,
-            ha="center", va="top", fontsize=10.5)
+            ha="center", va="top", fontsize=12.5)
 
 
 def _save_both(base_path_no_ext: Path, fig):
@@ -287,16 +287,16 @@ def draw_fig48():
     im = ax2.imshow(data_mat, aspect="auto", cmap="YlOrRd",
                     vmin=0, vmax=data_mat.max())
     ax2.set_xticks(range(len(actions)))
-    ax2.set_xticklabels(actions, rotation=25, ha="right", fontsize=8.5)
+    ax2.set_xticklabels(actions, rotation=25, ha="right", fontsize=11)
     ax2.set_yticks(range(len(risk_levels)))
-    ax2.set_yticklabels(risk_levels, fontsize=8.5)
+    ax2.set_yticklabels(risk_levels, fontsize=11)
     ax2.set_xlabel("卸载动作")
     ax2.set_ylabel("候选节点负载风险区间")
     plt.colorbar(im, ax=ax2, shrink=0.88, label="选择概率")
     for i in range(len(risk_levels)):
         for j in range(len(actions)):
             ax2.text(j, i, f"{data_mat[i, j]:.2f}",
-                     ha="center", va="center", fontsize=7.5,
+                     ha="center", va="center", fontsize=9,
                      color="white" if data_mat[i, j] > 0.35 else "black")
     _subcap(ax2, "(b) 动作选择热力图")
 
@@ -332,7 +332,7 @@ def draw_fig48():
         borderpad=0.35,
         handletextpad=0.4,
         labelspacing=0.32,
-        fontsize=9.5,
+        fontsize=11,
     )
     ax3.set_xlabel("能时积 EDP")
     ax3.set_ylabel("Jain 公平性指数")
@@ -373,16 +373,16 @@ def draw_fig48_split():
     im = ax2.imshow(data_mat, aspect="auto", cmap="YlOrRd",
                     vmin=0, vmax=data_mat.max())
     ax2.set_xticks(range(len(actions)))
-    ax2.set_xticklabels(actions, rotation=25, ha="right", fontsize=8.5)
+    ax2.set_xticklabels(actions, rotation=25, ha="right", fontsize=11)
     ax2.set_yticks(range(len(risk_levels)))
-    ax2.set_yticklabels(risk_levels, fontsize=8.5)
+    ax2.set_yticklabels(risk_levels, fontsize=11)
     ax2.set_xlabel("卸载动作")
     ax2.set_ylabel("候选节点负载风险区间")
     plt.colorbar(im, ax=ax2, shrink=0.88, label="选择概率")
     for i in range(len(risk_levels)):
         for j in range(len(actions)):
             ax2.text(j, i, f"{data_mat[i, j]:.2f}",
-                     ha="center", va="center", fontsize=7.5,
+                     ha="center", va="center", fontsize=9,
                      color="white" if data_mat[i, j] > 0.35 else "black")
     _subcap(ax2, "(b) 动作选择热力图")
 
@@ -422,7 +422,7 @@ def draw_fig48_split():
         borderpad=0.35,
         handletextpad=0.4,
         labelspacing=0.32,
-        fontsize=9.5,
+        fontsize=11,
     )
     ax3.set_xlabel("能时积 EDP")
     ax3.set_ylabel("Jain 公平性指数")
