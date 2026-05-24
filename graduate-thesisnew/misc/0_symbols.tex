@@ -4,61 +4,110 @@
 %%
 
 \begin{symbols}
-  % ===== 缩略语 =====
-  \item[ST] 卫星终端（Satellite Terminal）
-  \item[SEN] 卫星边缘节点（Satellite Edge Node）
-  \item[CC] 地面控制中心（Ground Control Center）
-  \item[FL] 联邦学习（Federated Learning）
-  \item[DQN] 深度Q网络（Deep Q-Network）
-  \item[DRL] 深度强化学习（Deep Reinforcement Learning）
-  \item[MARL] 多智能体强化学习（Multi-Agent Reinforcement Learning）
-  \item[CTDE] 集中训练—分散执行（Centralized Training and Decentralized Execution）
-  \item[MAPPO] 多智能体近端策略优化（Multi-Agent Proximal Policy Optimization）
+  % 按正文首次出现顺序整理。变量采用数学斜体，缩略语、函数名、文字下标和运算符采用正体。
+  \item[$\mathrm{ST}$] 卫星终端（Satellite Terminal），单位：无量纲
+  \item[$\mathrm{SEN}$] 卫星边缘节点（Satellite Edge Node），单位：无量纲
+  \item[$\mathrm{CC}$] 地面控制中心（Ground Control Center），单位：无量纲
+  \item[$\mathrm{LEO}$] 低轨道（Low Earth Orbit），单位：无量纲
+  \item[$\mathrm{MEO}$] 中轨道（Medium Earth Orbit），单位：无量纲
+  \item[$\mathrm{GEO}$] 高轨道（Geostationary Earth Orbit），单位：无量纲
+  \item[$\mathrm{DQN}$] 深度 Q 网络（Deep Q-Network），单位：无量纲
+  \item[$\mathrm{DRL}$] 深度强化学习（Deep Reinforcement Learning），单位：无量纲
+  \item[$\mathrm{FL}$] 联邦学习（Federated Learning），单位：无量纲
+  \item[$\mathrm{CTDE}$] 集中训练、分散执行（Centralized Training and Decentralized Execution），单位：无量纲
+  \item[$\mathrm{MAPPO}$] 多智能体近端策略优化（Multi-Agent Proximal Policy Optimization），单位：无量纲
 
-  % ===== 集合与网络模型 =====
-  \item[$\mathcal{V}$] 天基协同计算网络节点集合
-  \item[$\mathcal{V}_{\mathrm{ST}},\mathcal{V}_{\mathrm{SEN}},\mathcal{V}_{\mathrm{CC}}$] 分别表示 ST、SEN、CC 节点集合
-  \item[$\mathcal{G}(t)$] 时刻 $t$ 的动态网络拓扑图
-  \item[$\mathcal{E}_{\mathrm{link}}(t)$] 时刻 $t$ 的可用链路集合
-  \item[$\ell_{ij}(t)$] 节点 $i\!\to\!j$ 链路状态向量
-  \item[$B_{ij}(t)$] 节点 $i\!\to\!j$ 链路可用带宽
-  \item[$d_{ij}^{\mathrm{prop}}(t)$] 节点 $i\!\to\!j$ 链路传播时延
-  \item[$\tau_{ij}^{\mathrm{vis}}(t)$] 节点 $i\!\to\!j$ 链路剩余可见窗口
+  \item[$\mathcal{V}$] 天基协同计算网络节点集合，单位：无量纲
+  \item[$\mathcal{V}_{\mathrm{ST}}$] 卫星终端节点集合，单位：无量纲
+  \item[$\mathcal{V}_{\mathrm{SEN}}$] 卫星边缘节点集合，单位：无量纲
+  \item[$\mathcal{V}_{\mathrm{CC}}$] 地面控制中心节点集合，单位：无量纲
+  \item[$\mathcal{V}_{\mathrm{con}}$] 共识维护节点集合，单位：无量纲
+  \item[$\mathcal{V}_{\mathrm{exe}}$] 任务执行节点集合，单位：无量纲
+  \item[$\mathcal{V}_{\mathrm{sto}}$] 链下存储节点集合，单位：无量纲
+  \item[$\mathcal{G}(t)$] 时刻 $t$ 的动态网络拓扑图，单位：无量纲
+  \item[$\mathcal{E}_{\mathrm{link}}(t)$] 时刻 $t$ 的可用通信链路集合，单位：无量纲
+  \item[$\ell_{ij}(t)$] 节点 $i$ 至节点 $j$ 的链路状态向量，单位：无量纲
+  \item[$B_{ij}(t)$] 节点 $i$ 至节点 $j$ 的可用带宽，单位：Hz
+  \item[$d_{ij}^{\mathrm{prop}}(t)$] 节点 $i$ 至节点 $j$ 的传播时延，单位：s
+  \item[$\tau_{ij}^{\mathrm{vis}}(t)$] 节点 $i$ 至节点 $j$ 的剩余可见窗口，单位：s
+  \item[$p_{ij}^{\mathrm{loss}}(t)$] 节点 $i$ 至节点 $j$ 的链路中断概率估计，单位：无量纲
 
-  % ===== 节点状态与任务模型 =====
-  \item[$R_i(t)$] 节点 $i$ 在时刻 $t$ 的资源状态向量
-  \item[$F_i(t),M_i(t),Q_i(t),E_i(t),\rho_i(t),\mathrm{Rep}_i(t)$] 分别表示可用算力、可用存储、队列长度、剩余能量、资源利用率与信誉评分
-  \item[$\mathcal{T}$] 任务集合
-  \item[$T_k$] 第 $k$ 个任务，$T_k=(s_k,c_k,d_k,\tau_k,\zeta_k,t_k^{\mathrm{arr}})$
-  \item[$s_k,c_k,d_k,\tau_k,\zeta_k,t_k^{\mathrm{arr}}$] 分别表示输入数据规模、计算量、时延约束、任务类型、优先级与到达时刻
+  \item[$R_i(t)$] 节点 $i$ 在时刻 $t$ 的资源状态向量，单位：无量纲
+  \item[$F_i(t)$] 节点 $i$ 的可用计算能力，单位：cycle/s
+  \item[$M_i(t)$] 节点 $i$ 的可用存储或缓存容量，单位：byte
+  \item[$Q_i(t)$] 节点 $i$ 的任务队列长度，单位：个
+  \item[$E_i(t)$] 节点 $i$ 的剩余能量或能量预算，单位：J
+  \item[$\rho_i(t)$] 节点 $i$ 的资源利用率，单位：无量纲
+  \item[$\mathrm{Rep}_i(t)$] 节点 $i$ 的信誉评分，单位：无量纲
+  \item[$\mathcal{T}$] 任务集合，单位：无量纲
+  \item[$T_k$] 第 $k$ 个任务，单位：无量纲
+  \item[$s_k$] 任务 $T_k$ 的输入数据规模，单位：byte
+  \item[$c_k$] 任务 $T_k$ 的计算量，单位：cycle
+  \item[$d_k$] 任务 $T_k$ 的最大可接受完成时延，单位：s
+  \item[$\tau_k$] 任务 $T_k$ 的任务类型标识，单位：无量纲
+  \item[$\zeta_k$] 任务 $T_k$ 的优先级，单位：无量纲
+  \item[$t_k^{\mathrm{arr}}$] 任务 $T_k$ 的到达时刻，单位：s
+  \item[$\mathcal{Q}_j(t)$] 时刻 $t$ 节点 $j$ 上正在执行的任务集合，单位：无量纲
+  \item[$c_u^{\mathrm{rem}}(t)$] 存量任务 $T_u$ 的剩余计算量，单位：cycle
+  \item[$\mathcal{A}_k(t)$] 任务 $T_k$ 的动作集合，单位：无量纲
+  \item[$x_{k,j}(t)$] 任务 $T_k$ 是否选择节点 $j$ 执行的决策变量，单位：无量纲
 
-  % ===== 时延与能耗 =====
-  \item[$R_{ij}(t)$] 节点 $i\!\to\!j$ 传输速率
-  \item[$D_{k,ij}^{\mathrm{tx}}(t)$] 任务 $T_k$ 从节点 $i$ 卸载至节点 $j$ 的传输时延
-  \item[$D_{k,i}^{\mathrm{loc}}(t)$] 任务 $T_k$ 在节点 $i$ 本地执行完成时延
-  \item[$D_{k,ij}^{\mathrm{off}}(t)$] 任务 $T_k$ 卸载至节点 $j$ 执行完成时延
-  \item[$\Delta_{k,j}^{\mathrm{conc}}(t)$] 任务 $T_k$ 在节点 $j$ 的并发开销时延项
-  \item[$E_{k,i}^{\mathrm{loc}}(t),E_{k,ij}^{\mathrm{off}}(t)$] 任务本地执行能耗与卸载执行能耗
+  \item[$R_{ij}(t)$] 节点 $i$ 至节点 $j$ 的传输速率，单位：bit/s
+  \item[$P_i$] 节点 $i$ 的发送功率，单位：W
+  \item[$h_{ij}(t)$] 节点 $i$ 至节点 $j$ 的信道增益，单位：无量纲
+  \item[$N_0$] 噪声功率谱密度，单位：W/Hz
+  \item[$D_{k,ij}^{\mathrm{tx}}(t)$] 任务 $T_k$ 从节点 $i$ 卸载至节点 $j$ 的传输时延，单位：s
+  \item[$D_{k,i}^{\mathrm{loc}}(t)$] 任务 $T_k$ 在节点 $i$ 本地执行完成时延，单位：s
+  \item[$D_{k,ij}^{\mathrm{off}}(t)$] 任务 $T_k$ 卸载至节点 $j$ 的端到端完成时延，单位：s
+  \item[$W_i(t)$] 节点 $i$ 的排队等待时延，单位：s
+  \item[$f_{k,i}^{\mathrm{alloc}}(t)$] 节点 $i$ 分配给任务 $T_k$ 的有效计算频率，单位：cycle/s
+  \item[$g_j(\cdot)$] 节点 $j$ 的资源竞争映射函数，单位：无量纲
+  \item[$\Delta_{k,j}^{\mathrm{new}}(t)$] 新任务 $T_k$ 在节点 $j$ 上产生的额外完成时延，单位：s
+  \item[$\Delta_{u|k,j}^{\mathrm{rem}}(t)$] 新任务 $T_k$ 对存量任务 $T_u$ 造成的剩余时延增量，单位：s
+  \item[$CO_{k,j}(t)$] 任务 $T_k$ 卸载至节点 $j$ 引起的总并发开销，单位：s
+  \item[$E_{k,i}^{\mathrm{loc}}(t)$] 任务 $T_k$ 在节点 $i$ 本地执行能耗，单位：J
+  \item[$E_{k,ij}^{\mathrm{off}}(t)$] 任务 $T_k$ 卸载至节点 $j$ 的执行能耗，单位：J
+  \item[$\kappa_i$] 节点 $i$ 的有效电容系数，单位：J/cycle
 
-  % ===== 区块链可信共享 =====
-  \item[$\Sigma_i(t)$] 节点 $i$ 的链上状态摘要
-  \item[$G(t)$] 链上公共状态摘要
-  \item[$\bar{L}(t),\sigma_L^2(t)$] 系统平均负载与负载方差
-  \item[$D^{\mathrm{task}}(t)$] 任务分布摘要
-  \item[$R^{\mathrm{rep}}(t)$] 全网信誉向量摘要
-  \item[$\hat{D}_{\mathrm{chain}}(t),D_{\mathrm{chain}}(t)$] 链上同步延迟估计与链上总附加时延
+  \item[$\mathcal{D}_{\mathrm{on}}$] 链上维护的数据集合，单位：无量纲
+  \item[$\mathcal{D}_{\mathrm{off}}$] 链下维护的数据集合，单位：无量纲
+  \item[$H(\cdot)$] 哈希函数，单位：无量纲
+  \item[$B^h$] 第 $h$ 个区块，单位：无量纲
+  \item[$\mathrm{Header}^h$] 第 $h$ 个区块的区块头，单位：无量纲
+  \item[$\mathrm{Body}^h$] 第 $h$ 个区块的区块体，单位：无量纲
+  \item[$\Sigma_i(t)$] 节点 $i$ 的链上状态摘要，单位：无量纲
+  \item[$G(t)$] 链上公共状态摘要，单位：无量纲
+  \item[$\bar{L}(t)$] 系统平均负载，单位：无量纲
+  \item[$\sigma_L^2(t)$] 系统负载方差，单位：无量纲
+  \item[$D^{\mathrm{task}}(t)$] 任务分布摘要，单位：无量纲
+  \item[$R^{\mathrm{rep}}(t)$] 全网信誉向量摘要，单位：无量纲
+  \item[$\hat{D}_{\mathrm{chain}}(t)$] 链上同步延迟估计，单位：s
+  \item[$D_{\mathrm{chain}}(t)$] 链上总附加时延，单位：s
+  \item[$M(t)$] 模型版本摘要，单位：无量纲
 
-  % ===== 系统层博弈与决策 =====
-  \item[$o_t^i$] 智能体 $i$ 在时刻 $t$ 的观测，$o_t^i=(l_t^i,g_t)$
-  \item[$a_t^i$] 智能体 $i$ 在时刻 $t$ 的动作，$a_t^i=(a_{\mathrm{off},t}^i,a_{\mathrm{res},t}^i,a_{\mathrm{acc},t}^i)$
-  \item[$r_t^i$] 智能体 $i$ 在时刻 $t$ 的混合奖励
-  \item[$w_q,w_f,w_c$] 效率、公平、可信三类奖励权重
-  \item[$J(t)$] Jain 公平指数
+  \item[$N$] 智能体数量或智能体集合，单位：个或无量纲
+  \item[$S$] 全局状态空间，单位：无量纲
+  \item[$A^i$] 节点 $i$ 的动作空间，单位：无量纲
+  \item[$O^i$] 节点 $i$ 的局部观测函数，单位：无量纲
+  \item[$o_t^i$] 智能体 $i$ 在时刻 $t$ 的观测，单位：无量纲
+  \item[$l_t^i$] 智能体 $i$ 的本地私有状态，单位：无量纲
+  \item[$g_t$] 智能体读取的链上公共摘要，单位：无量纲
+  \item[$a_t^i$] 智能体 $i$ 在时刻 $t$ 的动作，单位：无量纲
+  \item[$r_t^i$] 智能体 $i$ 在时刻 $t$ 的即时奖励，单位：无量纲
+  \item[$w_q,w_f,w_c$] 效率、公平和可信三类奖励权重，单位：无量纲
+  \item[$J(t)$] Jain 公平指数，单位：无量纲
+  \item[$\gamma$] 折扣因子，单位：无量纲
 
-  % ===== 任务层 FL-DQN =====
-  \item[$\mathcal{A}_k(t)$] 任务 $T_k$ 的动作集合（本地执行与可卸载候选节点集合）
-  \item[$CO_i(n,t)$] 新任务 $i$ 在候选节点 $n$ 上的并发开销
-  \item[$\widehat{\Delta}_i(n,t)$] 并发开销预测值
-  \item[$J_i(a_t)$] 任务层动作 $a_t$ 对应的单任务综合代价
-  \item[$\omega_L,\omega_E,\omega_C$] 任务层时延、能耗与并发代价权重
+  \item[$C_i$] 当前任务的计算量，单位：cycle
+  \item[$S_i$] 当前任务的输入数据大小，单位：byte
+  \item[$D_i$] 当前任务的最大可接受完成时延，单位：s
+  \item[$L_i^{\mathrm{loc}}(t)$] 当前任务本地执行完成时延，单位：s
+  \item[$E_i^{\mathrm{loc}}(t)$] 当前任务本地执行能耗，单位：J
+  \item[$L_i^{\mathrm{off}}(n,t)$] 当前任务卸载至候选节点 $n$ 的完成时延，单位：s
+  \item[$E_i^{\mathrm{off}}(n,t)$] 当前任务卸载至候选节点 $n$ 的能耗，单位：J
+  \item[$\Delta_i(n,t)$] 当前任务卸载至候选节点 $n$ 的并发扰动项，单位：s
+  \item[$\widehat{\Delta}_i(n,t)$] 并发扰动预测值，单位：s
+  \item[$\widehat{\sigma}_i^2(n,t)$] 并发扰动预测不确定性，单位：s$^2$
+  \item[$J_i(a_t)$] 任务层动作 $a_t$ 对应的单任务综合代价，单位：无量纲
+  \item[$\omega_L,\omega_E,\omega_C$] 任务层时延、能耗与并发代价权重，单位：无量纲
 \end{symbols}

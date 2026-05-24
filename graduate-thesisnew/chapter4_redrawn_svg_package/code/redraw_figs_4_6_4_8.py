@@ -232,23 +232,85 @@ def draw_fig47():
         ax.set_xlabel("平均并发任务数")
         ax.set_ylabel(ylabel)
         _style(ax)
-        if idx == 1:
-            _legend(
-                ax,
-                loc="lower left",
-                fontsize=8.8,
-                markerscale=0.78,
-                handlelength=1.2,
-            )
-        elif idx == 2:
-            _legend(ax, loc="lower left")
-        else:
-            _legend(ax, loc="upper left")
+        _legend(
+            ax,
+            loc="best",
+            fontsize=8.2,
+            markerscale=0.72,
+            handlelength=1.1,
+        )
         _subcap(ax, cap)
 
     _save_both(OUT / "4-new-7", fig)
     plt.close(fig)
     print("Saved 4-new-7.pdf and 4-new-7.png")
+
+
+def draw_fig47_split():
+    delay_df  = pd.read_csv(DATA / "fig4_7_delay.csv",      index_col=0)
+    tp_df     = pd.read_csv(DATA / "fig4_7_throughput.csv", index_col=0)
+    sla_df    = pd.read_csv(DATA / "fig4_7_sla.csv",        index_col=0)
+    p99_df    = pd.read_csv(DATA / "fig4_7_p99.csv",        index_col=0)
+
+    algs = ["FL-DQN", "Centralized-DQN", "DQN-only", "FL-only", "Heuristic"]
+    x_col = "平均并发任务数"
+
+    # (a)(b)
+    fig_ab = plt.figure(figsize=(10, 4.3))
+    gs_ab = gridspec.GridSpec(1, 2, figure=fig_ab, wspace=0.35)
+    ax_a = fig_ab.add_subplot(gs_ab[0, 0])
+    ax_b = fig_ab.add_subplot(gs_ab[0, 1])
+
+    specs_ab = [
+        (ax_a, delay_df, "平均时延 (ms)", "(a) 平均任务时延"),
+        (ax_b, tp_df, "吞吐量 (tasks/s)", "(b) 系统吞吐量"),
+    ]
+    for ax, df, ylabel, cap in specs_ab:
+        x = df[x_col].values
+        for alg in algs:
+            if alg not in df.columns:
+                continue
+            y = df[alg].values
+            ax.plot(x, y, marker=E2E_MARKERS[alg], color=E2E_COLORS[alg],
+                    label=alg, markerfacecolor=E2E_COLORS[alg],
+                    markeredgecolor="black", markeredgewidth=0.3)
+        ax.set_xlabel("平均并发任务数")
+        ax.set_ylabel(ylabel)
+        _style(ax)
+        _legend(ax, loc="best", fontsize=8.2, markerscale=0.72, handlelength=1.1)
+        _subcap(ax, cap)
+
+    _save_both(OUT / "4-new-7-ab", fig_ab)
+    plt.close(fig_ab)
+
+    # (c)(d)
+    fig_cd = plt.figure(figsize=(10, 4.3))
+    gs_cd = gridspec.GridSpec(1, 2, figure=fig_cd, wspace=0.35)
+    ax_c = fig_cd.add_subplot(gs_cd[0, 0])
+    ax_d = fig_cd.add_subplot(gs_cd[0, 1])
+
+    specs_cd = [
+        (ax_c, sla_df, "SLA 完成率", "(c) SLA 完成率"),
+        (ax_d, p99_df, "P99 时延 (ms)", "(d) P99 尾时延"),
+    ]
+    for ax, df, ylabel, cap in specs_cd:
+        x = df[x_col].values
+        for alg in algs:
+            if alg not in df.columns:
+                continue
+            y = df[alg].values
+            ax.plot(x, y, marker=E2E_MARKERS[alg], color=E2E_COLORS[alg],
+                    label=alg, markerfacecolor=E2E_COLORS[alg],
+                    markeredgecolor="black", markeredgewidth=0.3)
+        ax.set_xlabel("平均并发任务数")
+        ax.set_ylabel(ylabel)
+        _style(ax)
+        _legend(ax, loc="best", fontsize=8.2, markerscale=0.72, handlelength=1.1)
+        _subcap(ax, cap)
+
+    _save_both(OUT / "4-new-7-cd", fig_cd)
+    plt.close(fig_cd)
+    print("Saved 4-new-7-ab/cd.pdf and 4-new-7-ab/cd.png")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -437,6 +499,7 @@ def draw_fig48_split():
 if __name__ == "__main__":
     draw_fig46()
     draw_fig47()
+    draw_fig47_split()
     draw_fig48()
     draw_fig48_split()
     print("All done.")
